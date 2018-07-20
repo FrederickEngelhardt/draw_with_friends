@@ -1,9 +1,9 @@
+import {SketchField, Tools} from 'react-sketch';
 import React, { Component } from 'react';
 import '../css/Sketch.css'
 import openSocket from 'socket.io-client';
 import Pixel from './Pixel'
 const socket = openSocket('http://localhost:3001')
-
 
 export default class Sketch extends Component {
   constructor(props) {
@@ -77,7 +77,11 @@ class PixelBox extends Component {
   render(){
     return(
       <div className="SketchBox">
-      {this.generatePixel()}
+      <SketchField width='1024px'
+             height='768px'
+             tool={Tools.Pencil}
+             lineColor='black'
+             lineWidth={3}/>
       </div>
     )
   }
