@@ -1,0 +1,14 @@
+$primary-color: #023;
+$font-stack: Helvetica, sans-serif;
+// body {
+//   font: 100% $font-stack;
+//   color: $primary-color;
+// }
+.Pixel {
+  width: 3vh;
+  height: 3vh;
+  background-color: $primary-color;
+  // border-radius: 45px;
+  border: solid #000;
+  border-width: 4px 4px 4px 4px;
+}

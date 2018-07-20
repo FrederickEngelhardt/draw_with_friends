@@ -1,0 +1,9 @@
+.Pixel {
+  width: 3vh;
+  height: 3vh;
+  background-color: #023;
+  border: solid #000;
+  border-width: 4px 4px 4px 4px;
+}
+
+/*# sourceMappingURL=Pixel.css.map */
