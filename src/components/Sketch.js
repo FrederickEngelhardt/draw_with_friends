@@ -13,6 +13,8 @@ export default class Sketch extends Component {
       numberOfBoxes: 2000,
     }
   }
+  componentDidMount(){
+  }
   componentWillUnmount() {
     socket.emit('disconnect', {
       room: this.props.challenge.id
@@ -34,12 +36,16 @@ class PixelBox extends Component {
       activeColor: 'red',
       color: {color: 'red', id: 1},
     }
-    socket.on('update_color', (payload) => {
-      console.log(payload, 'update color called');
-      if (payload.id === this.state.pixel_id){
-        this.setState({color: payload})
-      }
-    })
+    // socket.on('update_color', (payload) => {
+    //   if (payload.id === this.state.pixel_id){
+    //     let {color} = payload.color
+    //     console.log('updated color because it matched!');
+    //     this.setState({color: color})
+    //   }
+    //   else {
+    //     console.log(payload.id, this.state.pixel_id);
+    //   }
+    // })
   }
   /*
     NEED: Function to check all Pixels. And update them based on their id.
@@ -68,7 +74,7 @@ class PixelBox extends Component {
       })
     }
     else if (this.state.activeColor === 'red'){
-      console.log('Emitting Event to change to yellow')
+      console.log('Emitting Event to change to yellow, with id', id)
       socket.emit('client_change_color', {
         id: id,
         color: 'yellow',

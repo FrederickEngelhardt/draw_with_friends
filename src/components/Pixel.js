@@ -10,7 +10,7 @@ export default class Pixel extends Component {
       pixel_id: this.props.id,
       mouseDown: false,
     }
-    this.props.socket.on('update_color', (payload) => {
+    this.props.socket.on(`update_color${this.state.pixel_id}`, (payload) => {
       if (payload.id === this.state.pixel_id){
         let {color} = payload.color
         console.log('updated color because it matched!');
