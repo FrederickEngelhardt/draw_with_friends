@@ -9,23 +9,25 @@ export default class Pixel extends Component {
       color: this.props.color || 'red',
       pixel_id: this.props.id,
     }
-    /*
-      NOTE: We are taking socket from Sketchs and using it.
-    */
     this.props.socket.on('update_color', (payload) => {
-      console.log(payload, 'update color called');
       if (payload.id === this.state.pixel_id){
+        let {color} = payload.color
         console.log('updated color because it matched!');
-        this.setState({color: payload.color})
+        this.setState({color: color})
       }
       else {
         console.log(payload.id, this.state.pixel_id);
       }
     })
   }
+  componentDidMount(){
+
+  }
+  componentWillUpdate(){
+  }
   changeColor(){
     // Call SketchBox function
-    this.props.changeColor(this.state.pixel_id, this.state.color)
+    this.props.changeColor(this.state.pixel_id, 'red')
   }
   render() {
     return (

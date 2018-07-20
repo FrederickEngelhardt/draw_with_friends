@@ -31,14 +31,14 @@ class PixelBox extends Component {
     super(props)
     this.state = {
       activeColor: 'red',
-      color: 'red',
+      color: {color: 'red', id: 1},
     }
-    // socket.on('update_color', (payload) => {
-    //   console.log(payload, 'update color called');
-    //   if (payload.id === this.state.pixel_id){
-    //     this.setState({color: payload})
-    //   }
-    // })
+    socket.on('update_color', (payload) => {
+      console.log(payload, 'update color called');
+      if (payload.id === this.state.pixel_id){
+        this.setState({color: payload})
+      }
+    })
   }
   /*
     NEED: Function to check all Pixels. And update them based on their id.
@@ -59,22 +59,18 @@ class PixelBox extends Component {
     return array
   }
   changeColor(id, color){
-    console.log(this.state.activeColor);
-    if (this.state.color === 'yellow'){
-      console.log('true');
-      color = 'red'
+    console.log('Emitting Event to change to red')
+    if (this.state.activeColor === 'yellow'){
       socket.emit('client_change_color', {
         id: id,
-        color: color,
+        color: 'red',
       })
     }
-    else if (this.state.color === 'red'){
-      console.log(this.state.color);
-      console.log('else called');
-      color = 'yellow'
+    else if (this.state.activeColor === 'red'){
+      console.log('Emitting Event to change to yellow')
       socket.emit('client_change_color', {
         id: id,
-        color: color,
+        color: 'yellow',
       })
     }
   }
