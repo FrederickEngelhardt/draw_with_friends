@@ -6,3 +6,4 @@ Developer Notes:
 Option 1. https://www.npmjs.com/package/react-sketch
 Option 2. https://www.npmjs.com/package/react-canvas-draw
 Option 3. Build your own (I chose this one.)
+Option 4. Build your own with Canvas.

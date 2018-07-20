@@ -8,6 +8,7 @@ export default class Pixel extends Component {
     this.state = {
       color: this.props.color || 'red',
       pixel_id: this.props.id,
+      mouseDown: false,
     }
     this.props.socket.on('update_color', (payload) => {
       if (payload.id === this.state.pixel_id){
@@ -26,13 +27,20 @@ export default class Pixel extends Component {
   componentWillUpdate(){
   }
   changeColor(){
+    // if (this.state.mouseDown === false) return
     // Call SketchBox function
     this.props.changeColor(this.state.pixel_id, 'red')
   }
   render() {
     return (
-      <div style={{backgroundColor: this.state.color}} className="Pixel"
-        onClick={()=>{this.changeColor()}}>
+      <div style={{backgroundColor: this.state.color}} className={`Pixel box${this.state.pixel_id}`}
+        onMouseDown={()=>{
+          this.setState({mouseDown: true})
+          this.changeColor()
+        }}
+        // onMouseUp={()=>{this.setState({mouseDown: true})}}
+        onMouseEnter={this.changeColor.bind(this)}
+      >
       </div>)
   }
 }

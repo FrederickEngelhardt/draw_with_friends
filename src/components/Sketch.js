@@ -10,6 +10,7 @@ export default class Sketch extends Component {
     super(props)
     this.state = {
       activeColor: 'red',
+      numberOfBoxes: 2000,
     }
   }
   componentWillUnmount() {
@@ -20,7 +21,7 @@ export default class Sketch extends Component {
   render() {
     return (
       <div className="Sketch">
-        <PixelBox numberOfBoxes={4} activeColor={this.state.activeColor} />
+        <PixelBox numberOfBoxes={this.state.numberOfBoxes} activeColor={this.state.activeColor} />
       </div>
     )
   }
@@ -77,11 +78,7 @@ class PixelBox extends Component {
   render(){
     return(
       <div className="SketchBox">
-      <SketchField width='1024px'
-             height='768px'
-             tool={Tools.Pencil}
-             lineColor='black'
-             lineWidth={3}/>
+        {this.generatePixel()}
       </div>
     )
   }
