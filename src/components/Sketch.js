@@ -7,7 +7,7 @@ socket.on('news', function (data) {
   console.log(data);
   socket.emit('my other event', { my: 'data' });
 });
-
+let color = 'blue'
 export default class Sketch extends Component {
   constructor(props) {
     super(props)
@@ -35,16 +35,16 @@ export default class Sketch extends Component {
   render() {
     return (
       <div style={{backgroundColor: this.state.color}} className="Sketch" onClick={() =>{
-        console.log('test')
-        let color = this.state.color
-        console.log('THSI SI COLOR', color);
-        if(this.state.color === 'blue'){
+        if(this.state.color === 'white'){
           console.log('true');
-          color = 'white'
-          socket.emit('color', color)
+          color = 'blue'
+          socket.emit('change_color', 'red')
         }
-        else{
-          socket.emit('color', color)
+        else if(this.state.color === 'red'){
+          console.log(this.state.color);
+          console.log('else called');
+          color = 'blue'
+          socket.emit('change_color', 'white')
         }
       }
       }>
