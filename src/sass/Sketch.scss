@@ -1,0 +1,12 @@
+$primary-color: #023;
+$font-stack: Helvetica, sans-serif;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+.Sketch {
+  width: 100vh;
+  height: 100vh;
+  background-color: 'blue';
+}
