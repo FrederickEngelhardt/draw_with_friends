@@ -28,6 +28,7 @@ export default class Canvas extends React.Component {
             ctx=canvas.getContext("2d");
       // Note we will have to reconfigure this so that color is parsed through on the ws emit
       return [data[0]].map((element, index)=>{
+        // NOTE: data[1] is a list of numbers.
         ctx.fillStyle=[data[1]][index]
         return ctx.fillRect(...element)
       })
@@ -39,7 +40,7 @@ export default class Canvas extends React.Component {
       if (data.length === 0) {
         return ctx.clearRect(0,0,this.state.canvasWidth, this.state.canvasHeight)
       }
-      return [data[0]].map((ele, index)=>{
+      return data[0].map((ele, index)=>{
         ctx.fillStyle=data[1][index]
         return ctx.fillRect(...ele)
       })
