@@ -29,9 +29,13 @@ class Canvas extends React.Component {
       ctx.fillRect(this.state.x,this.state.y,10,10)
     })
     socket.on('load_canvas', (data) => {
+      console.log('called load_canvas');
       const canvas = this.refs.canvas,
             ctx=canvas.getContext("2d");
             ctx.fillStyle="#FF0000";
+      if (data.length === 0) {
+        return ctx.clearRect(0,0,this.state.canvasWidth, this.state.canvasHeight)
+      }
       return data.map((ele)=>{return ctx.fillRect(...ele)})
     })
   }
