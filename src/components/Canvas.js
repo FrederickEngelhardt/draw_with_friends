@@ -4,8 +4,9 @@ import '../css/Canvas.css'
 import '../css/ColorPicker.css'
 import { AlphaPicker, HuePicker } from 'react-color';
 
-import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:3001')
+import io from 'socket.io-client';
+// const socket = io('localhost:3001')
+const socket = io('https://morning-plains-42368.herokuapp.com')
 
 export default class Canvas extends React.Component {
   constructor(props){
