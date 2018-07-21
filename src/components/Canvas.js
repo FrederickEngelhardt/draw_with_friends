@@ -17,17 +17,17 @@ class Canvas extends React.Component {
       canvasWidth: 500,
       canvasHeight: 500,
     }
-    // socket.on('update_session_canvas', (data) => {
-    //   const canvas = this.refs.canvas,
-    //         canvasBounds = canvas.getBoundingClientRect(),
-    //         offsetLeft = canvasBounds.left,
-    //         offsetTop = canvasBounds.top,
-    //         ctx=canvas.getContext("2d");
-    //   ctx.fillStyle="#FF0000";
-    //   data.map((element)=>{
-    //     return ctx.fillRect(...element)})
-    //   ctx.fillRect(this.state.x,this.state.y,10,10)
-    // })
+    socket.on('update_session_canvas', (data) => {
+      const canvas = this.refs.canvas,
+            canvasBounds = canvas.getBoundingClientRect(),
+            offsetLeft = canvasBounds.left,
+            offsetTop = canvasBounds.top,
+            ctx=canvas.getContext("2d");
+      ctx.fillStyle="#FF0000";
+      data.map((element)=>{
+        return ctx.fillRect(...element)})
+      ctx.fillRect(this.state.x,this.state.y,10,10)
+    })
     socket.on('load_canvas', (data) => {
       const canvas = this.refs.canvas,
             ctx=canvas.getContext("2d");
@@ -58,13 +58,13 @@ class Canvas extends React.Component {
 
     let ctx=canvas.getContext("2d");
     ctx.fillStyle="#FF0000";
-    ctx.fillRect(this.state.x,this.state.y,10,10)
+    ctx.fillRect(this.state.x,this.state.y,this.state.rectangle_width,this.state.rectangle_height)
 
     socket.emit('update_canvas', [this.state.x, this.state.y, this.state.rectangle_width, this.state.rectangle_height])
   }
   _clearCanvas() {
     this.refs.canvas.getContext("2d").clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
-    socket.emit("clear_canvas")
+    socket.emit("clear_canvas", {})
   }
   render() {
     return(
