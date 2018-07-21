@@ -10,7 +10,7 @@ export default class Sketch extends Component {
     super(props)
     this.state = {
       activeColor: 'red',
-      numberOfBoxes: 2000,
+      numberOfBoxes: 10000,
     }
   }
   componentDidMount(){
@@ -35,17 +35,17 @@ class PixelBox extends Component {
     this.state = {
       activeColor: 'red',
       color: {color: 'red', id: 1},
+      session_id: null,
     }
-    // socket.on('update_color', (payload) => {
-    //   if (payload.id === this.state.pixel_id){
-    //     let {color} = payload.color
-    //     console.log('updated color because it matched!');
-    //     this.setState({color: color})
-    //   }
-    //   else {
-    //     console.log(payload.id, this.state.pixel_id);
-    //   }
-    // })
+    socket.on('session_id', (payload) => {
+      console.log(payload, "this is new id");
+      this.setState({session_id: payload})
+    })
+    socket.on('connect', () => {
+      console.log('connected!');
+      socket.emit('room', '123')})
+    socket.on('color_change', (data) => {
+      console.log("THIS IS DATA IN ROOM 123",data)})
   }
   /*
     NEED: Function to check all Pixels. And update them based on their id.
@@ -68,14 +68,14 @@ class PixelBox extends Component {
   changeColor(id, color){
     console.log('Emitting Event to change to red')
     if (this.state.activeColor === 'yellow'){
-      socket.emit('client_change_color', {
+      socket.emit(`client${this.state.session_id}_change_color`, {
         id: id,
         color: 'red',
       })
     }
     else if (this.state.activeColor === 'red'){
       console.log('Emitting Event to change to yellow, with id', id)
-      socket.emit('client_change_color', {
+      socket.emit(`client${this.state.session_id}_change_color`, {
         id: id,
         color: 'yellow',
       })

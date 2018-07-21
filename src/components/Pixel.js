@@ -39,7 +39,7 @@ export default class Pixel extends Component {
           this.changeColor()
         }}
         // onMouseUp={()=>{this.setState({mouseDown: true})}}
-        onMouseEnter={this.changeColor.bind(this)}
+        // onMouseEnter={this.changeColor.bind(this)}
       >
       </div>)
   }
