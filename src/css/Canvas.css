@@ -1,5 +1,8 @@
-.hidden {
-  display: none;
+.canvas {
+  position: relative;
+  top: 20px;
+  background-color: yellow;
+  border-radius: 50px;
 }
 
 /*# sourceMappingURL=Canvas.css.map */

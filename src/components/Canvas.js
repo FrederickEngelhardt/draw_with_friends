@@ -70,7 +70,7 @@ class Canvas extends React.Component {
     return(
       <div style={{height: '100vh', backgroundColor: 'blue'}}>
         <canvas
-          style={{backgroundColor: 'white'}}
+          className="canvas"
           height={this.state.canvasHeight}
           width={this.state.canvasWidth}
           onMouseMove={this._onMouseMove.bind(this)}
