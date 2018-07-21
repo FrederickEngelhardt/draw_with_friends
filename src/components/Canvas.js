@@ -29,6 +29,15 @@ class Canvas extends React.Component {
         return ctx.fillRect(...element)})
       ctx.fillRect(this.state.x,this.state.y,10,10)
     })
+    socket.on('load_canvas', (data) => {
+      const canvas = this.refs.canvas,
+            canvasBounds = canvas.getBoundingClientRect(),
+            offsetLeft = canvasBounds.left,
+            offsetTop = canvasBounds.top,
+            ctx=canvas.getContext("2d");
+            ctx.fillStyle="#FF0000";
+      return data.map((ele)=>{return ctx.fillRect(...ele)})
+    })
   }
   componentDidMount() {
     // Set the height of the canvas based on the smallest screen dimension size.
@@ -49,11 +58,12 @@ class Canvas extends React.Component {
 
     // Set the State of the current coordinates
     this.setState({ x: (e.screenX-offsetLeft), y: (e.screenY-offsetTop) });
+    if (this.state.x === undefined || this.state.y === undefined) return
 
     let ctx=canvas.getContext("2d");
     ctx.fillStyle="#FF0000";
     ctx.fillRect(this.state.x,this.state.y,10,10)
-    if (this.state.x === undefined || this.state.y === undefined) return
+
     socket.emit('update_canvas', [this.state.x, this.state.y, this.state.rectangle_width, this.state.rectangle_height])
   }
   render() {
