@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/Canvas.css'
+import '../css/ColorPicker.css'
+import { AlphaPicker, HuePicker } from 'react-color';
 
 import openSocket from 'socket.io-client';
 const socket = openSocket('http://localhost:3001')
 
-class Canvas extends React.Component {
+export default class Canvas extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -16,6 +18,7 @@ class Canvas extends React.Component {
       mouseDown: false,
       canvasWidth: 500,
       canvasHeight: 500,
+      selected_color: 'rgba(0,0,0,.2)',
     }
     socket.on('update_session_canvas', (data) => {
       const canvas = this.refs.canvas,
@@ -23,20 +26,23 @@ class Canvas extends React.Component {
             offsetLeft = canvasBounds.left,
             offsetTop = canvasBounds.top,
             ctx=canvas.getContext("2d");
-      ctx.fillStyle="#FF0000";
-      data.map((element)=>{
-        return ctx.fillRect(...element)})
-      ctx.fillRect(this.state.x,this.state.y,10,10)
+      // Note we will have to reconfigure this so that color is parsed through on the ws emit
+      return [data[0]].map((element, index)=>{
+        ctx.fillStyle=[data[1]][index]
+        return ctx.fillRect(...element)
+      })
     })
     socket.on('load_canvas', (data) => {
       console.log('called load_canvas');
       const canvas = this.refs.canvas,
             ctx=canvas.getContext("2d");
-            ctx.fillStyle="#FF0000";
       if (data.length === 0) {
         return ctx.clearRect(0,0,this.state.canvasWidth, this.state.canvasHeight)
       }
-      return data.map((ele)=>{return ctx.fillRect(...ele)})
+      return [data[0]].map((ele, index)=>{
+        ctx.fillStyle=data[1][index]
+        return ctx.fillRect(...ele)
+      })
     })
   }
   componentDidMount() {
@@ -57,19 +63,32 @@ class Canvas extends React.Component {
           offsetTop = canvasBounds.top
 
     // Set the State of the current coordinates
-    this.setState({ x: (e.clientX-offsetLeft), y: (e.clientY-offsetTop) });
+    this.setState({ x: (e.clientX-offsetLeft), y: (e.clientY-offsetTop) })
     if (this.state.x === undefined || this.state.y === undefined) return
 
-    let ctx=canvas.getContext("2d");
-    ctx.fillStyle="#FF0000";
+    let ctx=canvas.getContext("2d")
+    ctx.fillStyle= this.state.selected_color
     ctx.fillRect(this.state.x,this.state.y,this.state.rectangle_width,this.state.rectangle_height)
 
-    socket.emit('update_canvas', [this.state.x, this.state.y, this.state.rectangle_width, this.state.rectangle_height])
+    socket.emit('update_canvas', [this.state.x, this.state.y, this.state.rectangle_width, this.state.rectangle_height,this.state.selected_color])
   }
+
   _clearCanvas() {
     this.refs.canvas.getContext("2d").clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
     socket.emit("clear_canvas", {})
   }
+
+  _handleChangeComplete = (color, event) => {
+    this.setState({ selected_color: color.hex })
+  }
+  _handleChangeCompleteAlpha = (color, event) => {
+    // Locate RGBA in color and reformat
+    let {r,g,b,a} = color.rgb
+    console.log(r,g,b,a);
+    color = `rgba(${r},${g},${b},${a})`
+    this.setState({ selected_color: color})
+  }
+
   render() {
     return(
       <div style={{height: '100vh', backgroundColor: 'blue'}}>
@@ -80,9 +99,15 @@ class Canvas extends React.Component {
           onMouseMove={this._onMouseMove.bind(this)}
           ref="canvas"/>
           <button onClick={this._clearCanvas.bind(this)}>CLICK ME</button>
+          <div className="colorPicker">
+            <HuePicker
+              color={this.state.selected_color}
+              onChangeComplete={this._handleChangeComplete} />
+            <AlphaPicker
+              color={this.state.selected_color}
+              onChangeComplete={ this._handleChangeCompleteAlpha } />
+          </div>
       </div>
     )
   }
 }
-export default Canvas
-// height: '100vh', width: 500,
