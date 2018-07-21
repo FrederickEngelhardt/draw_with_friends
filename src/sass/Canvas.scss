@@ -1,10 +1,10 @@
 // Canvas stylesheet
-
-
+$offwhite: #EFDFBB;
+$dutch_white: #EFDFBB;
 
 .canvas {
   position: relative;
   top: 20px;
-  background-color: yellow;
+  background-color: $dutch_white;
   border-radius: 50px;
 }
