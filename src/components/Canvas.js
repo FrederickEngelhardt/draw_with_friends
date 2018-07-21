@@ -1,22 +1,40 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/Canvas.css'
+
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:3001')
+
 class Canvas extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       x: undefined,
       y: undefined,
+      rectangle_width: 20,
+      rectangle_height: 20,
       mouseDown: false,
       canvasWidth: 500,
-      canvasHeight: 500
+      canvasHeight: 500,
     }
+    socket.on('update_session_canvas', (data) => {
+      const canvas = this.refs.canvas,
+            canvasBounds = canvas.getBoundingClientRect(),
+            offsetLeft = canvasBounds.left,
+            offsetTop = canvasBounds.top,
+            ctx=canvas.getContext("2d");
+
+      ctx.fillStyle="#FF0000";
+      data.map((element)=>{
+        return ctx.fillRect(...element)})
+      ctx.fillRect(this.state.x,this.state.y,10,10)
+    })
   }
   componentDidMount() {
     // Set the height of the canvas based on the smallest screen dimension size.
     const canvasWidth = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9,
           canvasHeight = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9
-    console.log(canvasWidth, canvasHeight, 'w/H!@#!@#');
+
     this.setState({
       canvasWidth: canvasWidth,
       canvasHeight: canvasHeight
@@ -35,6 +53,8 @@ class Canvas extends React.Component {
     let ctx=canvas.getContext("2d");
     ctx.fillStyle="#FF0000";
     ctx.fillRect(this.state.x,this.state.y,10,10)
+    if (this.state.x === undefined || this.state.y === undefined) return
+    socket.emit('update_canvas', [this.state.x, this.state.y, this.state.rectangle_width, this.state.rectangle_height])
   }
   render() {
     return(
