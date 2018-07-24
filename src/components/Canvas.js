@@ -18,7 +18,8 @@ export default class Canvas extends React.Component {
       mouseDown: false,
       canvasWidth: 500,
       canvasHeight: 500,
-      selected_color: 'rgba(0,0,0,.2)',
+      alpha: 0.2,
+      selected_color: 'rgba(0,0,0,0.2)',
     }
     socket.on('update_session_canvas', (data) => {
       const canvas = this.refs.canvas,
@@ -69,6 +70,7 @@ export default class Canvas extends React.Component {
 
     let ctx=canvas.getContext("2d")
     ctx.fillStyle= this.state.selected_color
+    console.log("filled with color", this.state.selected_color);
     ctx.fillRect(this.state.x,this.state.y,this.state.rectangle_width,this.state.rectangle_height)
 
     socket.emit('update_canvas', [this.state.x, this.state.y, this.state.rectangle_width, this.state.rectangle_height,this.state.selected_color])
@@ -80,14 +82,20 @@ export default class Canvas extends React.Component {
   }
 
   _handleChangeComplete = (color, event) => {
-    this.setState({ selected_color: color.hex })
+    let {r,g,b,a} = color.rgb
+    a = this.state.alpha
+    this.setState({ selected_color: `rgba(${r},${g},${b},${a})` })
+    console.log(this.state.selected_color);
   }
   _handleChangeCompleteAlpha = (color, event) => {
     // Locate RGBA in color and reformat
     let {r,g,b,a} = color.rgb
     console.log(r,g,b,a);
     color = `rgba(${r},${g},${b},${a})`
-    this.setState({ selected_color: color})
+    this.setState({
+      selected_color: color,
+      alpha: a
+    })
   }
 
   render() {
@@ -99,8 +107,8 @@ export default class Canvas extends React.Component {
           width={this.state.canvasWidth}
           onMouseMove={this._onMouseMove.bind(this)}
           ref="canvas"/>
-          <button onClick={this._clearCanvas.bind(this)}>CLICK ME</button>
-          <div className="colorPicker">
+        <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
+          <div style={{backgroundColor: 'purple'}} className="colorPicker">
             <HuePicker
               color={this.state.selected_color}
               onChangeComplete={this._handleChangeComplete} />

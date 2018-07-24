@@ -3,6 +3,10 @@ $offwhite: #EFDFBB;
 $dutch_white: #EFDFBB;
 
 .colorPicker {
-  top:-40px;
+  // width: 100px;
+  top: -40px;
+  background-color: 'red';
   position: relative;
+  align-content: center;
+  justify-content: center;
 }
