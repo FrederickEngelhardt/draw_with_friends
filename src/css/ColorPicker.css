@@ -1,6 +1,8 @@
 .colorPicker {
-  top: -40px;
-  background-color: "red";
+  width: 20vw;
+  height: 20vh;
+  top: -500px;
+  background-color: salmon;
   position: relative;
   align-content: center;
   justify-content: center;

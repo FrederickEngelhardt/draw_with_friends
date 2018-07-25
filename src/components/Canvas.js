@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/Canvas.css'
 import '../css/ColorPicker.css'
-import { AlphaPicker, HuePicker } from 'react-color';
+import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
 
 import openSocket from 'socket.io-client';
 const socket = openSocket('http://localhost:3001')
+
+const defaultColors = [
+  '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00', '#DBDF00', '#A4DD00', '#68CCCA', '#73D8FF', '#AEA1FF', '#FDA1FF', '#333333', '#808080', '#cccccc', '#D33115', '#E27300', '#FCC400', '#B0BC00','#68BC00', '#16A5A5', '#009CE0', '#7B64FF', '#FA28FF', '#000000', '#666666', '#B3B3B3', '#9F0500', '#C45100', '#FB9E00', '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E'
+]
 
 export default class Canvas extends React.Component {
   constructor(props){
@@ -19,6 +23,7 @@ export default class Canvas extends React.Component {
       canvasWidth: 500,
       canvasHeight: 500,
       alpha: 0.2,
+      color_memory: defaultColors,
       selected_color: 'rgba(0,0,0,0.2)',
     }
     socket.on('update_session_canvas', (data) => {
@@ -83,6 +88,7 @@ export default class Canvas extends React.Component {
 
   _handleChangeComplete = (color, event) => {
     let {r,g,b,a} = color.rgb
+    // Replace default color alpha with state alpha
     a = this.state.alpha
     this.setState({ selected_color: `rgba(${r},${g},${b},${a})` })
     console.log(this.state.selected_color);
@@ -90,7 +96,6 @@ export default class Canvas extends React.Component {
   _handleChangeCompleteAlpha = (color, event) => {
     // Locate RGBA in color and reformat
     let {r,g,b,a} = color.rgb
-    console.log(r,g,b,a);
     color = `rgba(${r},${g},${b},${a})`
     this.setState({
       selected_color: color,
@@ -108,13 +113,16 @@ export default class Canvas extends React.Component {
           onMouseMove={this._onMouseMove.bind(this)}
           ref="canvas"/>
         <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
-          <div style={{backgroundColor: 'purple'}} className="colorPicker">
+          <div className="colorPicker">
             <HuePicker
               color={this.state.selected_color}
               onChangeComplete={this._handleChangeComplete} />
             <AlphaPicker
               color={this.state.selected_color}
               onChangeComplete={ this._handleChangeCompleteAlpha } />
+            <CompactPicker
+              colors={this.state.color_memory}
+              />
           </div>
       </div>
     )
