@@ -90,7 +90,22 @@ export default class Canvas extends React.Component {
     let {r,g,b,a} = color.rgb
     // Replace default color alpha with state alpha
     a = this.state.alpha
-    this.setState({ selected_color: `rgba(${r},${g},${b},${a})` })
+    let {color_memory} = this.state
+    color_memory.shift()
+    console.log(color_memory);
+    color_memory.unshift(`rgba(${r},${g},${b},${a})`)
+    console.log(color_memory);
+    this.setState({
+      selected_color: `rgba(${r},${g},${b},${a})`,
+      color_memory: color_memory  })
+    console.log(this.state.selected_color);
+  }
+  _handleChangeSavedColor = (color, event) => {
+    let {r,g,b,a} = color.rgb
+    // Replace default color alpha with state alpha
+    a = this.state.alpha
+    this.setState({
+      selected_color: `rgba(${r},${g},${b},${a})`})
     console.log(this.state.selected_color);
   }
   _handleChangeCompleteAlpha = (color, event) => {
@@ -122,6 +137,7 @@ export default class Canvas extends React.Component {
               onChangeComplete={ this._handleChangeCompleteAlpha } />
             <CompactPicker
               colors={this.state.color_memory}
+              onChangeComplete= { this._handleChangeSavedColor}
               />
           </div>
       </div>
