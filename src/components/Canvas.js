@@ -128,12 +128,12 @@ export default class Canvas extends React.Component {
     return(
       <div style={{height: '100vh', backgroundColor: 'blue'}}>
         <canvas
-          style={{cursor: `url('data:image/svg+xml;utf8,<svg fill="blue" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 500 500">            <path id="Rectangle" fill="${this.state.selected_color}" transform="rotate(45 91 234)" d="M19 194h145v80H19z"/><path fill="black" stroke="black" d="M315 10a34 34 0 0 0-48 0l-97 107-31-31a23 23 0 0 0-33 0l-50 51a6 6 0 0 0 0 8l2 3-56 56a6 6 0 0 0 0 9l44 44 66 66a6 6 0 0 0 9 0l56-56 3 2a6 6 0 0 0 8 0l51-50c9-9 9-24 0-33l-31-31 107-97c13-13 13-35 0-48zM116 311l-13-14 23-23a6 6 0 0 0-8-9l-24 23-13-13 23-23a6 6 0 1 0-9-9l-23 23-13-13 23-23a6 6 0 0 0-9-9l-23 23-13-13 22-23a6 6 0 0 0-8-9l-23 23-14-13 53-53 102 102-53 53zm114-101l-46 47L68 141l47-46c2-2 5-4 8-4s6 2 8 4l35 35 29 29 35 35c5 5 5 12 0 16zm77-161l-107 98-22-22 98-107c4-4 9-6 15-6s12 2 16 6c8 9 8 23 0 31z"/></svg>') 0 40, auto`}}
+          style={{cursor: `url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 600 600" version="1" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="paint-brush-svgrepo-com" transform="scale(${this.state.clickDown ? .8 : 1} -1) rotate(-45 -279 -100)"><path id="Rectangle-2" fill="${this.state.selected_color}" d="M24 11h179v79H24z"/><path id="Rectangle-4" fill="#FFF" d="M38 101h151v27H38z"/><path d="M139 246H87v18c-9 22-16 54-16 82 0 50 19 73 42 73 24 0 43-23 43-73 0-28-7-60-17-82v-18zM217 82V9c0-5-4-9-9-9H19c-5 0-9 4-9 9v73H0v100c0 28 23 52 52 52h123c29 0 52-24 52-52V82h-10zm-30 43H40v-22h147v22zm12-43H28V18h37l4 24a3 3 0 0 0 5 0l5-24h13l4 24a3 3 0 0 0 6 0l4-24h56l5 32a3 3 0 0 0 6 0l5-32h21v64z" id="Shape" fill="#000" fill-rule="nonzero"/></g></g></svg>') 0 40, auto`}}
           className="canvas"
           height={this.state.canvasHeight}
           width={this.state.canvasWidth}
           onMouseDown={() => this.setState({clickDown: !this.state.clickDown})}
-          onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : false}
+          onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>{return false}}
           ref="canvas"/>
         <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
           <div className="colorPicker">
