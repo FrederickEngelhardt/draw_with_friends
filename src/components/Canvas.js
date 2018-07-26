@@ -5,7 +5,7 @@ import '../css/ColorPicker.css'
 import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
 import Chatbox from './Chatbox.js'
 import openSocket from 'socket.io-client';
-// console.log(process.env);
+console.log(process.env === 'development');
 // const socket = openSocket('http://localhost:3001')
 const socket = process.env === 'development' ? openSocket('http://localhost:3001')
 : openSocket('https://draw-with-friends-server.herokuapp.com/')
@@ -27,7 +27,7 @@ export default class Canvas extends React.Component {
       canvasHeight: 500,
       alpha: 0.2,
       color_memory: defaultColors,
-      selected_color: 'rgba(0,0,0,0.2)',
+      selected_color: 'rgba(118,0,255,0.2)',
       clickDown: false
     }
     socket.on('update_session_canvas', (data) => {
@@ -36,7 +36,7 @@ export default class Canvas extends React.Component {
             offsetLeft = canvasBounds.left,
             offsetTop = canvasBounds.top,
             ctx=canvas.getContext("2d");
-      // Note we will have to reconfigure this so that color is parsed through on the ws emit
+      // Note we will have to reconfigure this so that color is
       return [data[0]].map((element, index)=>{
         // NOTE: data[1] is a list of numbers.
         ctx.fillStyle=[data[1]][index]
@@ -44,7 +44,6 @@ export default class Canvas extends React.Component {
       })
     })
     socket.on('load_canvas', (data) => {
-      console.log('called load_canvas');
       const canvas = this.refs.canvas,
             ctx=canvas.getContext("2d");
       if (data.length === 0) {
@@ -60,7 +59,7 @@ export default class Canvas extends React.Component {
     // Set the height of the canvas based on the smallest screen dimension size.
     const canvasWidth = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9,
           canvasHeight = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9
-    console.log(this.refs.canvas.getBoundingClientRect());
+    // console.log(this.refs.canvas.getBoundingClientRect());
     this.setState({
       canvasWidth: canvasWidth,
       canvasHeight: canvasHeight,
@@ -80,7 +79,6 @@ export default class Canvas extends React.Component {
 
     let ctx=canvas.getContext("2d")
     ctx.fillStyle= this.state.selected_color
-    console.log("filled with color", this.state.selected_color);
     ctx.fillRect(this.state.x,this.state.y,this.state.rectangle_width,this.state.rectangle_height)
 
     socket.emit('update_canvas', [this.state.x, this.state.y, this.state.rectangle_width,this.state.rectangle_height,this.state.selected_color])
@@ -93,18 +91,14 @@ export default class Canvas extends React.Component {
 
   _handleChangeComplete = (color, event) => {
     let {r,g,b,a} = color.rgb
-    console.log(r,g,b,a);
     // Replace default color alpha with state alpha
     a = this.state.alpha
     let {color_memory} = this.state
     color_memory = color_memory.slice(0,color_memory.length - 1)
-    console.log(color_memory);
     color_memory.unshift(`rgba(${r},${g},${b},${a})`)
-    console.log(color_memory);
     this.setState({
       selected_color: `rgba(${r},${g},${b},${a})`,
       color_memory: color_memory  })
-    console.log(this.state.selected_color);
   }
   _handleChangeSavedColor = (color, event) => {
     let {r,g,b,a} = color.rgb
@@ -128,7 +122,7 @@ export default class Canvas extends React.Component {
     return(
       <div style={{height: '100vh', backgroundColor: 'blue'}}>
         <canvas
-          style={{cursor: `url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 600 600" version="1" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="paint-brush-svgrepo-com" transform="scale(${this.state.clickDown ? .8 : 1} -1) rotate(-45 -279 -100)"><path id="Rectangle-2" fill="${this.state.selected_color}" d="M24 11h179v79H24z"/><path id="Rectangle-4" fill="#FFF" d="M38 101h151v27H38z"/><path d="M139 246H87v18c-9 22-16 54-16 82 0 50 19 73 42 73 24 0 43-23 43-73 0-28-7-60-17-82v-18zM217 82V9c0-5-4-9-9-9H19c-5 0-9 4-9 9v73H0v100c0 28 23 52 52 52h123c29 0 52-24 52-52V82h-10zm-30 43H40v-22h147v22zm12-43H28V18h37l4 24a3 3 0 0 0 5 0l5-24h13l4 24a3 3 0 0 0 6 0l4-24h56l5 32a3 3 0 0 0 6 0l5-32h21v64z" id="Shape" fill="#000" fill-rule="nonzero"/></g></g></svg>') 0 40, auto`}}
+          style={{cursor: `url('data:image/svg+xml;utf8,<svg width="80" height="80" viewBox="0 0 600 600" version="1" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="paint-brush-svgrepo-com" transform="scale(${this.state.clickDown ? .8 : 1} -1) rotate(-45 -279 -100)"><path id="Rectangle-2" fill="${this.state.selected_color}" d="M24 11h179v79H24z"/><path id="Rectangle-4" fill="#FFF" d="M38 101h151v27H38z"/><path d="M139 246H87v18c-9 22-16 54-16 82 0 50 19 73 42 73 24 0 43-23 43-73 0-28-7-60-17-82v-18zM217 82V9c0-5-4-9-9-9H19c-5 0-9 4-9 9v73H0v100c0 28 23 52 52 52h123c29 0 52-24 52-52V82h-10zm-30 43H40v-22h147v22zm12-43H28V18h37l4 24a3 3 0 0 0 5 0l5-24h13l4 24a3 3 0 0 0 6 0l4-24h56l5 32a3 3 0 0 0 6 0l5-32h21v64z" id="Shape" fill="#000" fill-rule="nonzero"/></g></g></svg>') 0 40, pointer`}}
           className="canvas"
           height={this.state.canvasHeight}
           width={this.state.canvasWidth}
