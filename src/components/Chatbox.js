@@ -9,9 +9,7 @@ export default class Chatbox extends Component {
     }
     this.state.socket.on('update_messages', (data)=>{
       data = [...data].length > 1 ? data : [data]
-      console.log(...data);
       return data.map((ele)=>{
-        console.log(ele,this.state.messageList);
         return this.setState({
           messageList: [...this.state.messageList, ele]
         })
@@ -30,7 +28,6 @@ export default class Chatbox extends Component {
         data: { text }
       }]
     })
-    console.log(this.state.socket);
 
   }
 }
