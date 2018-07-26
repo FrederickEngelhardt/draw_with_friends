@@ -11,3 +11,4 @@ Option 4. Build your own with Canvas (used this latter).
 Next steps:
   Sharable color pallette for each person that connects (room or...)
   Shapes: for filling and changing stylus
+  Global State: Redux

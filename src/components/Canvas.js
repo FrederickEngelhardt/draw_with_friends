@@ -20,12 +20,12 @@ export default class Canvas extends React.Component {
       y: undefined,
       rectangle_width: 20,
       rectangle_height: 20,
-      mouseDown: false,
       canvasWidth: 500,
       canvasHeight: 500,
       alpha: 0.2,
       color_memory: defaultColors,
       selected_color: 'rgba(0,0,0,0.2)',
+      clickDown: false
     }
     socket.on('update_session_canvas', (data) => {
       const canvas = this.refs.canvas,
@@ -64,6 +64,7 @@ export default class Canvas extends React.Component {
     })
   }
   _onMouseMove(e) {
+    e.preventDefault()
     // Detects the current coordinates of the mouse and draws
     const canvas = this.refs.canvas,
           canvasBounds = canvas.getBoundingClientRect(),
@@ -127,7 +128,8 @@ export default class Canvas extends React.Component {
           className="canvas"
           height={this.state.canvasHeight}
           width={this.state.canvasWidth}
-          onMouseMove={this._onMouseMove.bind(this)}
+          onMouseDown={() => this.setState({clickDown: !this.state.clickDown})}
+          onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : false}
           ref="canvas"/>
         <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
           <div className="colorPicker">
