@@ -12,3 +12,4 @@ Next steps:
   Sharable color pallette for each person that connects (room or...)
   Shapes: for filling and changing stylus
   Global State: Redux
+  Chatbox: needed
