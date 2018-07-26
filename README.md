@@ -13,3 +13,4 @@ Next steps:
   Shapes: for filling and changing stylus
   Global State: Redux
   Chatbox: needed
+  WASD DoodleMan (controlled through keyboard and can draw...)
