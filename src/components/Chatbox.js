@@ -8,8 +8,9 @@ export default class Chatbox extends Component {
       messageList: [{author: "me", data: {text: 'test'}}],
     }
     this.state.socket.on('update_messages', (data)=>{
-      console.log(data);
-      return [data].map((ele)=>{
+      data = [...data].length > 1 ? data : [data]
+      console.log(...data);
+      return data.map((ele)=>{
         console.log(ele,this.state.messageList);
         return this.setState({
           messageList: [...this.state.messageList, ele]
