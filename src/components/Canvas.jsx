@@ -1,11 +1,18 @@
+/*
+Bootstrap
+*/
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import openSocket from 'socket.io-client';
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/Canvas.css'
 import '../css/ColorPicker.css'
 import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
 import Chatbox from './Chatbox.js'
-import openSocket from 'socket.io-client';
 console.log(process.env === 'development');
+
 // const socket = openSocket('http://localhost:3001')
 const socket = process.env === 'development' ? openSocket('http://localhost:3001')
 : openSocket('https://draw-with-friends-server.herokuapp.com/')
@@ -117,7 +124,9 @@ export default class Canvas extends React.Component {
       alpha: a
     })
   }
-
+  checkIfMousePress = () => {
+    if (this.state.clickDown === true) this.setState({clickDown: false})
+  }
   render() {
     return(
       <div className="container">
@@ -126,10 +135,9 @@ export default class Canvas extends React.Component {
           className="canvas"
           height={this.state.canvasHeight}
           width={this.state.canvasWidth}
-          onMouseDown={() => this.setState({clickDown: !this.state.clickDown})}
+          onMouseDown={() => this.setState({clickDown: true})}
           onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>{return false}}
           onMouseUp={()=>{
-            console.log('up');
             this.setState({clickDown: false})
           }}
 
