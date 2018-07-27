@@ -31,7 +31,7 @@ export default class Chatbox extends Component {
       <div>
       <Launcher
         agentProfile={{
-          teamName: 'Draw-With-Friends!',
+          teamName: 'All Drawing Friends!',
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
         }}
         onMessageWasSent={this._onMessageWasSent.bind(this)}
