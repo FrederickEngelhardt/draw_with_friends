@@ -42,7 +42,7 @@
 
   ## Contributing
 
-  Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+  Please message me fre1
 
   ### TODOs
   1. Sharable color pallette for each person that connects (room or...)
@@ -55,21 +55,22 @@
   8. Stylus sizing - change size of stylus
   9. Save Drawings to rerender
   10. Save Drawings as SVG
-  
+
   ## Releases
 
   0.0.01 - Beta Release for the Application
 
   ## Authors
 
-  * **Frederick Engelhardtr** - *Initial work* - [FrederickEngelhardt](https://github.com/FrederickEngelhardt)
+  * **Frederick Engelhardt** - *Complete Build* - [FrederickEngelhardt](https://github.com/FrederickEngelhardt)
 
   See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
   ## License
 
-  Feel free to use the project for Personal learning.
+  Feel free to use the project for *personal learning*.
+  Otherwise email me @ [email](fre@virtualizellc.com)
 
   ## Acknowledgments
 
-  * Big thanks to Stephen Fox for CSS and dynamic SVG help
+  * Big thanks to [Stephen Fox](https://github.com/moltenkaizen) for CSS and dynamic SVG help
