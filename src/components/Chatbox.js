@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import {Launcher} from 'react-chat-window'
+import openSocket from 'socket.io-client';
+const chat = openSocket('http://localhost:3001/chat')
 export default class Chatbox extends Component {
   constructor(props){
     super(props)
     this.state = {
-      socket: this.props.socket,
       messageList: [{author: "me", data: {text: 'test'}}],
+      sent: true,
     }
-    this.state.socket.on('update_messages', (data)=>{
+    chat.on('update_messages', (data)=>{
+      console.log("Messages were updated!");
       data = [...data].length > 1 ? data : [data]
       return data.map((ele)=>{
+        if (this.state.sent === true){ele.author = 'me'; this.setState({sent: false})}
         return this.setState({
           messageList: [...this.state.messageList, ele]
         })
@@ -17,20 +21,11 @@ export default class Chatbox extends Component {
     })
   }
   _onMessageWasSent(message) {
-    this.state.socket.emit('user_message_sent', message)
+    this.setState({sent: true})
+    message.author = 'them'
+    console.log('CALLED', message);
+    chat.emit('user_message_sent', message)
   }
-  _sendMessage(text) {
-  if (text.length > 0) {
-    this.setState({
-      messageList: [...this.state.messageList, {
-        author: 'them',
-        type: 'text',
-        data: { text }
-      }]
-    })
-
-  }
-}
   render(){
     return(
       <div>

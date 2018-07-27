@@ -12,7 +12,8 @@ Next steps:
   Sharable color pallette for each person that connects (room or...)
   Shapes: for filling and changing stylus
   Global State: Redux
-  Chatbox: needed
   WASD DoodleMan (controlled through keyboard and can draw...)
+  Chatbox: Add Handles
   Layering - IE can move the layers up or down to see different effects
             and can save layers.
+  Stylus sizing - change size of stylus
