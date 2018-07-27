@@ -128,6 +128,11 @@ export default class Canvas extends React.Component {
           width={this.state.canvasWidth}
           onMouseDown={() => this.setState({clickDown: !this.state.clickDown})}
           onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>{return false}}
+          onMouseUp={()=>{
+            console.log('up');
+            this.setState({clickDown: false})
+          }}
+
           ref="canvas"/>
         <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
           <div className="colorPicker">

@@ -14,3 +14,5 @@ Next steps:
   Global State: Redux
   Chatbox: needed
   WASD DoodleMan (controlled through keyboard and can draw...)
+  Layering - IE can move the layers up or down to see different effects
+            and can save layers.
