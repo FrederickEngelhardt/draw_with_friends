@@ -1,0 +1,10 @@
+.resizable {
+    position: absolute;
+    overflow: scroll;
+    // resize: both;
+    width: 300px;
+    height: 500px;
+    max-width: 600px;
+    max-height: 960px;
+    background: orange;
+}
