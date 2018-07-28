@@ -44,6 +44,7 @@
   ## Built With
 
   * [React](https://reactjs.org/) - The web framework used
+  * [Redux](https://redux.js.org/) - For Future Scaling
 
   ## Contributing
 
