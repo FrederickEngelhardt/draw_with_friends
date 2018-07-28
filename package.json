@@ -12,8 +12,10 @@
     "react-color": "^2.14.1",
     "react-dom": "^16.4.1",
     "react-drag-sortable": "^1.0.6",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
     "react-sketch": "^0.4.4",
+    "redux": "^4.0.0",
     "socket.io-client": "^2.1.1",
     "webpack": "^3.11.0"
   },

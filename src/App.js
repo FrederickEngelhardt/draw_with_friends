@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // Stylesheets
 import './App.css';
 
-import Canvas from './components/Canvas'
+import Canvas from './containers/Canvas'
 
 class App extends Component {
   render() {

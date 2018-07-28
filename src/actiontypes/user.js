@@ -1,0 +1,5 @@
+export const CHANGE_COLOR = 'user/CHANGE_COLOR';
+export const CHANGE_OPACITY = 'user/CHANGE_OPACITY';
+export const DRAW = 'user/DRAW';
+export const MOUSE_DOWN = 'user/MOUSE_DOWN';
+export const MOUSE_UP = 'user/MOUSE_UP';
