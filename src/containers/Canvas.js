@@ -4,7 +4,7 @@ Bootstrap
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import $ from 'jquery';
 // import Popper from 'popper.js';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import '../css/Canvas.css'
 import '../css/ColorPicker.css'
 import openSocket from 'socket.io-client';
@@ -22,6 +22,9 @@ const defaultColors = [
 
 
 export default class Canvas extends React.Component {
+  // static propTypes = {
+  //   user: PropTypes.object.isRequired
+  // };
   constructor(props){
     super(props)
     this.state = {
@@ -36,6 +39,7 @@ export default class Canvas extends React.Component {
       selected_color: 'rgba(118,0,255,0.2)',
       clickDown: false
     }
+
     drawing.on('update_session_canvas', (data) => {
       const canvas = this.refs.canvas,
             canvasBounds = canvas.getBoundingClientRect(),
@@ -84,6 +88,7 @@ export default class Canvas extends React.Component {
           y = e.clientY - offsetTop
 
     let ctx=canvas.getContext("2d")
+    console.log(this.state.selected_color);
     ctx.fillStyle= this.state.selected_color
     ctx.fillRect(x,y,this.state.rectangle_width,this.state.rectangle_height)
 
@@ -96,15 +101,19 @@ export default class Canvas extends React.Component {
   }
 
   _handleChangeComplete = (color, event) => {
-    let {r,g,b,a} = color.rgb
+    let { r,g,b,a } = color.rgb
     // Replace default color alpha with state alpha
     a = this.state.alpha
-    let {color_memory} = this.state
+    let { color_memory } = this.state
+    let { changeColor } = this.props
     color_memory = color_memory.slice(0,color_memory.length - 1)
     color_memory.unshift(`rgba(${r},${g},${b},${a})`)
+    color = `rgba(${r},${g},${b},${a})`
+    changeColor(color)
     this.setState({
-      selected_color: `rgba(${r},${g},${b},${a})`,
+      selected_color: color,
       color_memory: color_memory  })
+    console.log("REDUX STATE", this.props.state);
   }
   _handleChangeSavedColor = (color, event) => {
     let {r,g,b,a} = color.rgb
@@ -112,7 +121,6 @@ export default class Canvas extends React.Component {
     a = this.state.alpha
     this.setState({
       selected_color: `rgba(${r},${g},${b},${a})`})
-    console.log(this.state.selected_color);
   }
   _handleChangeCompleteAlpha = (color, event) => {
     // Locate RGBA in color and reformat

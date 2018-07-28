@@ -4,14 +4,19 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import './index.css';
 import App from './App';
-import UserReducer from './src/reducers/user';
+import UserReducer from './reducers/user';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
-  // # REDUCER NAME,
+  UserReducer,
   window.devToolsExtension && window.devToolsExtension()
 );
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
