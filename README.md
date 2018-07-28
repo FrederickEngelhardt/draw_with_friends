@@ -18,17 +18,22 @@
   ```
 
   ## Running the tests
+  *requires mocha and chai*
   ```
-  npm install -g mocha
   npm test
   ```
 
-  ### And coding style tests
+  ### Tests
 
   INPROGRESS Socket.io Testing for sessions
   ```
   Socket.io connection check
   Canvas objects see if socket is sending back canvas objects
+  ```
+  INPROGRESS Canvas Testing
+  ```
+  Test to check if you can draw on canvas
+  Canvas mouse Hover Draw check (see if @ coordinates of mouse draws on correct part of screen)
   ```
 
   ## Deployment
