@@ -1,6 +1,6 @@
 {
   "name": "color_with_friends",
-  "version": "0.1.0",
+  "version": "0.0.01",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.3",
