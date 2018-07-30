@@ -14,7 +14,16 @@ export default class Layers extends Component {
       value: '',
     }
     this.props.socket.on('update_layers', (data) => {
-        this.setState({layers: [...this.state.layers, this.state.value]})
+        console.log([...this.state.layers, data]);
+        this.setState({layers: [...this.state.layers, data]})
+    })
+    this.props.socket.on('load_layers', (data) => {
+      console.log(data);
+      let values = data.map((e) => {
+        return [e.canvas, e.name]
+      })
+
+      this.setState({layers: values})
     })
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,7 +43,15 @@ export default class Layers extends Component {
   generateLayers() {
     return(
       this.state.layers.map((ele,index) => {
-        return <div key={index} id={ele}><input className="orderBox" />{ele}</div>
+        /*
+          ele[0] is layer data
+          ele[1] is layer name
+        */
+        return (
+          <div key={index} id={ele[1]}>
+            <input className="orderBox" placeholder={index} />
+            {ele[1]}
+            </div>)
       })
     )
   }
