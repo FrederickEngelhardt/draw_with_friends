@@ -12,6 +12,7 @@ export default class Layers extends Component {
       mouseY: null,
       layers: [],
       value: '',
+      change_id: null,
     }
     this.props.socket.on('update_layers', (data) => {
         console.log([...this.state.layers, data]);
@@ -49,7 +50,12 @@ export default class Layers extends Component {
         */
         return (
           <div key={index} id={ele[1]}>
-            <input className="orderBox" placeholder={index} />
+            <input
+              className="orderBox"
+              placeholder={index}
+              onChange={this.handleSwapChange}
+              value={this.state.change_id}
+               />
             {ele[1]}
             </div>)
       })
@@ -71,8 +77,30 @@ export default class Layers extends Component {
       </form>
     )
   }
+  swap_layer(){
+    const change_layer = (event) => {
+      event.preventDefault()
+      if (this.state.change_id === null) return
+      this.props.socket.emit('swap_layer', {
+        from_id: this.state.change_id[0],
+        to_id: this.state.change_id[1]
+      })
+    }
+    return (
+      <form onSubmit={change_layer}>
+        <button>Change Layer
+      </button>
+      </form>
+    )
+  }
   handleChange(event) {
+    event.preventDefault()
     this.setState({value: event.target.value});
+  }
+  handleSwapChange = (event) => {
+    console.log(event.target.placeholder, event.target.value);
+    let array = [event.target.placeholder, event.target.value]
+    this.setState({change_id: array})
   }
   handleSubmit(event){
     event.preventDefault()
@@ -89,6 +117,7 @@ export default class Layers extends Component {
         className="resizable">
         {this.createLayer()}
         {this.generateLayers()}
+        {this.swap_layer()}
       </div>
    )
   }
