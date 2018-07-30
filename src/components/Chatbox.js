@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Launcher} from 'react-chat-window'
-import openSocket from 'socket.io-client';
 export default class Chatbox extends Component {
   constructor(props){
     super(props)

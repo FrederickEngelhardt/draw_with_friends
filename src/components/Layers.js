@@ -13,6 +13,9 @@ export default class Layers extends Component {
       layers: [],
       value: '',
     }
+    this.props.socket.on('update_layers', (data) => {
+        this.setState({layers: [...this.state.layers, this.state.value]})
+    })
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,9 +30,6 @@ export default class Layers extends Component {
     // const offsetY = e.clientY - mouseY
     // console.log(offsetX, offsetY);
     // this.setState({x: x+offsetX, y: y+offsetY})
-  }
-  requestToGenerate(){
-    this.props.socket.emit('add_layer', {})
   }
   generateLayers() {
     return(
@@ -55,11 +55,11 @@ export default class Layers extends Component {
     )
   }
   handleChange(event) {
-  this.setState({value: event.target.value});
-}
+    this.setState({value: event.target.value});
+  }
   handleSubmit(event){
-        event.preventDefault()
-        this.setState({layers: [...this.state.layers, this.state.value]})
+    event.preventDefault()
+    this.props.socket.emit('add_layer', {name: this.state.value})
   }
   render(){
     return (

@@ -4,7 +4,7 @@ Bootstrap
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import $ from 'jquery';
 // import Popper from 'popper.js';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import '../css/Canvas.css'
 import '../css/ColorPicker.css'
 import openSocket from 'socket.io-client';
