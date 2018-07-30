@@ -12,7 +12,6 @@ import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
 import Chatbox from '../components/Chatbox.js'
 console.log(process.env === 'development');
 
-const drawing = openSocket('http://localhost:3001/drawing')
 // const socket = process.env === 'development' ? openSocket('http://localhost:3001')
 // : openSocket('https://draw-with-friends-server.herokuapp.com/')
 
@@ -40,7 +39,7 @@ export default class Canvas extends React.Component {
       clickDown: false
     }
 
-    drawing.on('update_session_canvas', (data) => {
+    this.props.socket.on('update_session_canvas', (data) => {
       const canvas = this.refs.canvas,
             canvasBounds = canvas.getBoundingClientRect(),
             offsetLeft = canvasBounds.left,
@@ -53,7 +52,7 @@ export default class Canvas extends React.Component {
         return ctx.fillRect(...element)
       })
     })
-    drawing.on('load_canvas', (data) => {
+    this.props.socket.on('load_canvas', (data) => {
       const canvas = this.refs.canvas,
             ctx=canvas.getContext("2d");
       if (data.length === 0) {
@@ -92,12 +91,12 @@ export default class Canvas extends React.Component {
     ctx.fillStyle= this.state.selected_color
     ctx.fillRect(x,y,this.state.rectangle_width,this.state.rectangle_height)
 
-    drawing.emit('update_canvas', [x,y, this.state.rectangle_width,this.state.rectangle_height,this.state.selected_color])
+    this.props.socket.emit('update_canvas', [x,y, this.state.rectangle_width,this.state.rectangle_height,this.state.selected_color])
   }
 
   _clearCanvas() {
     this.refs.canvas.getContext("2d").clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
-    drawing.emit("clear_canvas", {})
+    this.props.socket.emit("clear_canvas", {})
   }
 
   _handleChangeComplete = (color, event) => {
@@ -150,7 +149,6 @@ export default class Canvas extends React.Component {
           onMouseUp={()=>{
             this.setState({clickDown: false})
           }}
-
           ref="canvas"/>
         <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
           <div className="colorPicker">
@@ -166,7 +164,6 @@ export default class Canvas extends React.Component {
               onSwatchHover={(color, event)=>{}}
               />
           </div>
-          <Chatbox/>
       </div>
     )
   }

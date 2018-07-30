@@ -17,25 +17,24 @@ export default class Layers extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   _onDragDiv(e){
-    const {mouseX, mouseY, x, y} = this.state
-    if (this.state.mouseDown === false) return
-    if (this.state.mouseX === null) {
-      this.setState({mouseX: e.clientX, mouseY: e.clientY})
-    }
-    console.log(mouseX, mouseY, this.state.x, this.state.y);
-    const offsetX = e.clientX - mouseX
-    const offsetY = e.clientY - mouseY
-    console.log(offsetX, offsetY);
-
-    // if (mouseX !== null && mouseY !== null) return
-    // else {
-      this.setState({x: x+offsetX, y: y+offsetY})
+    // const {mouseX, mouseY, x, y} = this.state
+    // if (this.state.mouseDown === false) return
+    // if (this.state.mouseX === null) {
+    //   this.setState({mouseX: e.clientX, mouseY: e.clientY})
     // }
+    // console.log(mouseX, mouseY, this.state.x, this.state.y);
+    // const offsetX = e.clientX - mouseX
+    // const offsetY = e.clientY - mouseY
+    // console.log(offsetX, offsetY);
+    // this.setState({x: x+offsetX, y: y+offsetY})
+  }
+  requestToGenerate(){
+    this.props.socket.emit('add_layer', {})
   }
   generateLayers() {
     return(
       this.state.layers.map((ele,index) => {
-        return <div key={index} id={ele}><input />{ele}</div>
+        return <div key={index} id={ele}><input className="orderBox" />{ele}</div>
       })
     )
   }
@@ -45,6 +44,7 @@ export default class Layers extends Component {
         <button>Add Layer
       </button>
       <input
+        className="inputBox"
         type="text"
         value={this.state.value}
         onChange={this.handleChange}

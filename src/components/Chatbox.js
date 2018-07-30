@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Launcher} from 'react-chat-window'
 import openSocket from 'socket.io-client';
-const chat = openSocket('http://localhost:3001/chat')
 export default class Chatbox extends Component {
   constructor(props){
     super(props)
@@ -9,8 +8,8 @@ export default class Chatbox extends Component {
       messageList: [{author: "me", data: {text: 'test'}}],
       sent: true,
     }
-    chat.on('update_messages', (data)=>{
-      console.log("Messages were updated!");
+    this.props.socket.on('update_messages', (data)=>{
+      // console.log("Messages were updated!");
       data = [...data].length > 1 ? data : [data]
       return data.map((ele)=>{
         if (this.state.sent === true){ele.author = 'me'; this.setState({sent: false})}
@@ -23,8 +22,8 @@ export default class Chatbox extends Component {
   _onMessageWasSent(message) {
     this.setState({sent: true})
     message.author = 'them'
-    console.log('CALLED', message);
-    chat.emit('user_message_sent', message)
+    // console.log('CALLED', message);
+    this.props.socket.emit('user_message_sent', message)
   }
   render(){
     return(
