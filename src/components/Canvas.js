@@ -45,12 +45,10 @@ export default class Canvas extends React.Component {
             offsetLeft = canvasBounds.left,
             offsetTop = canvasBounds.top,
             ctx=canvas.getContext("2d");
-      // Note we will have to reconfigure this so that color is
-      return [data[0]].map((element, index)=>{
-        // NOTE: data[1] is a list of numbers.
-        ctx.fillStyle=[data[1]][index]
-        return ctx.fillRect(...element)
-      })
+
+      ctx.fillStyle = data[data.length-1]
+      data = data.slice(0,4)
+      return ctx.fillRect(...data)
     })
     this.props.socket.on('load_canvas', (data) => {
       const canvas = this.refs.canvas,
@@ -58,8 +56,10 @@ export default class Canvas extends React.Component {
       if (data.length === 0) {
         return ctx.clearRect(0,0,this.state.canvasWidth, this.state.canvasHeight)
       }
-      return data[0].map((ele, index)=>{
-        ctx.fillStyle=data[1][index]
+      return data[0].map((ele)=>{
+        ctx.fillStyle = ele[ele.length-1]
+        ele = ele.slice(0,4)
+        console.log(ele);
         return ctx.fillRect(...ele)
       })
     })
