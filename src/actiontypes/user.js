@@ -4,3 +4,4 @@ export const CHANGE_LAYER = 'user/CHANGE_LAYER';
 export const DRAW = 'user/DRAW';
 export const MOUSE_DOWN = 'user/MOUSE_DOWN';
 export const MOUSE_UP = 'user/MOUSE_UP';
+export const ADD_LAYER = 'user/ADD_LAYER';

@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <Canvas state={user} changeColor={changeColor}/>
-        <Layers />
+        <Layers layers={[1,2]}/>
       </div>
     );
   }

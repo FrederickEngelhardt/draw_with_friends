@@ -17,6 +17,15 @@ export default function User(state=initialState, action) {
       console.log('UPDATE WAS CALLED', update);
       return update;
 	 	}
+    case UserActionTypes.ADD_LAYER: {
+      // IMMUTABLY CHANGE OBJECT making default of red
+      const update = {
+        ...state,
+        layers: [...state.layers, action.layer],
+      }
+      console.log('UPDATE WAS CALLED', update);
+      return update;
+	 	}
 
     default:
       console.log('default reducer called');

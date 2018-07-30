@@ -6,3 +6,9 @@ export const changeColor = color => {
     color
   };
 };
+export const addLayer = layer => {
+  return {
+    type: UserActionTypes.ADD_LAYER,
+    layer
+  };
+};

@@ -1,11 +1,13 @@
 .resizable {
   position: absolute;
   overflow: scroll;
-  width: 300px;
-  height: 500px;
+  resize: both;
+  width: 200px;
+  height: 400px;
   max-width: 600px;
   max-height: 960px;
   background: orange;
+  z-index: 0;
 }
 
 /*# sourceMappingURL=Layers.css.map */
