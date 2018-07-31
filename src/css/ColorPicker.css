@@ -1,8 +1,9 @@
 .colorPicker {
-  width: 20vw;
+  width: 15vw;
   height: 20vh;
-  top: -500px;
-  background-color: salmon;
+  top: -50vh;
+  left: 0px;
+  background-color: black;
   position: relative;
   align-content: center;
   justify-content: center;

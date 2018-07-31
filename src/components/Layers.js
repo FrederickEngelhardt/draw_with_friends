@@ -7,7 +7,7 @@ export default class Layers extends Component {
     this.state = {
       mouseDown: false,
       x: 0,
-      y: 0,
+      y: 90,
       mouseX: null,
       mouseY: null,
       layers: [],

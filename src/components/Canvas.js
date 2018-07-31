@@ -139,7 +139,7 @@ export default class Canvas extends Component {
   }
   render() {
     return(
-      <div className="container">
+      <div className="canvas_container">
         <canvas
           style={this.cursorStyle()}
           className="canvas"
@@ -150,6 +150,10 @@ export default class Canvas extends Component {
           onMouseUp={()=>{
             this.setState({clickDown: false})
           }}
+          onTouchStart={()=>this.setState({clickDown: true})}
+          onTouchMove={
+            this._onMouseMove.bind(this)
+          }
           ref="canvas"/>
         <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
           <div className="colorPicker">
