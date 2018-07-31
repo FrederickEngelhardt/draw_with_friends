@@ -11,17 +11,18 @@ export default class Layers extends Component {
       mouseX: null,
       mouseY: null,
       layers: [],
-      value: '',
+      value: [],
       change_id: null,
     }
     this.props.socket.on('update_layers', (data) => {
-        console.log([...this.state.layers, data]);
+        console.log([data,...this.state.layers]);
         this.setState({layers: [...this.state.layers, data]})
     })
     this.props.socket.on('load_layers', (data) => {
+      data = data.slice(0, data.length-1)
       console.log(data);
-      let values = data.map((e) => {
-        return [e.canvas, e.name]
+      let values = data.map((e, index) => {
+        return [e.canvas, e.name, index]
       })
 
       this.setState({layers: values})
@@ -42,8 +43,8 @@ export default class Layers extends Component {
     // this.setState({x: x+offsetX, y: y+offsetY})
   }
   generateLayers() {
-    return(
-      this.state.layers.map((ele,index) => {
+
+    const generate = this.state.layers.map((ele,index) => {
         /*
           ele[0] is layer data
           ele[1] is layer name
@@ -52,14 +53,13 @@ export default class Layers extends Component {
           <div key={index} id={ele[1]}>
             <input
               className="orderBox"
-              placeholder={index}
+              placeholder={this.state.value[index] || index}
               onChange={this.handleSwapChange}
-              value={this.state.change_id}
                />
             {ele[1]}
             </div>)
       })
-    )
+    return generate
   }
   createLayer(){
     return (
@@ -89,7 +89,7 @@ export default class Layers extends Component {
     return (
       <form onSubmit={change_layer}>
         <button>Change Layer
-      </button>
+        </button>
       </form>
     )
   }

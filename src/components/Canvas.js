@@ -20,7 +20,7 @@ const defaultColors = [
 ]
 
 
-export default class Canvas extends React.Component {
+export default class Canvas extends Component {
   // static propTypes = {
   //   user: PropTypes.object.isRequired
   // };
@@ -29,8 +29,8 @@ export default class Canvas extends React.Component {
     this.state = {
       x: undefined,
       y: undefined,
-      rectangle_width: 20,
-      rectangle_height: 20,
+      rectangle_width: 100,
+      rectangle_height: 100,
       canvasWidth: 500,
       canvasHeight: 500,
       alpha: 0.2,
@@ -53,10 +53,11 @@ export default class Canvas extends React.Component {
     this.props.socket.on('load_canvas', (data) => {
       const canvas = this.refs.canvas,
             ctx=canvas.getContext("2d");
+      ctx.clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
       if (data.length === 0) {
         return ctx.clearRect(0,0,this.state.canvasWidth, this.state.canvasHeight)
       }
-      return data[0].map((ele)=>{
+      return data.map((ele)=>{
         ctx.fillStyle = ele[ele.length-1]
         ele = ele.slice(0,4)
         console.log(ele);
