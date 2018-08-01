@@ -22,7 +22,7 @@ export default class Layers extends Component {
       mouseX: null,
       mouseY: null,
       layers: this.props.layers || [1,2,5, 7],
-      value: 'new layer',
+      value: 'L1',
       change_id: null,
       active: this.props.layersActive || false,
     }
@@ -62,8 +62,8 @@ export default class Layers extends Component {
         return (
           <ListGroupItem className="d-flex justify-content-between">{ele[1]}
           <ButtonGroup className="d-flex justify-content-end">
-            <Button id={index} color="primary">&#8593;</Button>
-            <Button id={index} color="primary">&darr;</Button>
+            <Button onClick={this.swap_layer} id={`${index} UP`} color="primary">&#8593;</Button>
+            <Button onClick={this.swap_layer} id={`${index} DOWN`} color="primary">&darr;</Button>
             <Button onClick={this.deleteLayer} id={index} color="danger">X</Button>
           </ButtonGroup>
           </ListGroupItem>
@@ -77,7 +77,7 @@ export default class Layers extends Component {
         <div
           className="col-4">{`Add Layer`}
         </div>
-        <input className="col-4" placeholder="Name"></input>
+        <input onChange={this.handleChange} value={this.state.value} className="col-4" placeholder="Name"></input>
         <div className="col-4">
           <Button color="success">+</Button>
         </div>
@@ -95,23 +95,24 @@ export default class Layers extends Component {
   }
   handleSubmit(event){
     event.preventDefault()
+    console.log(event.target);
+    this.setState({value: ''})
     this.props.socket.emit('add_layer', {name: this.state.value})
   }
-  swap_layer(){
-    const change_layer = (event) => {
-      event.preventDefault()
-      if (this.state.change_id === null) return
-      this.props.socket.emit('swap_layer', {
-        from_id: this.state.change_id[0],
-        to_id: this.state.change_id[1]
-      })
+  swap_layer = (event) => {
+    console.log(event.target);
+    const { id } = event.target,
+            id_num = id.split(" ")[0],
+            direction = id.split(" ")[1]
+
+    if (typeof parseInt(id_num) !== "number"){
+      return false
     }
-    return (
-      <form onSubmit={change_layer}>
-        <button>Change Layer
-        </button>
-      </form>
-    )
+    if (typeof direction !== "string"){
+      return false
+    }
+    console.log('emmited swap_layer');
+    this.props.socket.emit('swap_layer', {id: id_num, direction: direction})
   }
   deleteLayer = (event) => {
     if (event.target.id >= 0){
