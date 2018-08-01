@@ -6,7 +6,6 @@ Bootstrap
 // import Popper from 'popper.js';
 import React, { Component } from 'react';
 import '../css/Canvas.css'
-import '../css/ColorPicker.css'
 console.log(process.env === 'development');
 
 // const socket = process.env === 'development' ? openSocket('http://localhost:3001')
