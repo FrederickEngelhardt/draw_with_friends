@@ -48,19 +48,7 @@
 
   ## Contributing
 
-  Please message me fre1
-
-  ### TODOs
-  1. Sharable color pallette for each person that connects (room or...)
-  2. Shapes: for filling and changing stylus
-  3. Global State: Redux
-  4. WASD DoodleMan (controlled through keyboard and can draw...)
-  5. Chatbox: Add Handles
-  6. Layering - IE can move the layers up or down to see different effects
-  7. save layers.
-  8. Stylus sizing - change size of stylus
-  9. Save Drawings to rerender
-  10. Save Drawings as SVG
+  Please message me fre@virtualizellc.com
 
   ## Releases
 
@@ -69,8 +57,6 @@
   ## Authors
 
   * **Frederick Engelhardt** - *Complete Build* - [FrederickEngelhardt](https://github.com/FrederickEngelhardt)
-
-  See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
   ## License
 
