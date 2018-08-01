@@ -1,9 +1,10 @@
 .DrawingSettings {
-  position: absolute;
+  position: fixed;
   top: 200px;
   background: white;
   height: 500px;
-  width: 250px;
+  width: 300px;
+  overflow: scroll;
 }
 
 /*# sourceMappingURL=DrawingSettings.css.map */

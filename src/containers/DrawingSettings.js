@@ -56,7 +56,7 @@ class DrawingSettings extends Component {
       <div className="DrawingSettings">
         <SettingsNav settingSelector={settingSelector}/>
         <Layers socket={drawing} layersActive={user.settingSelector} layers={user.layers}/>
-        <ColorSettings changeColor={changeColor} selected_color={user.selected_color} state={user} />
+        <ColorSettings colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color} state={user} />
       </div>
     );
   }

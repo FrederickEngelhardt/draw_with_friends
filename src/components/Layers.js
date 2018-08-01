@@ -52,18 +52,6 @@ export default class Layers extends Component {
     }
     return true
   }
-  _onDragDiv(e){
-    // const {mouseX, mouseY, x, y} = this.state
-    // if (this.state.mouseDown === false) return
-    // if (this.state.mouseX === null) {
-    //   this.setState({mouseX: e.clientX, mouseY: e.clientY})
-    // }
-    // console.log(mouseX, mouseY, this.state.x, this.state.y);
-    // const offsetX = e.clientX - mouseX
-    // const offsetY = e.clientY - mouseY
-    // console.log(offsetX, offsetY);
-    // this.setState({x: x+offsetX, y: y+offsetY})
-  }
   generateLayers() {
 
     const generate = this.state.layers.map((ele,index) => {
@@ -74,8 +62,9 @@ export default class Layers extends Component {
         return (
           <ListGroupItem>{ele[1]}
           <ButtonGroup>
-            <Button>&#8593;</Button>
-            <Button>&darr;</Button>
+            <Button id={index} color="primary">&#8593;</Button>
+            <Button id={index} color="primary">&darr;</Button>
+            <Button onClick={this.deleteLayer} id={index} color="danger">X</Button>
           </ButtonGroup>
           </ListGroupItem>
           )
@@ -90,6 +79,19 @@ export default class Layers extends Component {
         </div>
       </form>
     )
+  }
+  handleChange(event) {
+    event.preventDefault()
+    this.setState({value: event.target.value});
+  }
+  handleSwapChange = (event) => {
+    console.log(event.target.placeholder, event.target.value);
+    let array = [event.target.placeholder, event.target.value]
+    this.setState({change_id: array})
+  }
+  handleSubmit(event){
+    event.preventDefault()
+    this.props.socket.emit('add_layer', {name: this.state.value})
   }
   swap_layer(){
     const change_layer = (event) => {
@@ -107,30 +109,15 @@ export default class Layers extends Component {
       </form>
     )
   }
-  handleChange(event) {
-    event.preventDefault()
-    this.setState({value: event.target.value});
+  deleteLayer = (event) => {
+    if (event.target.id >= 0){
+      console.log(this.props);
+      this.props.socket.emit('delete_layer', {id: event.target.id})
+    }
+    else {
+      console.log('ERROR somehow id was not in range');
+    }
   }
-  handleSwapChange = (event) => {
-    console.log(event.target.placeholder, event.target.value);
-    let array = [event.target.placeholder, event.target.value]
-    this.setState({change_id: array})
-  }
-  handleSubmit(event){
-    event.preventDefault()
-    this.props.socket.emit('add_layer', {name: this.state.value})
-  }
-  // <div
-  //   onMouseLeave={() => this.state.mouseDown ? this.setState({mouseDown: false}) : 0}
-  //   onMouseMove={(e) => this._onDragDiv(e)}
-  //   onMouseDown={()=>this.setState({mouseDown: !this.state.mouseDown})}
-  //   style={{left: this.state.x, top: this.state.y}}
-  //   draggable={true}
-  //   className="resizable">
-  //   {this.createLayer()}
-  //   {this.generateLayers()}
-  //   {this.swap_layer()}
-  // </div>
   checkActive(){
     if (this.state.active === 'LAYER_MENU'){
       return {display: 'block'}
@@ -141,11 +128,11 @@ export default class Layers extends Component {
   }
   render(){
     return (
-      <ListGroup>
-      {this.layerCreateForm()}
-      <div style={this.checkActive()}>
-      {this.generateLayers()}
-      </div>
+      <ListGroup style={this.checkActive()}>
+        {this.layerCreateForm()}
+        <div>
+          {this.generateLayers()}
+        </div>
       </ListGroup>
    )
   }

@@ -1,5 +1,5 @@
 .resizable {
-  position: absolute;
+  position: relative;
   overflow: scroll;
   resize: both;
   width: 200px;

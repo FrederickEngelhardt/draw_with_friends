@@ -6,6 +6,16 @@ import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
 export default class ColorSettings extends Component {
   state = {
     alpha: 1,
+    active: this.props.colorActive || false
+  }
+  componentDidUpdate() {
+    const {colorActive} = this.props
+    if (this.state.active !== colorActive){
+      this.setState({
+        active: colorActive
+      })
+    }
+    return true
   }
   _handleChangeSavedColor = (color, event) => {
     let {r,g,b,a} = color.rgb
@@ -34,9 +44,17 @@ export default class ColorSettings extends Component {
       color_memory: color_memory  })
     console.log("REDUX STATE", this.props.state);
   }
+  checkActive(){
+    if (this.state.active === 'COLOR_MENU'){
+      return {display: 'block'}
+    }
+    else {
+      return {display: 'none'}
+    }
+  }
   render(){
     return(
-      <div className="ColorSettings">
+      <div style={this.checkActive()} className="ColorSettings">
         <HuePicker
           color={this.props.selected_color}
           onChangeComplete={this._handleChangeComplete} />
