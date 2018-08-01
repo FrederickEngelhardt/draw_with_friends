@@ -39,18 +39,18 @@ export default class Navigation extends React.Component {
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="https://github.com/FrederickEngelhardt/draw_with_friends">GitHub</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
+                <DropdownItem onClick={()=>{this.props.changeBrushSize(20,20)}}>
+                Small Brush
+                </DropdownItem>
+                  <DropdownItem onClick={()=>{this.props.changeBrushSize(80,80)}}>
+                    Large Brush
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>

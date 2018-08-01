@@ -5,6 +5,8 @@ Bootstrap
 // import $ from 'jquery';
 // import Popper from 'popper.js';
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import '../css/Canvas.css'
 import '../css/ColorPicker.css'
 import openSocket from 'socket.io-client';
@@ -20,7 +22,7 @@ const defaultColors = [
 ]
 
 
-export default class Canvas extends Component {
+class Canvas extends Component {
   // static propTypes = {
   //   user: PropTypes.object.isRequired
   // };
@@ -29,8 +31,8 @@ export default class Canvas extends Component {
     this.state = {
       x: undefined,
       y: undefined,
-      rectangle_width: 100,
-      rectangle_height: 100,
+      rectangle_width: this.props.state.brush_width,
+      rectangle_height: this.props.state.brush_height,
       canvasWidth: 500,
       canvasHeight: 500,
       alpha: 0.2,
@@ -65,6 +67,18 @@ export default class Canvas extends Component {
       })
     })
   }
+
+  componentDidUpdate() {
+    console.log('COMPONENT WILL RECEIVE PROPS', this.props);
+    if (this.state.rectangle_width !== this.props.state.brush_width){
+
+      this.setState({
+        rectangle_width: this.props.state.brush_width,
+        rectangle_height: this.props.state.brush_height,
+      })
+    }
+    return true
+  }
   componentDidMount() {
     // Set the height of the canvas based on the smallest screen dimension size.
     const canvasWidth = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9,
@@ -77,6 +91,7 @@ export default class Canvas extends Component {
   }
   _onMouseMove(e) {
     e.preventDefault()
+    console.log(this.state.rectangle_width);
     // Detects the current coordinates of the mouse and draws
     const canvas = this.refs.canvas,
           canvasBounds = canvas.getBoundingClientRect(),
@@ -173,3 +188,9 @@ export default class Canvas extends Component {
     )
   }
 }
+const mapStateToProps = state => (
+  {
+    user: state
+  }
+);
+export default connect(mapStateToProps)(Canvas);
