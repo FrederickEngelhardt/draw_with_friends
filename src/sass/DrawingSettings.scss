@@ -1,8 +1,10 @@
+$grey: #BEBEBE;
 .DrawingSettings {
   // background: white;
-  height: 100%;
+  height: 50%;
   width: 300px;
   overflow: scroll;
+  background-color: $grey;
 }
 ::-webkit-scrollbar {
     display: none;
