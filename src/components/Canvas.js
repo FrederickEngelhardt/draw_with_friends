@@ -66,9 +66,6 @@ class Canvas extends Component {
         return ctx.fillRect(...ele)
       })
     })
-    this.props.socket.on('clear_canvas', () => {
-      this._clearCanvas()
-    })
   }
 
   componentDidUpdate() {
@@ -172,7 +169,6 @@ class Canvas extends Component {
             this._onMouseMove.bind(this)
           }
           ref="canvas"/>
-        <button onClick={this._clearCanvas.bind(this)}>Click to Reset</button>
           <div className="colorPicker">
             <HuePicker
               color={this.state.selected_color}

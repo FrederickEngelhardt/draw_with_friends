@@ -18,22 +18,19 @@ import { connect } from 'react-redux';
 import * as UserActionCreators from '../actions/user';
 
 // Stylesheets
-import '../css/App.css'
+// import '../css/App.css'
 
 import Canvas from '../components/Canvas'
 import Layers from '../components/Layers'
 import Navigation from '../components/Navigation'
 import Chatbox from '../components/Chatbox'
-const drawing = openSocket('http://localhost:3001/drawing')
-// const drawing = openSocket('https://draw-with-friends-server.herokuapp.com/drawing')
-const chat = openSocket('http://localhost:3001/chat')
-// const chat = openSocket('https://draw-with-friends-server.herokuapp.com/chat')
 
 
-class App extends Component {
+class Canvas_Container extends Component {
   render() {
     const { dispatch, user } = this.props;
     console.log(this.props.user, "PROPS");
+    const { drawing, chat } = this.props.user
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     console.log(user, changeColor);
@@ -52,4 +49,4 @@ const mapStateToProps = state => (
     user: state
   }
 );
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Canvas_Container);
