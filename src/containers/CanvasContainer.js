@@ -21,7 +21,6 @@ import * as UserActionCreators from '../actions/user';
 
 import Canvas from '../components/Canvas'
 import Layers from '../components/Layers'
-import Navigation from '../components/Navigation'
 import Chatbox from '../components/Chatbox'
 
 
@@ -35,8 +34,9 @@ class CanvasContainer extends Component {
     console.log(user, changeColor);
     return (
       <div className="CanvasContainer">
-        <Navigation socket={drawing} changeBrushSize={changeBrushSize} />
-        <Canvas state={user} socket={drawing} changeColor={changeColor}/>
+        <div className="">
+          <Canvas state={user} socket={drawing} changeColor={changeColor}/>
+        </div>
         <Chatbox socket={chat} />
       </div>
     );

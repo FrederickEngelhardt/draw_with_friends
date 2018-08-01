@@ -53,10 +53,10 @@ class DrawingSettings extends Component {
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const settingSelector = bindActionCreators(UserActionCreators.settingSelector, dispatch);
     return (
-      <div className="DrawingSettings">
+      <div className="container DrawingSettings">
         <SettingsNav settingSelector={settingSelector}/>
         <Layers socket={drawing} layersActive={user.settingSelector} layers={user.layers}/>
-        <ColorSettings colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color} state={user} />
+        <ColorSettings changeBrushSize={changeBrushSize} brush_height={user.brush_height} colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color} state={user} />
       </div>
     );
   }

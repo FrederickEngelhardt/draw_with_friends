@@ -3,10 +3,13 @@ import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
 /*
   This component will change redux state colors
 */
+import '../css/ColorSettings.css'
+
 export default class ColorSettings extends Component {
   state = {
     alpha: 1,
-    active: this.props.colorActive || false
+    active: this.props.colorActive || false,
+    brush_height: this.props.brush_height,
   }
   componentDidUpdate() {
     const {colorActive} = this.props
@@ -52,13 +55,21 @@ export default class ColorSettings extends Component {
       return {display: 'none'}
     }
   }
+  brushSizeSliderChange = (event) => {
+    let { value } = event.target
+    value = parseInt(value)
+    this.setState({brush_height: value})
+    this.props.changeBrushSize(value, value)
+  }
   render(){
     return(
-      <div style={this.checkActive()} className="ColorSettings">
+      <div style={this.checkActive()} className="ColorSettings row">
         <HuePicker
+          width={'100%'}
           color={this.props.selected_color}
           onChangeComplete={this._handleChangeComplete} />
         <AlphaPicker
+          width={'100%'}
           color={this.props.selected_color}
           onChangeComplete={ this._handleChangeCompleteAlpha } />
         <CompactPicker
@@ -66,6 +77,9 @@ export default class ColorSettings extends Component {
           onChangeComplete= { this._handleChangeSavedColor}
           onSwatchHover={(color, event)=>{}}
           />
+        <div className="slidecontainer">
+          <input onChange={this.brushSizeSliderChange} type="range" min="10" max="140" value={this.state.brush_height} className="slider" id="myRange"></input>
+        </div>
       </div>
     )
   }
