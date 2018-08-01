@@ -1,11 +1,11 @@
 .DrawingSettings {
-  position: fixed;
-  top: 200px;
-  left: 20px;
-  background: white;
-  height: 500px;
+  height: 100%;
   width: 300px;
   overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 /*# sourceMappingURL=DrawingSettings.css.map */

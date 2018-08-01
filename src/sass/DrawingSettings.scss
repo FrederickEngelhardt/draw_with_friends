@@ -1,9 +1,9 @@
 .DrawingSettings {
-  position: fixed;
-  top: 200px;
-  left: 20px;
-  background: white;
-  height: 500px;
+  // background: white;
+  height: 100%;
   width: 300px;
   overflow: scroll;
+}
+::-webkit-scrollbar {
+    display: none;
 }

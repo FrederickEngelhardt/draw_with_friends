@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 import {
+  UncontrolledCollapse,
+  Card,
+  CardBody,
   Button,
   Collapse,
   Navbar,
@@ -26,7 +29,6 @@ import ColorSettings from '../components/ColorSettings'
 
 class SettingsNav extends Component {
   render(){
-    console.log(this.props);
     const { settingSelector } = this.props
     return (
       <div className="container">
@@ -54,9 +56,15 @@ class DrawingSettings extends Component {
     const settingSelector = bindActionCreators(UserActionCreators.settingSelector, dispatch);
     return (
       <div className="container DrawingSettings">
+      <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
+      {'Show/Hide Tools'}
+      </Button>
+        <UncontrolledCollapse toggler="#toggler">
+
         <SettingsNav settingSelector={settingSelector}/>
         <Layers socket={drawing} layersActive={user.settingSelector} layers={user.layers}/>
         <ColorSettings changeBrushSize={changeBrushSize} brush_height={user.brush_height} colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color} state={user} />
+        </UncontrolledCollapse>
       </div>
     );
   }
