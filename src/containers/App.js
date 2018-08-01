@@ -24,8 +24,10 @@ import Canvas from '../components/Canvas'
 import Layers from '../components/Layers'
 import Navigation from '../components/Navigation'
 import Chatbox from '../components/Chatbox'
-const drawing = openSocket('http://localhost:3001/drawing')
-const chat = openSocket('http://localhost:3001/chat')
+// const drawing = openSocket('http://localhost:3001/drawing')
+const drawing = openSocket('https://draw-with-friends-server.herokuapp.com/drawing')
+// const chat = openSocket('http://localhost:3001/chat')
+const chat = openSocket('https://draw-with-friends-server.herokuapp.com/chat')
 
 
 class App extends Component {
