@@ -6,6 +6,8 @@ const defaultColors = [
 const initialState = {
   color_memory: defaultColors,
   selected_color: 'rgba(118,0,255,0.2)',
+  brush_width: 20,
+  brush_height: 20,
 }
 
 export default function User(state=initialState, action) {
@@ -24,6 +26,16 @@ export default function User(state=initialState, action) {
         layers: [...state.layers, action.layer],
       }
       console.log('UPDATE WAS CALLED', update);
+      return update;
+	 	}
+    case UserActionTypes.CHANGE_BRUSH_SIZE: {
+      // IMMUTABLY CHANGE OBJECT making default of red
+      const update = {
+        ...state,
+        brush_width: action.width,
+        brush_height: action.height
+      }
+      console.log('BRUSH SIZE CHANGED', update);
       return update;
 	 	}
 
