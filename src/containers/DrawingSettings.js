@@ -41,6 +41,7 @@ class SettingsNav extends Component {
             active
           >Colors</Button>
         <Button onClick={() => settingSelector('LAYER_MENU')} className=".col-" color="secondary" size="lg" active>Layers</Button>
+        <Button onClick={()=>{this.props.socket.emit('clear_canvas', {})}} className=".col-" color="danger" size="lg" active>Reset</Button>
         </div>
       </div>
     )
@@ -60,10 +61,11 @@ class DrawingSettings extends Component {
       {'Show/Hide Tools'}
       </Button>
         <UncontrolledCollapse toggler="#toggler">
-
-        <SettingsNav settingSelector={settingSelector}/>
+        <div className="dropDownMenu">
+        <SettingsNav socket={drawing} settingSelector={settingSelector}/>
         <Layers socket={drawing} layersActive={user.settingSelector} layers={user.layers}/>
         <ColorSettings changeBrushSize={changeBrushSize} brush_height={user.brush_height} colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color} state={user} />
+        </div>
         </UncontrolledCollapse>
       </div>
     );
