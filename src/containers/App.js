@@ -39,7 +39,7 @@ class App extends Component {
     console.log(user, changeColor);
     return (
       <div className="App">
-        <Navigation changeBrushSize={changeBrushSize} />
+        <Navigation socket={drawing} changeBrushSize={changeBrushSize} />
         <Canvas state={user} socket={drawing} changeColor={changeColor}/>
         <Layers socket={drawing} layers={[1,2]}/>
         <Chatbox socket={chat} />

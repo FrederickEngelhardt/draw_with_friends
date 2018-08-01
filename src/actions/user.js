@@ -19,10 +19,3 @@ export const changeBrushSize = (width, height) => {
     height
   };
 };
-export const resetCanvas = (width, height) => {
-  return {
-    type: UserActionTypes.CHANGE_BRUSH_SIZE,
-    width,
-    height
-  };
-};
