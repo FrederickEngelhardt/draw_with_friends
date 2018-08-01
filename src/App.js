@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 // Stylesheets
 import './css/App.css'
-import Canvas_Container from './containers/Canvas_Container'
-import Drawing_Settings from './containers/Drawing_Settings'
+import Canvas_Container from './containers/CanvasContainer'
+import Drawing_Settings from './containers/DrawingSettings'
 
 export default class App extends Component {
   render() {

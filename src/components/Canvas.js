@@ -5,13 +5,8 @@ Bootstrap
 // import $ from 'jquery';
 // import Popper from 'popper.js';
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import '../css/Canvas.css'
 import '../css/ColorPicker.css'
-import openSocket from 'socket.io-client';
-import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
-import Chatbox from '../components/Chatbox.js'
 console.log(process.env === 'development');
 
 // const socket = process.env === 'development' ? openSocket('http://localhost:3001')

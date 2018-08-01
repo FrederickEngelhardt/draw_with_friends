@@ -19,3 +19,10 @@ export const changeBrushSize = (width, height) => {
     height
   };
 };
+export const settingSelector = (activeSetting) => {
+  console.log("CHANGED SETTINGS TO", activeSetting);
+  return {
+    type: UserActionTypes.UPDATE_SELECTED_SETTINGS,
+    activeSetting
+  };
+};

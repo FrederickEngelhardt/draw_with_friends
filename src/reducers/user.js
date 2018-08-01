@@ -14,7 +14,8 @@ const initialState = {
   brush_width: 20,
   brush_height: 20,
   chat: chat,
-  drawing: drawing
+  drawing: drawing,
+  settingSelector: 'COLOR_MENU',
 }
 
 export default function User(state=initialState, action) {
@@ -43,6 +44,15 @@ export default function User(state=initialState, action) {
         brush_height: action.height
       }
       console.log('BRUSH SIZE CHANGED', update);
+      return update;
+	 	}
+    case UserActionTypes.UPDATE_SELECTED_SETTINGS: {
+      // IMMUTABLY CHANGE OBJECT making default of red
+      const update = {
+        ...state,
+        settingSelector: action.activeSetting
+      }
+      console.log('Settings window focus will change', update);
       return update;
 	 	}
 

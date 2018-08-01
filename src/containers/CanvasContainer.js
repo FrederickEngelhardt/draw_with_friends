@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import openSocket from 'socket.io-client';
 import {
   Collapse,
   Navbar,
@@ -26,7 +25,7 @@ import Navigation from '../components/Navigation'
 import Chatbox from '../components/Chatbox'
 
 
-class Canvas_Container extends Component {
+class CanvasContainer extends Component {
   render() {
     const { dispatch, user } = this.props;
     console.log(this.props.user, "PROPS");
@@ -35,7 +34,7 @@ class Canvas_Container extends Component {
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     console.log(user, changeColor);
     return (
-      <div className="App">
+      <div className="CanvasContainer">
         <Navigation socket={drawing} changeBrushSize={changeBrushSize} />
         <Canvas state={user} socket={drawing} changeColor={changeColor}/>
         <Chatbox socket={chat} />
@@ -48,4 +47,4 @@ const mapStateToProps = state => (
     user: state
   }
 );
-export default connect(mapStateToProps)(Canvas_Container);
+export default connect(mapStateToProps)(CanvasContainer);

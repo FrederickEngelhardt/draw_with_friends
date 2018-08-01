@@ -36,7 +36,7 @@ export default class ColorSettings extends Component {
   }
   render(){
     return(
-      <div className="colorPicker">
+      <div className="ColorSettings">
         <HuePicker
           color={this.props.selected_color}
           onChangeComplete={this._handleChangeComplete} />
