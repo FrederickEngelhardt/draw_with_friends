@@ -53,7 +53,7 @@ export default class Navigation extends React.Component {
                     Large Brush
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
+                  <DropdownItem onClick={()=>{this.props.changeBrushSize(80,80)}}>
                     Reset
                   </DropdownItem>
                 </DropdownMenu>

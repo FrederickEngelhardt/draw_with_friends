@@ -66,6 +66,9 @@ class Canvas extends Component {
         return ctx.fillRect(...ele)
       })
     })
+    this.props.socket.on('clear_canvas', () => {
+      this._clearCanvas()
+    })
   }
 
   componentDidUpdate() {
@@ -112,7 +115,6 @@ class Canvas extends Component {
 
   _clearCanvas() {
     this.refs.canvas.getContext("2d").clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
-    this.props.socket.emit("clear_canvas", {})
   }
 
   _handleChangeComplete = (color, event) => {
