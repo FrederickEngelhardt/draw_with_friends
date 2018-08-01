@@ -33,10 +33,11 @@ class App extends Component {
     const { dispatch, user } = this.props;
     console.log(this.props.user, "PROPS");
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
+    const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     console.log(user, changeColor);
     return (
-      <div className="App container">
-        <Navigation />
+      <div className="App">
+        <Navigation changeBrushSize={changeBrushSize} />
         <Canvas state={user} socket={drawing} changeColor={changeColor}/>
         <Layers socket={drawing} layers={[1,2]}/>
         <Chatbox socket={chat} />

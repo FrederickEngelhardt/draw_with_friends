@@ -12,3 +12,10 @@ export const addLayer = layer => {
     layer
   };
 };
+export const changeBrushSize = (width, height) => {
+  return {
+    type: UserActionTypes.CHANGE_BRUSH_SIZE,
+    width,
+    height
+  };
+};

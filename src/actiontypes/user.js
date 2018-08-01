@@ -5,3 +5,4 @@ export const DRAW = 'user/DRAW';
 export const MOUSE_DOWN = 'user/MOUSE_DOWN';
 export const MOUSE_UP = 'user/MOUSE_UP';
 export const ADD_LAYER = 'user/ADD_LAYER';
+export const CHANGE_BRUSH_SIZE = 'user/CHANGE_BRUSH_SIZE';
