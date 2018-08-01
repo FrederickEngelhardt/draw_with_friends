@@ -22,7 +22,7 @@ const defaultColors = [
 ]
 
 
-class Canvas extends Component {
+export default class Canvas extends Component {
   // static propTypes = {
   //   user: PropTypes.object.isRequired
   // };
@@ -70,11 +70,16 @@ class Canvas extends Component {
 
   componentDidUpdate() {
     console.log('COMPONENT WILL RECEIVE PROPS', this.props);
-    if (this.state.rectangle_width !== this.props.state.brush_width){
-
+    const {state} = this.props
+    if (this.state.rectangle_width !== state.brush_width){
       this.setState({
-        rectangle_width: this.props.state.brush_width,
-        rectangle_height: this.props.state.brush_height,
+        rectangle_width: state.brush_width,
+        rectangle_height: state.brush_height,
+      })
+    }
+    if (this.state.selected_color !== this.props.state.selected_color){
+      this.setState({
+        selected_color: state.selected_color
       })
     }
     return true
@@ -114,37 +119,8 @@ class Canvas extends Component {
     this.refs.canvas.getContext("2d").clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
   }
 
-  _handleChangeComplete = (color, event) => {
-    let { r,g,b,a } = color.rgb
-    // Replace default color alpha with state alpha
-    a = this.state.alpha
-    let { color_memory } = this.state
-    let { changeColor } = this.props
-    color_memory = color_memory.slice(0,color_memory.length - 1)
-    color_memory.unshift(`rgba(${r},${g},${b},${a})`)
-    color = `rgba(${r},${g},${b},${a})`
-    changeColor(color)
-    this.setState({
-      selected_color: color,
-      color_memory: color_memory  })
-    console.log("REDUX STATE", this.props.state);
-  }
-  _handleChangeSavedColor = (color, event) => {
-    let {r,g,b,a} = color.rgb
-    // Replace default color alpha with state alpha
-    a = this.state.alpha
-    this.setState({
-      selected_color: `rgba(${r},${g},${b},${a})`})
-  }
-  _handleChangeCompleteAlpha = (color, event) => {
-    // Locate RGBA in color and reformat
-    let {r,g,b,a} = color.rgb
-    color = `rgba(${r},${g},${b},${a})`
-    this.setState({
-      selected_color: color,
-      alpha: a
-    })
-  }
+
+
   checkIfMousePress = () => {
     if (this.state.clickDown === true) this.setState({clickDown: false})
   }
@@ -169,26 +145,7 @@ class Canvas extends Component {
             this._onMouseMove.bind(this)
           }
           ref="canvas"/>
-          <div className="colorPicker">
-            <HuePicker
-              color={this.state.selected_color}
-              onChangeComplete={this._handleChangeComplete} />
-            <AlphaPicker
-              color={this.state.selected_color}
-              onChangeComplete={ this._handleChangeCompleteAlpha } />
-            <CompactPicker
-              colors={this.state.color_memory}
-              onChangeComplete= { this._handleChangeSavedColor}
-              onSwatchHover={(color, event)=>{}}
-              />
-          </div>
       </div>
     )
   }
 }
-const mapStateToProps = state => (
-  {
-    user: state
-  }
-);
-export default connect(mapStateToProps)(Canvas);

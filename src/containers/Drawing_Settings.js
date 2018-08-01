@@ -18,28 +18,22 @@ import { connect } from 'react-redux';
 import * as UserActionCreators from '../actions/user';
 
 // Stylesheets
-import '../css/App.css'
+import '../css/Drawing_Settings.css'
 
-import Canvas from '../components/Canvas'
 import Layers from '../components/Layers'
-import Navigation from '../components/Navigation'
-import Chatbox from '../components/Chatbox'
-
+import ColorSettings from '../components/ColorSettings'
 
 
 class Drawing_Settings extends Component {
   render() {
     const { dispatch, user } = this.props;
-    const { drawing, chat } = this.props.user
+    const { drawing, chat } = user
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
-    console.log(user, changeColor);
     return (
       <div className="Drawing_Settings">
-        <Navigation socket={drawing} changeBrushSize={changeBrushSize} />
-        <Canvas state={user} socket={drawing} changeColor={changeColor}/>
-        <Layers socket={drawing} layers={[1,2]}/>
-        <Chatbox socket={chat} />
+        <Layers socket={drawing}/>
+        <ColorSettings changeColor={changeColor} selected_color={user.selected_color} state={user} />
       </div>
     );
   }
