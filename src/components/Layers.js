@@ -60,8 +60,8 @@ export default class Layers extends Component {
           ele[1] is layer name
         */
         return (
-          <ListGroupItem>{ele[1]}
-          <ButtonGroup>
+          <ListGroupItem className="d-flex justify-content-between">{ele[1]}
+          <ButtonGroup className="d-flex justify-content-end">
             <Button id={index} color="primary">&#8593;</Button>
             <Button id={index} color="primary">&darr;</Button>
             <Button onClick={this.deleteLayer} id={index} color="danger">X</Button>
@@ -73,9 +73,13 @@ export default class Layers extends Component {
   }
   layerCreateForm(){
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>{`Add Layer`}
-        <Button color="success">+</Button>
+      <form className="row" onSubmit={this.handleSubmit}>
+        <div
+          className="col-4">{`Add Layer`}
+        </div>
+        <input className="col-4" placeholder="Name"></input>
+        <div className="col-4">
+          <Button color="success">+</Button>
         </div>
       </form>
     )
