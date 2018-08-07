@@ -126,9 +126,11 @@ export default class Canvas extends Component {
           ctx=canvas.getContext("2d"),
           offsetLeft = canvasBounds.left,
           offsetTop = canvasBounds.top
+    const { rectangle_width, rectangle_height} = this.state
+
     // Do not need to change state to draw.
-    const x = e.clientX-offsetLeft,
-          y = e.clientY - offsetTop
+    const x = e.clientX-offsetLeft - rectangle_width/2,
+          y = e.clientY - offsetTop - rectangle_height/2
     this._canvasFill(x, y)
   }
   _onTouchMove(e) {
@@ -139,9 +141,11 @@ export default class Canvas extends Component {
           ctx=canvas.getContext("2d"),
           offsetLeft = canvasBounds.left,
           offsetTop = canvasBounds.top
+    const { rectangle_width, rectangle_height} = this.state
+
     // Do not need to change state to draw.
-    const x = e.touches[0].clientX-offsetLeft,
-          y = e.touches[0].clientY - offsetTop
+    const x = e.touches[0].clientX-offsetLeft - rectangle_width/2,
+          y = e.touches[0].clientY - offsetTop - rectangle_height/2
     this._canvasFill(x, y)
   }
   _canvasFill(x, y) {
