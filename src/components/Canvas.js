@@ -55,8 +55,17 @@ export default class Canvas extends Component {
 
   componentDidMount() {
     // Set the height of the canvas based on the smallest screen dimension size.
-    const canvasWidth = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9,
-          canvasHeight = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9
+    // const canvasWidth = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9,
+    //       canvasHeight = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9
+
+    /*
+      Full Screen Canvas
+        1. 4/5ths screen width
+        2. 4/5ths screen height
+    */
+    const canvasWidth = window.innerWidth,
+          canvasHeight = window.innerHeight
+
     console.log(this.refs.canvas.getBoundingClientRect());
     this.setState({
       canvasWidth: canvasWidth,

@@ -1,11 +1,18 @@
 $grey: #BEBEBE;
 .DrawingSettings {
-  // background: white;
-  height: 50%;
-  width: 300px;
+  display: block;
+  position: absolute;
+  height: 100vh;
+  width: 15vw;
+  z-index: 1;
   overflow: scroll;
   background-color: $grey;
 }
 ::-webkit-scrollbar {
     display: none;
+}
+.show-hide-btn {
+  position: relative;
+  top: 75px;
+  z-index: 1;
 }

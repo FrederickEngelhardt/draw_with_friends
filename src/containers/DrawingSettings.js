@@ -56,15 +56,25 @@ class DrawingSettings extends Component {
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const settingSelector = bindActionCreators(UserActionCreators.settingSelector, dispatch);
     return (
-      <div className="container DrawingSettings">
-      <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
-      {'Show/Hide Tools'}
-      </Button>
+      <div className="DrawingSettings">
+        <Button className={`show-hide-btn`} color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
+        {'Show/Hide Tools'}
+        </Button>
         <UncontrolledCollapse toggler="#toggler">
         <div className="dropDownMenu">
-        <SettingsNav socket={drawing} settingSelector={settingSelector}/>
-        <Layers socket={drawing} layersActive={user.settingSelector} layers={user.layers}/>
-        <ColorSettings changeBrushSize={changeBrushSize} brush_height={user.brush_height} colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color} state={user} />
+        <SettingsNav
+          socket={drawing}
+          settingSelector={settingSelector}
+          />
+        <Layers
+          socket={drawing}
+          layersActive={user.settingSelector}
+          layers={user.layers}
+          />
+        <ColorSettings
+          changeBrushSize={changeBrushSize} brush_height={user.brush_height} colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color}
+          state={user}
+          />
         </div>
         </UncontrolledCollapse>
       </div>

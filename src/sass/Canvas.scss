@@ -5,16 +5,13 @@ $dutch_white: #EFDFBB;
 .canvas {
   display: block;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  top: 20px;
   background-color: $dutch_white;
-  border-radius: 50px;
   z-index: 0;
 }
 
 .canvas_container {
+  z-index: 0;
   height: 100%;
   width: 100%;
-  // background-color: rgba(51,51,51,1);
+  // background-color: salmon;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import '../css/Navigation.css'
 import {
   Collapse,
   Navbar,
@@ -29,7 +30,7 @@ export default class Navigation extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={`NavigationSettings`}>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Draw-With-Friends</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
