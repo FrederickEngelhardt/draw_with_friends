@@ -41,6 +41,7 @@ class SettingsNav extends Component {
             active
           >Colors</Button>
         <Button onClick={() => settingSelector('LAYER_MENU')} className=".col-" color="secondary" size="lg" active>Layers</Button>
+        <Button onClick={()=>{this.props.socket.emit('clear_canvas', {})}} className=".col-" color="danger" size="lg" active>Reset</Button>
         </div>
       </div>
     )
@@ -48,25 +49,36 @@ class SettingsNav extends Component {
 }
 
 class DrawingSettings extends Component {
-  render() {
-    const { dispatch, user } = this.props;
+  renderDrawingTools(dispatch, user){
     const { drawing, chat } = user
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const settingSelector = bindActionCreators(UserActionCreators.settingSelector, dispatch);
     return (
-      <div className="container DrawingSettings">
-      <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
-      {'Show/Hide Tools'}
-      </Button>
-        <UncontrolledCollapse toggler="#toggler">
-
-        <SettingsNav settingSelector={settingSelector}/>
-        <Layers socket={drawing} layersActive={user.settingSelector} layers={user.layers}/>
-        <ColorSettings changeBrushSize={changeBrushSize} brush_height={user.brush_height} colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color} state={user} />
-        </UncontrolledCollapse>
+      <div className="drawing-settings">
+        <div className="drawing-menu">
+        <SettingsNav
+          socket={drawing}
+          settingSelector={settingSelector}
+          />
+        <Layers
+          socket={drawing}
+          layersActive={user.settingSelector}
+          layers={user.layers}
+          />
+        <ColorSettings
+          changeBrushSize={changeBrushSize} brush_height={user.brush_height} colorActive={user.settingSelector} changeColor={changeColor} selected_color={user.selected_color}
+          state={user}
+          />
+        </div>
       </div>
     );
+  }
+  render() {
+    const { dispatch, user } = this.props;
+    const renderThis = user.showDrawingTools ? this.renderDrawingTools(dispatch, user) : <div></div>
+    return renderThis
+
   }
 }
 const mapStateToProps = state => (

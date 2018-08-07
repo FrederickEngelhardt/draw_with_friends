@@ -11,14 +11,8 @@ export default class App extends Component {
     return (
       <div className="App">
         <NavigationContainer />
-        <div className="row">
-          <div className="col-2">
-            <Drawing_Settings />
-          </div>
-          <div className="col-8">
-            <Canvas_Container />
-          </div>
-        </div>
+        <Drawing_Settings />
+        <Canvas_Container />
       </div>
     )
   }

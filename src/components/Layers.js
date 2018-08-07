@@ -142,21 +142,3 @@ export default class Layers extends Component {
    )
   }
 }
-// <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-// <ListGroupItem>Morbi leo risus</ListGroupItem>
-// <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-// <ListGroupItem>Vestibulum at eros</ListGroupItem>
-
-// <ButtonGroup vertical>
-//   <Button>1</Button>
-//   <Button>2</Button>
-//   <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-//     <DropdownToggle caret>
-//       Dropdown
-//     </DropdownToggle>
-//     <DropdownMenu>
-//       <DropdownItem>Dropdown Link</DropdownItem>
-//       <DropdownItem>Dropdown Link</DropdownItem>
-//     </DropdownMenu>
-//   </ButtonDropdown>
-// </ButtonGroup>

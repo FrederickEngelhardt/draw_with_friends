@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import '../css/Navigation.css'
 import {
   Collapse,
   Navbar,
@@ -29,7 +30,7 @@ export default class Navigation extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={`NavigationSettings`}>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Draw-With-Friends</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -38,13 +39,21 @@ export default class Navigation extends Component {
               <NavItem>
                 <NavLink href="https://github.com/FrederickEngelhardt/draw_with_friends">GitHub</NavLink>
               </NavItem>
+              <NavItem>
+              <NavLink onClick={()=>{this.props.toggleDrawingTools(!this.props.state.showDrawingTools)}}>
+              Tools
+              </NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
                 <DropdownMenu right>
-                <DropdownItem onClick={()=>{this.props.changeBrushSize(20,20)}}>
-                Small Brush
+                <DropdownItem onClick={()=>{this.props.toggleDrawingTools(!this.props.state.showDrawingTools)}}>
+                Toggle Drawing Tools
+                </DropdownItem>
+                <DropdownItem onClick={()=>{this.props.changeBrushSize(80,80)}}>
+                Large Brush
                 </DropdownItem>
                   <DropdownItem onClick={()=>{this.props.changeBrushSize(80,80)}}>
                     Large Brush
