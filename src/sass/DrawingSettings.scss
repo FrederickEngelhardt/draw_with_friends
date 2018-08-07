@@ -1,12 +1,18 @@
 $grey: #BEBEBE;
-.DrawingSettings {
+
+.drawing-settings {
   display: block;
   position: absolute;
+  left: 85vw;
   height: 100vh;
   width: 15vw;
   z-index: 1;
   overflow: scroll;
-  background-color: $grey;
+  background-color: rgba(147,161,172,1);
+}
+.drawing-menu {
+  position: relative;
+  top: 75px;
 }
 ::-webkit-scrollbar {
     display: none;

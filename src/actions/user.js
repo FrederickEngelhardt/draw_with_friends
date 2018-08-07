@@ -26,3 +26,10 @@ export const settingSelector = (activeSetting) => {
     activeSetting
   };
 };
+export const toggleDrawingTools = (toggle) => {
+  console.log("CHANGED SETTINGS TO", toggle);
+  return {
+    type: UserActionTypes.TOGGLE_DRAWING_TOOLS,
+    toggle
+  };
+};

@@ -49,19 +49,14 @@ class SettingsNav extends Component {
 }
 
 class DrawingSettings extends Component {
-  render() {
-    const { dispatch, user } = this.props;
+  renderDrawingTools(dispatch, user){
     const { drawing, chat } = user
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const settingSelector = bindActionCreators(UserActionCreators.settingSelector, dispatch);
     return (
-      <div className="DrawingSettings">
-        <Button className={`show-hide-btn`} color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
-        {'Show/Hide Tools'}
-        </Button>
-        <UncontrolledCollapse toggler="#toggler">
-        <div className="dropDownMenu">
+      <div className="drawing-settings">
+        <div className="drawing-menu">
         <SettingsNav
           socket={drawing}
           settingSelector={settingSelector}
@@ -76,9 +71,14 @@ class DrawingSettings extends Component {
           state={user}
           />
         </div>
-        </UncontrolledCollapse>
       </div>
     );
+  }
+  render() {
+    const { dispatch, user } = this.props;
+    const renderThis = user.showDrawingTools ? this.renderDrawingTools(dispatch, user) : <div></div>
+    return renderThis
+
   }
 }
 const mapStateToProps = state => (

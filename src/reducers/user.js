@@ -16,6 +16,7 @@ const initialState = {
   chat: chat,
   drawing: drawing,
   settingSelector: 'COLOR_MENU',
+  showDrawingTools: true,
 }
 
 export default function User(state=initialState, action) {
@@ -53,6 +54,15 @@ export default function User(state=initialState, action) {
         settingSelector: action.activeSetting
       }
       console.log('Settings window focus will change', update);
+      return update;
+	 	}
+    case UserActionTypes.TOGGLE_DRAWING_TOOLS: {
+      // IMMUTABLY CHANGE OBJECT making default of red
+      const update = {
+        ...state,
+        showDrawingTools: action.toggle
+      }
+      console.log('Toggled Drawing Tools', update);
       return update;
 	 	}
 
