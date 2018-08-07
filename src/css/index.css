@@ -9,6 +9,16 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  -webkit-user-select: none;
+  /* Safari, Chrome */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE */
+  user-select: none;
+  /* CSS3 */
 }
 
 /*# sourceMappingURL=index.css.map */
