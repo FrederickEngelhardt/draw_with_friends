@@ -53,6 +53,21 @@ export default class Canvas extends Component {
     })
   }
 
+  componentDidMount() {
+    // Set the height of the canvas based on the smallest screen dimension size.
+    const canvasWidth = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9,
+          canvasHeight = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9
+    console.log(this.refs.canvas.getBoundingClientRect());
+    this.setState({
+      canvasWidth: canvasWidth,
+      canvasHeight: canvasHeight,
+    })
+    // this.setState({
+    //   canvasWidth: window.innerWidth *.5,
+    //   canvasHeight: window.innerHeight * .9,
+    // })
+  }
+
   componentDidUpdate() {
     console.log('COMPONENT WILL RECEIVE PROPS', this.props);
     const {state} = this.props
@@ -69,20 +84,7 @@ export default class Canvas extends Component {
     }
     return true
   }
-  componentDidMount() {
-    // Set the height of the canvas based on the smallest screen dimension size.
-    const canvasWidth = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9,
-          canvasHeight = window.innerHeight > window.innerWidth ? window.innerWidth*.9 : window.innerHeight*.9
-    console.log(this.refs.canvas.getBoundingClientRect());
-    this.setState({
-      canvasWidth: canvasWidth,
-      canvasHeight: canvasHeight,
-    })
-    // this.setState({
-    //   canvasWidth: window.innerWidth *.5,
-    //   canvasHeight: window.innerHeight * .9,
-    // })
-  }
+
   _onMouseMove(e) {
     e.preventDefault()
     // Detects the current coordinates of the mouse and draws
