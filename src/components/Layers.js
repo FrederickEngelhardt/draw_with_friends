@@ -75,7 +75,7 @@ export default class Layers extends Component {
     return (
       <form className="row" onSubmit={this.handleSubmit}>
         <div
-          className="col-4">{`Add Layer`}
+          className="layer-text col-4">{`Add Layer`}
         </div>
         <input onChange={this.handleChange} value={this.state.value} className="col-4" placeholder="Name"></input>
         <div className="col-4">
