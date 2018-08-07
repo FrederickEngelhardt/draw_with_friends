@@ -31,7 +31,7 @@ export default class Navigation extends Component {
   render() {
     return (
       <div className={`NavigationSettings`}>
-        <Navbar color="light" light expand="md">
+        <Navbar color="dark" dark expand={`xl`}>
           <NavbarBrand href="/">Draw-With-Friends</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -53,15 +53,15 @@ export default class Navigation extends Component {
                 Toggle Drawing Tools
                 </DropdownItem>
                 <DropdownItem onClick={()=>{this.props.changeBrushSize(80,80)}}>
-                Large Brush
+                {`Small Brush`}
                 </DropdownItem>
-                  <DropdownItem onClick={()=>{this.props.changeBrushSize(80,80)}}>
-                    Large Brush
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem onClick={()=>{this.props.socket.emit('clear_canvas', {})}}>
-                    Reset
-                  </DropdownItem>
+                <DropdownItem onClick={()=>{this.props.changeBrushSize(80,80)}}>
+                  {`Large Brush`}
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick={()=>{this.props.socket.emit('clear_canvas', {})}}>
+                  {`Reset`}
+                </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
