@@ -26,27 +26,7 @@ import '../css/DrawingSettings.css'
 
 import Layers from '../components/Layers'
 import ColorSettings from '../components/ColorSettings'
-
-class SettingsNav extends Component {
-  render(){
-    const { settingSelector } = this.props
-    return (
-      <div className="container">
-        <div className="row">
-        <Button
-            onClick={() => settingSelector('COLOR_MENU')}
-            className=".col-"
-            color="primary"
-            size="1g"
-            active
-          >Colors</Button>
-        <Button onClick={() => settingSelector('LAYER_MENU')} className=".col-" color="secondary" size="lg" active>Layers</Button>
-        <Button onClick={()=>{this.props.socket.emit('clear_canvas', {})}} className=".col-" color="danger" size="lg" active>Reset</Button>
-        </div>
-      </div>
-    )
-  }
-}
+import SettingsNav from '../components/SettingsNav'
 
 class DrawingSettings extends Component {
   renderDrawingTools(dispatch, user){

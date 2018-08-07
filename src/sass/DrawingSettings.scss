@@ -3,22 +3,42 @@ $grey: #BEBEBE;
 .drawing-settings {
   display: block;
   position: absolute;
-  left: 85vw;
-  height: 100vh;
-  width: 15vw;
   z-index: 1;
   overflow: scroll;
-  background-color: rgba(147,161,172,1);
+  background-color: #212529;
+  // background-color: rgba(147,161,172,1);
 }
 .drawing-menu {
   position: relative;
   top: 75px;
+  width: 100%;
+  overflow-x: hidden;
 }
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 .show-hide-btn {
   position: relative;
-  top: 75px;
   z-index: 1;
+}
+@media screen and (max-width: 767px){
+  .drawing-settings {
+    top: 85vh;
+    height: 15vh;
+    width: 100vw;
+  }
+}
+@media screen and(min-width: 768px) and (max-width: 1679px){
+  .drawing-settings {
+    left: 85vw;
+    height: 100vh;
+    width: 15vw;
+  }
+}
+@media screen and (min-width: 1680px){
+  .drawing-settings {
+    left: 85vw;
+    height: 100vh;
+    width: 15vw;
+  }
 }
