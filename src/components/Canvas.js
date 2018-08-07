@@ -85,19 +85,35 @@ export default class Canvas extends Component {
   }
   _onMouseMove(e) {
     e.preventDefault()
-    console.log(this.state.rectangle_width);
     // Detects the current coordinates of the mouse and draws
     const canvas = this.refs.canvas,
           canvasBounds = canvas.getBoundingClientRect(),
+          ctx=canvas.getContext("2d"),
           offsetLeft = canvasBounds.left,
           offsetTop = canvasBounds.top
-
     // Do not need to change state to draw.
     const x = e.clientX-offsetLeft,
           y = e.clientY - offsetTop
-
-    let ctx=canvas.getContext("2d")
-    console.log(this.state.selected_color);
+    this._canvasFill(x, y)
+  }
+  _onTouchMove(e) {
+    e.preventDefault()
+    // Detects the current coordinates of the mouse and draws
+    const canvas = this.refs.canvas,
+          canvasBounds = canvas.getBoundingClientRect(),
+          ctx=canvas.getContext("2d"),
+          offsetLeft = canvasBounds.left,
+          offsetTop = canvasBounds.top
+    // Do not need to change state to draw.
+    const x = e.touches[0].clientX-offsetLeft,
+          y = e.touches[0].clientY - offsetTop
+    this._canvasFill(x, y)
+  }
+  _canvasFill(x, y) {
+    const canvas = this.refs.canvas,
+          canvasBounds = canvas.getBoundingClientRect(),
+          ctx=canvas.getContext("2d")
+    console.log(this.state.selected_color, x, y);
     ctx.fillStyle= this.state.selected_color
     ctx.fillRect(x,y,this.state.rectangle_width,this.state.rectangle_height)
 
@@ -125,13 +141,14 @@ export default class Canvas extends Component {
           height={this.state.canvasHeight}
           width={this.state.canvasWidth}
           onMouseDown={() => this.setState({clickDown: true})}
+          onTouchStart={() => this.setState({clickDown: true})}
           onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>{return false}}
           onMouseUp={()=>{
             this.setState({clickDown: false})
           }}
           onTouchStart={()=>this.setState({clickDown: true})}
           onTouchMove={
-            this._onMouseMove.bind(this)
+            this.state.clickDown === true ? this._onTouchMove.bind(this) : () =>{return false}
           }
           ref="canvas"/>
       </div>
