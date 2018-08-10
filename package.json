@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom ./tests/*",
     "eject": "react-scripts eject",
     "deploy": "npm run build && surge --project ./build/ --domain draw-with-friends.surge.sh"
   },
@@ -31,6 +31,7 @@
     "chai": "^4.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "react-test-renderer": "^16.4.2"
+    "react-test-renderer": "^16.4.2",
+    "sinon": "^6.1.5"
   }
 }

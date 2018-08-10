@@ -1,7 +1,8 @@
 import React from "react"
-import Enzyme,{ mount } from "enzyme"
+import Enzyme, { mount } from "enzyme"
+import sinon from 'sinon';
 import { expect } from 'chai'
-import SettingsNav from "./components/SettingsNav"
+import SettingsNav from "../components/SettingsNav"
 import Adapter from 'enzyme-adapter-react-16'
 
 Enzyme.configure({ adapter: new Adapter() })
