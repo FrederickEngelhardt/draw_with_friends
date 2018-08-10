@@ -18,12 +18,16 @@
   ```
 
   ## Running the tests
-  *requires mocha and chai*
+  *requires jsdom, chai, enzyme*
   ```
   npm test
   ```
 
   ### Tests
+
+  #### Component Tests [built]
+
+  1. SettingsNav
 
   INPROGRESS Socket.io Testing for sessions
   ```
