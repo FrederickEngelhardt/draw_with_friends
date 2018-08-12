@@ -4,7 +4,8 @@
 
   ### Prerequisites
 
-  Software requires Node.js and npm installed.
+  1. You need Node.js and npm installed.
+  2. You need the **Express Server** located [here](https://github.com/FrederickEngelhardt/draw_with_friends_server)
 
   ### Installing
 
@@ -18,7 +19,7 @@
   ```
 
   ## Running the tests
-  *requires jsdom, chai, enzyme*
+  *requires jsdom (built-in), chai, enzyme*
   ```
   npm test
   ```
