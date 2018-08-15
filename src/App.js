@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './css/App.css'
 
 // Components
-import HomePage from './components/HomePage'
+import HomePage from './components/HomePage/HomePage'
 import DrawingPage from './components/DrawingPage'
 
 
