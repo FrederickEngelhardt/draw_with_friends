@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import './css/App.css'
 
 // Components
-import SessionRoutingContainer from './containers/SessionRoutingContainer'
+import RoutingContainer from './containers/RoutingContainer'
 
 /**
   App Points to Routing Controllers
@@ -15,7 +15,7 @@ export default class App extends Component {
   }
   render() {
     return (
-      <SessionRoutingContainer />
+      <RoutingContainer />
     )
   }
 }
