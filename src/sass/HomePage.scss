@@ -42,3 +42,14 @@
   font-size: 200px;
 }
 button:focus { outline: none; }
+
+.new-session-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+input {
+  position: relative;
+  top: 20px;
+}
