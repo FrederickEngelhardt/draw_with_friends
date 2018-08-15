@@ -9,6 +9,7 @@ import '../../css/HomePage.css'
 
 import NavigationContainer from '../../containers/NavigationContainer'
 import NewSessionCard from './NewSessionCard'
+import JoinSessionCard from './JoinSessionCard'
 import RecentSessionCard from './RecentSessionCard'
 
 export default class HomePage extends Component {
@@ -18,6 +19,7 @@ export default class HomePage extends Component {
         <NavigationContainer view={`home-view`}/>
         <div className={`click home-flex`}>
           <NewSessionCard />
+          <JoinSessionCard />
           <RecentSessionCard />
         </div>
       </div>

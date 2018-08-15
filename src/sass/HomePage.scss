@@ -8,8 +8,9 @@
 .DrawingPageCard {
   display: flex;
   position: relative;
-  height: 500px;
-  width: 550px;
+  height: 50vh;
+  width: 50vh;
+  margin: 10px;
   justify-content: center;
   align-items: center;
 }
@@ -26,8 +27,8 @@
   align-items: center;
   justify-content: center;
   z-index: 0;
-  width: 500px;
-  height: 500px;
+  width: 50vh;
+  height: 50vh;
   // background-color: rgba(0,0,0,.2);
   border-radius: 10%;
   border: none;
