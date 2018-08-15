@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // Stylesheets
 import './css/App.css'
 
 // Components
-import HomePage from './components/HomePage/HomePage'
-import DrawingPage from './components/DrawingPage'
+import SessionRoutingContainer from './containers/SessionRoutingContainer'
 
-
+/**
+  App Points to Routing Controllers
+*/
 export default class App extends Component {
+  constructor(props){
+    super(props)
+  }
   render() {
     return (
-        <Router>
-          <div>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/drawing" component={DrawingPage} />
-          </div>
-        </Router>
+      <SessionRoutingContainer />
     )
   }
 }
-// <DrawingPage />

@@ -15,18 +15,16 @@ export default class NewSessionCard extends Component {
   }
   handleSubmit(event){
     event.preventDefault()
+    let i = withRouter(({ history }) => {
+      history.push('/drawing')
+      console.log(history);
+
+    })
+    console.log('called handleSubmit', i);
   }
   renderForm(){
     if (this.state.form === true){
-      return (
-        <form className={`new-session-form`} onSubmit={this.handleSubmit.bind(this)}>
-          <h4 className={`buttonTitle`}>
-            Add a name to make your session standout!
-          </h4>
-          <input type="text" name="name" />
-          <input type="submit" value="Submit" />
-        </form>
-      )
+      return <Form />
     }
     else {
       return(
@@ -36,19 +34,25 @@ export default class NewSessionCard extends Component {
   }
   render(){
     return (
-      <div className={`DrawingPageCard`}>
-      <button className={`shadow Button green DrawingPageCard`} onClick={this.openMenu.bind(this)}>
-        {this.renderForm()}
-      </button>
+      <div className={``}>
+        <button className={`shadow Button green DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+          {this.renderForm()}
+        </button>
       </div>
     )
   }
 }
-const Button = withRouter(({ history }) => (
-  <button
-    type='button'
-    onClick={() => { history.push('/drawing') }}
-  >
-    Click Me!
-  </button>
+const Form = withRouter(({ history }) => (
+  <form className={`new-session-form`} onSubmit={(event)=>{
+      event.preventDefault()
+      console.log(event.target[0].value);
+      let id = event.target[0].value
+      history.push(`/drawing/${id}`)
+    }}>
+    <h4 className={`buttonTitle`}>
+      Name Your Session!
+    </h4>
+    <input type="text" name="name"/>
+    <input type="submit" value="Get Started" />
+  </form>
 ))

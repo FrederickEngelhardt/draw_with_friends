@@ -8,3 +8,4 @@ export const ADD_LAYER = 'user/ADD_LAYER';
 export const CHANGE_BRUSH_SIZE = 'user/CHANGE_BRUSH_SIZE';
 export const UPDATE_SELECTED_SETTINGS = 'user/UPDATE_SELECTED_SETTINGS';
 export const TOGGLE_DRAWING_TOOLS = 'user/TOGGLE_DRAWING_TOOLS';
+export const ADD_SESSION = 'user/ADD_SESSION';

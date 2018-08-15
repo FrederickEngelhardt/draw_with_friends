@@ -33,3 +33,10 @@ export const toggleDrawingTools = (toggle) => {
     toggle
   };
 };
+export const addSession = (sessionID) => {
+  console.log("A user created a new session", sessionID);
+  return {
+    type: UserActionTypes.ADD_SESSION,
+    sessionID
+  };
+};

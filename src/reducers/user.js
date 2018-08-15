@@ -17,6 +17,7 @@ const initialState = {
   drawing: drawing,
   settingSelector: 'COLOR_MENU',
   showDrawingTools: true,
+  sessions: [],
 }
 
 export default function User(state=initialState, action) {
@@ -63,6 +64,15 @@ export default function User(state=initialState, action) {
         showDrawingTools: action.toggle
       }
       console.log('Toggled Drawing Tools', update);
+      return update;
+	 	}
+    case UserActionTypes.ADD_SESSION: {
+      // IMMUTABLY CHANGE OBJECT making default of red
+      const update = {
+        ...state,
+        sessions: [...state.sessions, action.sessionID]
+      }
+      console.log('User Session Added', update);
       return update;
 	 	}
 
