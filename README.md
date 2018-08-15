@@ -56,7 +56,7 @@
   Please message me fre@virtualizellc.com
 
   ## Releases
-
+  0.0.05 - Splash Page, Drawing Page, Game Page added.
   0.0.01 - Beta Release for the Application
 
   ## Authors

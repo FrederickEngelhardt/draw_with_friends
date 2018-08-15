@@ -21,4 +21,32 @@ body {
   /* CSS3 */
 }
 
+.clickAnimation:active {
+  transform: scale(0.9);
+}
+
+@keyframes clickEffect {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(0.7);
+  }
+}
+.shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.beige {
+  background-color: #EFDFBB;
+}
+
+.blue {
+  background-color: #286bd6;
+}
+
+.green {
+  background-color: limegreen;
+}
+
 /*# sourceMappingURL=index.css.map */

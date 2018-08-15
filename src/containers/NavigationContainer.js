@@ -13,6 +13,7 @@ class NavigationContainer extends Component {
     return(
       <Navigation
         socket={drawing}
+        view={this.props.view}
         changeBrushSize={changeBrushSize}
         toggleDrawingTools={toggleDrawingTools}
         state={user}

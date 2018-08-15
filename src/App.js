@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // Stylesheets
 import './css/App.css'
-import Canvas_Container from './containers/CanvasContainer'
-import Drawing_Settings from './containers/DrawingSettings'
-import NavigationContainer from './containers/NavigationContainer'
+
+// Components
+import HomePage from './components/HomePage'
+import DrawingPage from './components/DrawingPage'
+
 
 export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NavigationContainer />
-        <Drawing_Settings />
-        <Canvas_Container />
-      </div>
+        <Router>
+          <div>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/drawing" component={DrawingPage} />
+          </div>
+        </Router>
     )
   }
 }
+// <DrawingPage />
