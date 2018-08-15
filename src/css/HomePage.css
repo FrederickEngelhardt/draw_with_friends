@@ -35,9 +35,11 @@
 }
 
 .buttonTitle {
-  position: absolute;
+  position: relative;
   z-index: 0;
   color: white;
+  padding: 0px;
+  margin: 0px;
 }
 
 .extra-large-font {
@@ -50,9 +52,10 @@ button:focus {
 
 .new-session-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 input {
