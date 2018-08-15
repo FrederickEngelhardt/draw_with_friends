@@ -15,27 +15,25 @@ export default class HomePage extends Component {
       <div className="App">
         <NavigationContainer view={`home-view`}/>
         <div className={`click home-flex`}>
-          <DrawingPageCard />
-          <GamePageCard />
+          <NewSessionCard />
+          <RecentSessionCard />
         </div>
       </div>
     )
   }
 }
-class DrawingPageCard extends Component {
-  render() {
-      return (
-        <div className={`clickAnimation DrawingPageCard`}>
+const NewSessionCard = () => {
+    return (
+      <div className={`clickAnimation DrawingPageCard`}>
 
-            <Link className={`DrawingPageCard`} to="/drawing">
-              <button className={`shadow Button green`}></button>
-            </Link>
-            <h1 className={`buttonTitle extra-large-font`}> + </h1>
-        </div>
-    )
-  }
+          <Link className={`DrawingPageCard`} to="/drawing">
+            <button className={`shadow Button green`}></button>
+          </Link>
+          <h1 className={`buttonTitle extra-large-font`}> + </h1>
+      </div>
+  )
 }
-const GamePageCard = () => {
+const RecentSessionCard = () => {
   return (
     <div className={`clickAnimation DrawingPageCard`}>
 
