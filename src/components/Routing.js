@@ -13,11 +13,16 @@ export default class Routing extends Component {
       sessionList: this.props.sessionList
     }
     this.props.sessions.on('update_sessions', (data) => {
-      this.setState({
-        sessionList: [...this.state.sessionList, data]
+      console.log('This is your sent sessions', data);
+      data.map((element) => {
+        console.log('this is element', element);
+        this.setState({
+          sessionList: [...this.state.sessionList, element]
+        })
+        this.props.addSession(element)
+        return
       })
       // Also need to update the global sessions
-      this.props.addSession(data)
     })
   }
 

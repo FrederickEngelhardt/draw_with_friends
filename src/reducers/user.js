@@ -22,7 +22,7 @@ const initialState = {
   sessions: sessions,
   settingSelector: 'COLOR_MENU',
   showDrawingTools: true,
-  sessionList: ['/'],
+  sessionList: [''],
 }
 
 export default function User(state=initialState, action) {

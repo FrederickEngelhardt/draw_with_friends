@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 
 
-export default class NewSessionCard extends Component {
+class NewSessionCard extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -22,9 +22,24 @@ export default class NewSessionCard extends Component {
     })
     console.log('called handleSubmit', i);
   }
-  renderForm(){
+  renderForm = () => {
     if (this.state.form === true){
-      return <Form />
+      return (
+        <form className={`new-session-form`} onSubmit={(event)=>{
+            event.preventDefault()
+            console.log(event.target[0].value);
+            let id = (event.target[0].value).toString()
+            console.log("THIS IS ID EMITTED", id);
+            this.props.sessions.emit('add_session', id)
+            this.props.history.push(`/drawing/${id}`)
+          }}>
+          <h4 className={`buttonTitle`}>
+            Name Your Session!
+          </h4>
+          <input type="text" name="name"/>
+          <input type="submit" value="Get Started" />
+        </form>
+      )
     }
     else {
       return(
@@ -42,17 +57,4 @@ export default class NewSessionCard extends Component {
     )
   }
 }
-const Form = withRouter(({ history }) => (
-  <form className={`new-session-form`} onSubmit={(event)=>{
-      event.preventDefault()
-      console.log(event.target[0].value);
-      let id = event.target[0].value
-      history.push(`/drawing/${id}`)
-    }}>
-    <h4 className={`buttonTitle`}>
-      Name Your Session!
-    </h4>
-    <input type="text" name="name"/>
-    <input type="submit" value="Get Started" />
-  </form>
-))
+export default withRouter(NewSessionCard)
