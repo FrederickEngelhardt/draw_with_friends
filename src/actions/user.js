@@ -40,3 +40,10 @@ export const addSession = (sessionID) => {
     sessionID
   };
 };
+export const updateSelectedSession = (sessionID) => {
+  console.log("A user created a new session", sessionID);
+  return {
+    type: UserActionTypes.UPDATE_SELECTED_SESSION,
+    sessionID
+  };
+};
