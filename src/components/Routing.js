@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import DrawingPage from './DrawingPage'
+import DrawingPageContainer from '../containers/DrawingPageContainer'
 import HomePage from '../containers/HomePageContainer'
 
 
@@ -35,7 +35,7 @@ export default class Routing extends Component {
     const routes = this.state.sessionList.map((route) => {
       const routeString = `/drawing/${route}`
       console.log(routeString);
-      return (<Route exact path={routeString} component={DrawingPage} />)
+      return (<Route exact path={routeString} component={DrawingPageContainer} />)
       })
     return (
       routes

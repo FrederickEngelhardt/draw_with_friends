@@ -31,6 +31,7 @@ class NewSessionCard extends Component {
             let id = (event.target[0].value).toString()
             console.log("THIS IS ID EMITTED", id);
             this.props.sessions.emit('add_session', id)
+            this.props.updateSelectedSession(id)
             this.props.history.push(`/drawing/${id}`)
           }}>
           <h4 className={`buttonTitle`}>

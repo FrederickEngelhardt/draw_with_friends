@@ -30,7 +30,7 @@ import SettingsNav from '../components/SettingsNav'
 
 class DrawingSettings extends Component {
   renderDrawingTools(dispatch, user){
-    const { drawing, chat } = user
+    const { drawing, chat, selectedSession } = user
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const settingSelector = bindActionCreators(UserActionCreators.settingSelector, dispatch);
@@ -42,7 +42,7 @@ class DrawingSettings extends Component {
           settingSelector={settingSelector}
           />
         <Layers
-          socket={drawing}
+          socket={drawing(selectedSession)}
           layersActive={user.settingSelector}
           layers={user.layers}
           />

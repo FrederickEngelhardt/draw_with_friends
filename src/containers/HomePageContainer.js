@@ -15,13 +15,17 @@ import RecentSessionCard from '../components/HomePage/RecentSessionCard'
 
 class HomePageContainer extends Component {
   render() {
-    const { user } = this.props;
+    const { dispatch, user } = this.props;
     const { sessions } = user
+    const updateSelectedSession = bindActionCreators(UserActionCreators.updateSelectedSession, dispatch);
     return (
       <div className="App">
         <NavigationContainer view={`home-view`}/>
         <div className={`click home-flex`}>
-          <NewSessionCard sessions={sessions}/>
+          <NewSessionCard
+          sessions={sessions}
+          updateSelectedSession={updateSelectedSession}
+          />
           <JoinSessionCard />
           <RecentSessionCard />
         </div>
