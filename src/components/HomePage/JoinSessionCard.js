@@ -7,7 +7,7 @@ class JoinSessionCard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      form: false,
+      form: true,
     }
   }
   openMenu(){
@@ -36,7 +36,7 @@ class JoinSessionCard extends Component {
               this.props.history.push(`/drawing/${id}`)
             }
           }}>
-          <h4 className={`buttonTitle`}>
+          <h4 className={`DescriptionTitle`}>
             Join a Session!
           </h4>
           <input type="text" name="name"/>

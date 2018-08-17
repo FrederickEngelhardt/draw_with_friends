@@ -34,7 +34,7 @@ class NewSessionCard extends Component {
             this.props.updateSelectedSession(id)
             this.props.history.push(`/drawing/${id}`)
           }}>
-          <h4 className={`buttonTitle`}>
+          <h4 className={`DescriptionTitle`}>
             Name Your Session!
           </h4>
           <input type="text" name="name"/>
