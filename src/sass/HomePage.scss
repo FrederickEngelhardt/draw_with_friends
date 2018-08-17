@@ -44,6 +44,17 @@
 .extra-large-font {
   font-size: 200px;
 }
+
+.card-icon {
+  width: 80%;
+  height: 80%;
+  fill: rgba(255,255,255,1);
+  // -webkit-transform: rotate(-45deg); /* Safari and Chrome */
+  // -moz-transform: rotate(-45deg);   /* Firefox */
+  // -ms-transform: rotate(-45deg);   /* IE 9 */
+  // -o-transform: rotate(-45deg);   /* Opera */
+  // transform: rotate(-45deg);
+}
 button:focus { outline: none; }
 
 .new-session-form {

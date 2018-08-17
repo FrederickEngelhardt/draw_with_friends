@@ -1,14 +1,64 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
-const JoinSessionCard = () => {
-  return (
-    <div className={`clickAnimation DrawingPageCard`}>
-      <button className={`shadow Button orange`}>
-        <h1 className={`buttonTitle`}> Join A Session </h1>
-      </button>
-    </div>
-  )
+
+
+class JoinSessionCard extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      form: false,
+    }
+  }
+  openMenu(){
+    this.setState({form: true})
+  }
+  handleSubmit(event){
+    event.preventDefault()
+    let i = withRouter(({ history }) => {
+      history.push('/drawing')
+      console.log(history);
+
+    })
+    console.log('called handleSubmit', i);
+  }
+  renderForm = () => {
+    if (this.state.form === true){
+      return (
+        <form className={`new-session-form`} onSubmit={(event)=>{
+            event.preventDefault()
+            console.log(event.target[0].value);
+            let id = (event.target[0].value).toString()
+            console.log("THIS IS ID EMITTED", id);
+            this.props.sessions.emit('add_session', id)
+            this.props.updateSelectedSession(id)
+            this.props.history.push(`/drawing/${id}`)
+          }}>
+          <h4 className={`buttonTitle`}>
+            Name Your Session!
+          </h4>
+          <input type="text" name="name"/>
+          <input type="submit" value="Get Started" />
+        </form>
+      )
+    }
+    else {
+      return(
+        <h1 className={`clickAnimation buttonTitle extra-large-font`}> <img
+          className={`card-icon`} src={require('../../assets/icons/networking.svg')} alt="peer-connect" /> </h1>
+      )
+    }
+  }
+  render(){
+    return (
+      <div className={``}>
+        <button className={`shadow Button orange DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+          {this.renderForm()}
+        </button>
+      </div>
+    )
+  }
 }
+export default withRouter(JoinSessionCard)
 
-export default JoinSessionCard
+// Networking icon made by https://www.flaticon.com/authors/gregor-cresnar

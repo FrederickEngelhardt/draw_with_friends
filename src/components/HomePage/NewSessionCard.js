@@ -7,7 +7,7 @@ class NewSessionCard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      form: true,
+      form: false,
     }
   }
   openMenu(){
