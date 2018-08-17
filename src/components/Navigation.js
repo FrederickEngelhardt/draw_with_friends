@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
 import '../css/Navigation.css'
 import {
@@ -14,7 +15,7 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
-export default class Navigation extends Component {
+class Navigation extends Component {
   constructor(props) {
     super(props);
 
@@ -81,7 +82,7 @@ export default class Navigation extends Component {
     return (
       <div className={`NavigationSettings`}>
         <Navbar color="dark" dark expand={`xl`}>
-          <NavbarBrand href="/">Draw-With-Friends</NavbarBrand>
+          <h1 className={`NavbarBrand`} onClick={()=>this.props.history.push('/')}>Draw-With-Friends</h1>
           <NavbarToggler onClick={this.toggle} />
           {this.checkView()}
         </Navbar>
@@ -89,3 +90,4 @@ export default class Navigation extends Component {
     );
   }
 }
+export default withRouter(Navigation)

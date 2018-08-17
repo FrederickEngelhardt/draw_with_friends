@@ -4,4 +4,11 @@
   width: 100%;
 }
 
+.NavbarBrand {
+  padding: 0px;
+  margin: 0px;
+  font-size: 25px;
+  color: white;
+}
+
 /*# sourceMappingURL=Navigation.css.map */
