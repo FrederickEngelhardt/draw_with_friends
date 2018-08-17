@@ -16,7 +16,7 @@ import RecentSessionCard from '../components/HomePage/RecentSessionCard'
 class HomePageContainer extends Component {
   render() {
     const { dispatch, user } = this.props;
-    const { sessions } = user
+    const { sessions, sessionList } = user
     const updateSelectedSession = bindActionCreators(UserActionCreators.updateSelectedSession, dispatch);
     return (
       <div className="App">
@@ -26,8 +26,8 @@ class HomePageContainer extends Component {
           sessions={sessions}
           updateSelectedSession={updateSelectedSession}
           />
-          <JoinSessionCard />
-          <RecentSessionCard />
+        <JoinSessionCard sessionList={sessionList}/>
+          {/*<RecentSessionCard />*/}
         </div>
       </div>
     )

@@ -27,18 +27,20 @@ class JoinSessionCard extends Component {
       return (
         <form className={`new-session-form`} onSubmit={(event)=>{
             event.preventDefault()
-            console.log(event.target[0].value);
+            const { sessionList } = this.props
             let id = (event.target[0].value).toString()
-            console.log("THIS IS ID EMITTED", id);
-            this.props.sessions.emit('add_session', id)
-            this.props.updateSelectedSession(id)
-            this.props.history.push(`/drawing/${id}`)
+            const isRoute = sessionList.filter((element) => {
+              return id === element
+            })
+            if (isRoute.length >= 1) {
+              this.props.history.push(`/drawing/${id}`)
+            }
           }}>
           <h4 className={`buttonTitle`}>
-            Name Your Session!
+            Join a Session!
           </h4>
           <input type="text" name="name"/>
-          <input type="submit" value="Get Started" />
+          <input type="submit" value="Join" />
         </form>
       )
     }
@@ -52,7 +54,7 @@ class JoinSessionCard extends Component {
   render(){
     return (
       <div className={``}>
-        <button className={`shadow Button orange DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+        <button className={`${this.state.form ? '' : 'clickAnimation'} shadow Button orange DrawingPageCard`} onClick={this.openMenu.bind(this)}>
           {this.renderForm()}
         </button>
       </div>

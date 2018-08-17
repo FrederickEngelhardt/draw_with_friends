@@ -1,7 +1,5 @@
 .displayCard {
   background-color: white;
-  // width: 40vw;
-  // height: 80vh;
   border-radius: 10%;
   z-index: 0;
 }
@@ -36,10 +34,15 @@
 }
 .buttonTitle {
   position: relative;
+  display: block;
+  text-align: center;
+  vertical-align: center;
+  line-height: 20px;
   z-index: 0;
   color: white;
   padding: 0px;
   margin: 0px;
+  height: 100%;
 }
 .extra-large-font {
   font-size: 200px;

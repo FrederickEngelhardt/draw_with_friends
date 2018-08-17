@@ -44,14 +44,14 @@ class NewSessionCard extends Component {
     }
     else {
       return(
-        <h1 className={`clickAnimation buttonTitle extra-large-font`}> + </h1>
+        <div className={`clickAnimation buttonTitle extra-large-font`}><div>+</div></div>
       )
     }
   }
   render(){
     return (
       <div className={``}>
-        <button className={`shadow Button green DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+        <button className={`${this.state.form ? '' : 'clickAnimation'} shadow Button green DrawingPageCard`} onClick={this.openMenu.bind(this)}>
           {this.renderForm()}
         </button>
       </div>
