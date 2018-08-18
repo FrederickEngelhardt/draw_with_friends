@@ -54,9 +54,9 @@ class JoinSessionCard extends Component {
   render(){
     return (
       <div className={``}>
-        <button className={`${this.state.form ? '' : 'clickAnimation'} shadow Button orange DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+        <div className={`${this.state.form ? '' : 'clickAnimation'} shadow Button orange DrawingPageCard`} onClick={this.openMenu.bind(this)}>
           {this.renderForm()}
-        </button>
+        </div>
       </div>
     )
   }
