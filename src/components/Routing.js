@@ -25,11 +25,25 @@ export default class Routing extends Component {
       // Also need to update the global sessions
     })
   }
+  componentDidMount(){
+    this.props.sessions.on('sessions', (data) => {
+      console.log('This is your sent sessions', data);
+      data.map((element) => {
+        console.log('this is element', element);
+        this.setState({
+          sessionList: [...this.state.sessionList, element]
+        })
+        this.props.addSession(element)
+        return
+      })
+      // Also need to update the global sessions
+    })
+  }
 
   /**
    * generateRoutes - generates all available routes sent to user.
    *
-   * @return {type}  JSX of all routes
+   * @return {JSX}  JSX of all routes
    */
   generateRoutes(){
     const routes = this.state.sessionList.map((route) => {
@@ -38,17 +52,15 @@ export default class Routing extends Component {
       return (<Route exact path={routeString} component={DrawingPageContainer} />)
       })
     return (
-      routes
-    )
-  }
-  render(){
-    return (
       <Router>
         <div>
           <Route exact path="/" component={HomePage} />
-          {this.generateRoutes()}
+          {routes}
         </div>
       </Router>
     )
+  }
+  render(){
+    return (this.generateRoutes())
   }
 }
