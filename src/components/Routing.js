@@ -73,3 +73,15 @@ export default class Routing extends Component {
     return (this.generateRoutes())
   }
 }
+const Refresh = ({ path = '/' }) => (
+    <Route
+        path={path}
+        component={({ history, location, match }) => {
+            history.replace({
+                ...location,
+                pathname:location.pathname.substring(match.path.length)
+            });
+            return null;
+        }}
+    />
+);

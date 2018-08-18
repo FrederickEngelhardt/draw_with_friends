@@ -7,14 +7,16 @@ console.log("THIS IS CURRENT ENVIRONMENT", process.env.NODE_ENV);
 
 let url;
 switch (process.env.NODE_ENV) {
-  case 'development':
+  case 'production':
       url = 'http://localhost:3001/'
       break
-  case 'production':
+  case 'development':
       url = 'https://draw-with-friends-server.herokuapp.com/'
       break
   default:
       console.log("An Error has occured you are not in either production or development");
+      url = 'https://draw-with-friends-server.herokuapp.com/'
+
 }
 const chat = openSocket(`${url}chat`)
 const drawing = (drawing) => openSocket(`${url}drawing/${drawing}`)
