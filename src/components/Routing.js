@@ -56,7 +56,7 @@ export default class Routing extends Component {
       if (this.state.serverResponse === false){
         return setTimeout(()=>{
           console.log('Timeout called');
-          this.generateRoutes}, 3000)
+          this.generateRoutes}, 500)
       }
       else {
         return (
