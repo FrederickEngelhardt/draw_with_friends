@@ -39,7 +39,9 @@
   position: relative;
   display: flex;
   text-align: center;
+  align-items: center;
   vertical-align: center;
+  justify-content: center;
   line-height: 50vh;
   color: white;
   height: 100%;
