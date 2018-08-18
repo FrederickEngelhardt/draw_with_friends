@@ -1,20 +1,5 @@
 import React, { Component } from 'react'
-import {
-  UncontrolledCollapse,
-  Card,
-  CardBody,
-  Button,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 export default class SettingsNav extends Component {
   render(){

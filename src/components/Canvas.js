@@ -28,9 +28,6 @@ export default class Canvas extends Component {
 
     this.props.socket.on('update_session_canvas', (data) => {
       const canvas = this.refs.canvas,
-            canvasBounds = canvas.getBoundingClientRect(),
-            offsetLeft = canvasBounds.left,
-            offsetTop = canvasBounds.top,
             ctx=canvas.getContext("2d");
 
       ctx.fillStyle = data[data.length-1]
@@ -185,10 +182,6 @@ export default class Canvas extends Component {
           onMouseUp={()=>{
             this.setState({clickDown: false})
           }}
-          onTouchStart={()=>this.setState({clickDown: true})}
-          onTouchMove={
-            this.state.clickDown === true ? this._onTouchMove.bind(this) : () =>{return false}
-          }
           ref="canvas"/>
       </div>
     )

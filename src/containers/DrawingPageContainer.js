@@ -6,8 +6,8 @@ import * as UserActionCreators from '../actions/user';
 
 // Stylesheets
 import '../css/App.css'
-import Canvas_Container from './CanvasContainer'
-import Drawing_Settings from './DrawingSettings'
+import CanvasContainer from './CanvasContainer'
+import DrawingSettings from './DrawingSettings'
 import NavigationContainer from './NavigationContainer'
 
 class DrawingPageContainer extends Component {
@@ -21,8 +21,8 @@ class DrawingPageContainer extends Component {
     return (
       <div className="App">
         <NavigationContainer />
-        <Drawing_Settings />
-        <Canvas_Container />
+        <DrawingSettings />
+        <CanvasContainer />
       </div>
     )
   }

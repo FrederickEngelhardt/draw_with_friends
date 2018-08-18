@@ -1,23 +1,10 @@
 import React, { Component } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+
 // REDUX
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UserActionCreators from '../actions/user';
 
-// Stylesheets
-// import '../css/App.css'
 
 import Canvas from '../components/Canvas'
 import Layers from '../components/Layers'

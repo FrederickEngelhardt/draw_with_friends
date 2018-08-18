@@ -1,21 +1,6 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
-import {
-  UncontrolledCollapse,
-  Card,
-  CardBody,
-  Button,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+
 // REDUX
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
