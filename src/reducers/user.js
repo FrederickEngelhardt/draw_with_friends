@@ -7,10 +7,10 @@ console.log("THIS IS CURRENT ENVIRONMENT", process.env.NODE_ENV);
 
 let url;
 switch (process.env.NODE_ENV) {
-  case 'production':
+  case 'development':
       url = 'http://localhost:3001/'
       break
-  case 'development':
+  case 'production':
       url = 'https://draw-with-friends-server.herokuapp.com/'
       break
   default:
