@@ -10,7 +10,8 @@ export default class Routing extends Component {
   constructor(props){
     super(props)
     this.state = {
-      sessionList: this.props.sessionList
+      sessionList: this.props.sessionList || false,
+      serverResponse: false,
     }
     this.props.sessions.on('update_sessions', (data) => {
       console.log('This is your sent sessions', data);
@@ -22,11 +23,11 @@ export default class Routing extends Component {
         this.props.addSession(element)
         return
       })
-      // Also need to update the global sessions
     })
   }
   componentDidMount(){
     this.props.sessions.on('sessions', (data) => {
+      this.setState({serverResponse: true})
       console.log('This is your sent sessions', data);
       data.map((element) => {
         console.log('this is element', element);
@@ -36,7 +37,6 @@ export default class Routing extends Component {
         this.props.addSession(element)
         return
       })
-      // Also need to update the global sessions
     })
   }
 
@@ -46,19 +46,28 @@ export default class Routing extends Component {
    * @return {JSX}  JSX of all routes
    */
   generateRoutes(){
+    console.log(this.state.sessionList, "SESSION");
+    // if (this.state.sessionList === false) return setTimeout(this.generateRoutes, 3000)
     const routes = this.state.sessionList.map((route) => {
       const routeString = `/drawing/${route}`
       console.log(routeString);
       return (<Route exact path={routeString} component={DrawingPageContainer} />)
       })
-    return (
-      <Router>
-        <div>
-          <Route exact path="/" component={HomePage} />
-          {routes}
-        </div>
-      </Router>
-    )
+      if (this.state.serverResponse === false){
+        return setTimeout(()=>{
+          console.log('Timeout called');
+          this.generateRoutes}, 3000)
+      }
+      else {
+        return (
+          <Router>
+            <div>
+              <Route exact path="/" component={HomePage} />
+              {routes}
+            </div>
+          </Router>
+        )
+      }
   }
   render(){
     return (this.generateRoutes())
