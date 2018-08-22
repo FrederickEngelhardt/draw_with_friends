@@ -177,15 +177,19 @@ export default class Canvas extends Component {
     const { rectangle_width, rectangle_height } = this.state
     switch (event.key) {
       case "ArrowRight":
+        if (this.state.canvasWidth < (this.state.keyboard_x+rectangle_width)) return
         this.setState({keyboard_x: this.state.keyboard_x+rectangle_width})
         break;
       case "ArrowLeft":
+        if (0 > (this.state.keyboard_x - rectangle_width)) return
         this.setState({keyboard_x: this.state.keyboard_x-rectangle_width})
         break;
       case "ArrowDown":
+        if (this.state.canvasHeight+rectangle_height < (this.state.keyboard_y)) return
         this.setState({keyboard_y: this.state.keyboard_y+rectangle_height})
         break;
       case "ArrowUp":
+        if (50 < (this.statekeyboard_y-rectangle_height)) return
         this.setState({keyboard_y: this.state.keyboard_y-rectangle_height})
         break;
     }
