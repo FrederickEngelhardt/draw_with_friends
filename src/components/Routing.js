@@ -48,10 +48,10 @@ export default class Routing extends Component {
   generateRoutes(){
     console.log(this.state.sessionList, "SESSION");
     // if (this.state.sessionList === false) return setTimeout(this.generateRoutes, 3000)
-    const routes = this.state.sessionList.map((route) => {
+    const routes = this.state.sessionList.map((route, index) => {
       const routeString = `/drawing/${route}`
       console.log(routeString);
-      return (<Route exact path={routeString} component={DrawingPageContainer} />)
+      return (<Route key={`${index}`} exact path={routeString} component={DrawingPageContainer} />)
       })
       if (this.state.serverResponse === false){
         return setTimeout(()=>{
@@ -59,29 +59,17 @@ export default class Routing extends Component {
           this.generateRoutes}, 500)
       }
       else {
-        return (
-          <Router>
-            <div>
-              <Route exact path="/" component={HomePage} />
-              {routes}
-            </div>
-          </Router>
-        )
+        return (routes)
       }
   }
   render(){
-    return (this.generateRoutes())
+    return (
+      <Router>
+        <div>
+          <Route exact path="/" component={HomePage} />
+          {this.generateRoutes()}
+        </div>
+      </Router>
+    )
   }
 }
-const Refresh = ({ path = '/' }) => (
-    <Route
-        path={path}
-        component={({ history, location, match }) => {
-            history.replace({
-                ...location,
-                pathname:location.pathname.substring(match.path.length)
-            });
-            return null;
-        }}
-    />
-);

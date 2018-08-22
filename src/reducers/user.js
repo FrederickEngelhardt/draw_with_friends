@@ -15,8 +15,6 @@ switch (process.env.NODE_ENV) {
       break
   default:
       console.log("An Error has occured you are not in either production or development");
-      url = 'https://draw-with-friends-server.herokuapp.com/'
-
 }
 const chat = openSocket(`${url}chat`)
 const drawing = (drawing) => openSocket(`${url}drawing/${drawing}`)
@@ -29,7 +27,7 @@ const initialState = {
   brush_width: 20,
   brush_height: 20,
   chat: chat,
-  drawing: drawing,
+  drawing: drawing(''),
   sessions: sessions,
   selectedSession: '',
   settingSelector: 'COLOR_MENU',
@@ -96,7 +94,8 @@ export default function User(state=initialState, action) {
       // IMMUTABLY CHANGE OBJECT making default of red
       const update = {
         ...state,
-        selectedSession: action.sessionID
+        selectedSession: action.sessionID,
+        drawing: drawing(`${action.sessionID}`)
       }
       console.log('User Session Added', update);
       return update;

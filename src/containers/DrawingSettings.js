@@ -27,7 +27,7 @@ class DrawingSettings extends Component {
           settingSelector={settingSelector}
           />
         <Layers
-          socket={drawing(selectedSession)}
+          socket={drawing}
           layersActive={user.settingSelector}
           layers={user.layers}
           />
@@ -43,7 +43,6 @@ class DrawingSettings extends Component {
     const { dispatch, user } = this.props;
     const renderThis = user.showDrawingTools ? this.renderDrawingTools(dispatch, user) : <div></div>
     return renderThis
-
   }
 }
 const mapStateToProps = state => (
