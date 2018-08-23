@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import {
   Button,
@@ -12,7 +14,24 @@ import {
   } from 'reactstrap';
 import '../css/Layers.css'
 
-export default class Layers extends Component {
+type Props = {
+  socket: func,
+  layers: array,
+  layersActive: array,
+};
+type State = {
+  mouseDown: bool,
+  x: number,
+  y: number,
+  mouseX: number,
+  mouseY: number,
+  layers: array,
+  value: string,
+  change_id: ?number,
+  active: ?number | boolean,
+}
+
+export default class Layers extends Component<Props, State> {
   constructor(props){
     super(props)
     this.state = {
@@ -21,7 +40,7 @@ export default class Layers extends Component {
       y: 90,
       mouseX: null,
       mouseY: null,
-      layers: this.props.layers || [1,2,5, 7],
+      layers: this.props.layers,
       value: 'L1',
       change_id: null,
       active: this.props.layersActive || false,
