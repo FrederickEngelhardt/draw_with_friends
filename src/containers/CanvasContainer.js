@@ -18,11 +18,12 @@ class CanvasContainer extends Component {
     const { drawing, chat } = this.props.user
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
+    const toggleDrawingTools = bindActionCreators(UserActionCreators.toggleDrawingTools, dispatch);
     console.log(user, changeColor);
     return (
       <div className="CanvasContainer">
         <div className="">
-          <Canvas state={user} socket={drawing} changeColor={changeColor}/>
+          <Canvas toggleDrawingTools={toggleDrawingTools} state={user} socket={drawing} changeColor={changeColor}/>
         </div>
         <Chatbox socket={chat} />
       </div>
