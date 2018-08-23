@@ -185,7 +185,7 @@ export default class Canvas extends Component {
         this.setState({keyboard_x: this.state.keyboard_x-rectangle_width})
         break;
       case "ArrowDown":
-        if (this.state.canvasHeight+rectangle_height < (this.state.keyboard_y)) return
+        if (this.state.keyboard_y > this.state.canvasHeight-rectangle_height) return
         this.setState({keyboard_y: this.state.keyboard_y+rectangle_height})
         break;
       case "ArrowUp":
