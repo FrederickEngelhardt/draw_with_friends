@@ -40,7 +40,7 @@ export default class Layers extends Component<Props, State> {
       y: 90,
       mouseX: null,
       mouseY: null,
-      layers: this.props.layers,
+      layers: this.props.layers || [],
       value: 'L1',
       change_id: null,
       active: this.props.layersActive || false,
