@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom ./tests/*",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && cp build/index.html build/200.html && surge --project ./build/ --domain draw-with-friends.surge.sh"
+    "deploy": "npm run build && cp build/index.html build/200.html && surge --project ./build/ --domain draw-with-friends.surge.sh",
+    "flow": "flow"
   },
   "devDependencies": {
     "chai": "^4.1.2",
