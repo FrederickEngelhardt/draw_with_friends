@@ -46,7 +46,7 @@ class NewSessionCard extends Component {
       return(
         <div className={`clickAnimation buttonTitle`}>
           <h4 className={`DescriptionTitle`}>
-            Join a Session!
+            Add a Session!
           </h4>
           <div className={`extra-large-font`}>+</div>
         </div>
