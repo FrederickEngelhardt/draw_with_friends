@@ -7,9 +7,6 @@ const defaultColors = [
 ]
 
 export default class Canvas extends Component {
-  // static propTypes = {
-  //   user: PropTypes.object.isRequired
-  // };
   constructor(props){
     super(props)
     this.state = {
