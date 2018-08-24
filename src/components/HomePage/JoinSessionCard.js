@@ -49,7 +49,7 @@ class JoinSessionCard extends Component {
         <div>
           <div className="orange big-button">
             <div className="big-button__title">
-              Joint a Session
+              Join a Session
             </div>
               <img className="big-button__icon" src={require('../../assets/icons/collaboration.svg')} alt="You can add?" />
           </div>
