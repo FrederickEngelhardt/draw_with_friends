@@ -46,8 +46,14 @@ class JoinSessionCard extends Component {
     }
     else {
       return(
-        <h1 className={`clickAnimation buttonTitle extra-large-font`}> <img
-          className={`card-icon`} src={require('../../assets/icons/networking.svg')} alt="peer-connect" /> </h1>
+        <h1 className={`clickAnimation buttonTitle extra-large-font`}>
+          <h4 className={`DescriptionTitle`}>
+            Join a Session!
+          </h4>
+           <img
+          className={`card-icon`} src={require('../../assets/icons/networking.svg')} alt="peer-connect" />
+
+      </h1>
       )
     }
   }

@@ -35,24 +35,30 @@
 .buttonTitle {
   position: relative;
   display: flex;
+  flex-direction: column;
   text-align: center;
+  // background-color: blue;
   align-items: center;
-  vertical-align: center;
+  // vertical-align: center;
   justify-content: center;
-  line-height: 50vh;
+  // line-height: 50vh;
   color: white;
   height: 100%;
+  width: 100%;
 }
 .extra-large-font {
   font-size: 200px;
 }
 .DescriptionTitle {
+  position: absolute;
+  top: 50px;
+  // margin-top: 40px;
   font-size: 35px;
   color: white;
 }
 .card-icon {
-  width: 80%;
-  height: 80%;
+  width: 50%;
+  height: 50%;
   fill: rgba(255,255,255,1);
   // -webkit-transform: rotate(-45deg); /* Safari and Chrome */
   // -moz-transform: rotate(-45deg);   /* Firefox */

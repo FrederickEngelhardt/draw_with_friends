@@ -13,7 +13,7 @@ class NewSessionCard extends Component {
   openMenu(){
     this.setState({form: true})
   }
-  handleSubmit(event){
+    handleSubmit(event){
     event.preventDefault()
     let i = withRouter(({ history }) => {
       history.push('/drawing')
@@ -44,7 +44,12 @@ class NewSessionCard extends Component {
     }
     else {
       return(
-        <div className={`clickAnimation buttonTitle extra-large-font`}><div>+</div></div>
+        <div className={`clickAnimation buttonTitle`}>
+          <h4 className={`DescriptionTitle`}>
+            Join a Session!
+          </h4>
+          <div className={`extra-large-font`}>+</div>
+        </div>
       )
     }
   }

@@ -38,13 +38,13 @@
 .buttonTitle {
   position: relative;
   display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
-  vertical-align: center;
   justify-content: center;
-  line-height: 50vh;
   color: white;
   height: 100%;
+  width: 100%;
 }
 
 .extra-large-font {
@@ -52,13 +52,15 @@
 }
 
 .DescriptionTitle {
+  position: absolute;
+  top: 50px;
   font-size: 35px;
   color: white;
 }
 
 .card-icon {
-  width: 80%;
-  height: 80%;
+  width: 50%;
+  height: 50%;
   fill: white;
 }
 
