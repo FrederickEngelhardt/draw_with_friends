@@ -46,21 +46,21 @@ class JoinSessionCard extends Component {
     }
     else {
       return(
-        <h1 className={`clickAnimation buttonTitle extra-large-font`}>
-          <h4 className={`DescriptionTitle`}>
-            Join a Session!
-          </h4>
-           <img
-          className={`card-icon`} src={require('../../assets/icons/networking.svg')} alt="peer-connect" />
-
-      </h1>
+        <div>
+          <div className="orange big-button">
+            <div className="big-button__title">
+              Joint a Session
+            </div>
+              <img className="big-button__icon" src={require('../../assets/icons/collaboration.svg')} alt="You can add?" />
+          </div>
+        </div>
       )
     }
   }
   render(){
     return (
       <div className={``}>
-        <div className={`${this.state.form ? '' : 'clickAnimation'} shadow Button orange DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+        <div className={`${this.state.form ? '' : 'clickAnimation'}  DrawingPageCard`} onClick={this.openMenu.bind(this)}>
           {this.renderForm()}
         </div>
       </div>
