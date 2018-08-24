@@ -44,11 +44,13 @@ class NewSessionCard extends Component {
     }
     else {
       return(
-        <div className={`clickAnimation buttonTitle`}>
-          <h4 className={`DescriptionTitle`}>
-            Join a Session!
-          </h4>
-          <div className={`extra-large-font`}>+</div>
+        <div>
+          <div className="green big-button">
+          <div className="big-button__title">
+          Add a Session
+          </div>
+          <img className="big-button__icon" src={require('../../assets/icons/add.svg')} alt="You can add?" />
+          </div>
         </div>
       )
     }
@@ -56,7 +58,7 @@ class NewSessionCard extends Component {
   render(){
     return (
       <div className={``}>
-        <div className={`${this.state.form ? '' : 'clickAnimation'} shadow Button green DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+        <div className={`${this.state.form ? '' : 'clickAnimation'}  DrawingPageCard`} onClick={this.openMenu.bind(this)}>
           {this.renderForm()}
         </div>
       </div>
