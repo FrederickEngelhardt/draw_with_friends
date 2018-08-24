@@ -13,7 +13,7 @@ class NewSessionCard extends Component {
   openMenu(){
     this.setState({form: true})
   }
-  handleSubmit(event){
+    handleSubmit(event){
     event.preventDefault()
     let i = withRouter(({ history }) => {
       history.push('/drawing')
@@ -44,14 +44,21 @@ class NewSessionCard extends Component {
     }
     else {
       return(
-        <div className={`clickAnimation buttonTitle extra-large-font`}><div>+</div></div>
+        <div>
+          <div className="green big-button">
+          <div className="big-button__title">
+          Add a Session
+          </div>
+          <img className="big-button__icon" src={require('../../assets/icons/add.svg')} alt="You can add?" />
+          </div>
+        </div>
       )
     }
   }
   render(){
     return (
       <div className={``}>
-        <div className={`${this.state.form ? '' : 'clickAnimation'} shadow Button green DrawingPageCard`} onClick={this.openMenu.bind(this)}>
+        <div className={`${this.state.form ? '' : 'clickAnimation'}  DrawingPageCard`} onClick={this.openMenu.bind(this)}>
           {this.renderForm()}
         </div>
       </div>
