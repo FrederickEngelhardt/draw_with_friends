@@ -25,35 +25,25 @@ class JoinSessionCard extends Component {
   renderForm = () => {
     if (this.state.form === true){
       return (
-        <form className={`new-session-form`} onSubmit={(event)=>{
-            event.preventDefault()
-            const { sessionList } = this.props
-            let id = (event.target[0].value).toString()
-            const isRoute = sessionList.filter((element) => {
-              return id === element
-            })
-            if (isRoute.length >= 1) {
-              this.props.history.push(`/drawing/${id}`)
-            }
-          }}>
-          <h4 className={`DescriptionTitle`}>
-            Join a Session!
-          </h4>
-          <input type="text" name="name"/>
-          <input type="submit" value="Join" />
-        </form>
+            <form className={`new-session-form`} onSubmit={(event)=>{
+              event.preventDefault()
+              const { sessionList } = this.props
+              let id = (event.target[0].value).toString()
+              const isRoute = sessionList.filter((element) => {
+                return id === element
+              })
+              if (isRoute.length >= 1) {
+                this.props.history.push(`/drawing/${id}`)
+              }
+            }}>
+            <input type="text" name="name"/>
+            <input type="submit" value="Join" />
+            </form>
       )
     }
     else {
       return(
-        <div>
-          <div className="orange big-button">
-            <div className="big-button__title">
-              Join a Session
-            </div>
-              <img className="big-button__icon" src={require('../../assets/icons/collaboration.svg')} alt="You can add?" />
-          </div>
-        </div>
+        <img className="big-button__icon" src={require('../../assets/icons/collaboration.svg')} alt="You can add?" />
       )
     }
   }
@@ -61,7 +51,14 @@ class JoinSessionCard extends Component {
     return (
       <div className={``}>
         <div className={`${this.state.form ? '' : 'clickAnimation'}  DrawingPageCard`} onClick={this.openMenu.bind(this)}>
-          {this.renderForm()}
+          <div>
+            <div className="orange big-button">
+              <div className="big-button__title">
+                Join a Session
+              </div>
+              {this.renderForm()}
+            </div>
+          </div>
         </div>
       </div>
     )

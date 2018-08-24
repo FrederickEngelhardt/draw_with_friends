@@ -34,24 +34,14 @@ class NewSessionCard extends Component {
             this.props.updateSelectedSession(id)
             this.props.history.push(`/drawing/${id}`)
           }}>
-          <h4 className={`DescriptionTitle`}>
-            Name Your Session!
-          </h4>
           <input type="text" name="name"/>
-          <input type="submit" value="Get Started" />
+          <input type="submit" value="Get Drawing" />
         </form>
       )
     }
     else {
       return(
-        <div>
-          <div className="green big-button">
-          <div className="big-button__title">
-          Add a Session
-          </div>
-          <img className="big-button__icon" src={require('../../assets/icons/add.svg')} alt="You can add?" />
-          </div>
-        </div>
+        <img className="big-button__icon" src={require('../../assets/icons/add.svg')} alt="You can add?" />
       )
     }
   }
@@ -59,7 +49,14 @@ class NewSessionCard extends Component {
     return (
       <div className={``}>
         <div className={`${this.state.form ? '' : 'clickAnimation'}  DrawingPageCard`} onClick={this.openMenu.bind(this)}>
-          {this.renderForm()}
+          <div>
+            <div className="green big-button">
+            <div className="big-button__title">
+            Add a Session
+            </div>
+            {this.renderForm()}
+            </div>
+          </div>
         </div>
       </div>
     )
