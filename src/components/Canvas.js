@@ -172,8 +172,9 @@ export default class Canvas extends Component {
       console.log(this.props.state);
       this.props.toggleDrawingTools(!this.props.state.showDrawingTools)
     }
-    console.log(event.button, "THIS IS BUTTONCLICKEd");
-    this.setState({clickDown: true})
+    else {
+      this.setState({clickDown: true})
+    }
   }
   cursorStyle() {
     return {cursor: `url('data:image/svg+xml;utf8,<svg width="${50 + this.state.rectangle_width/2}" height="${50 + this.state.rectangle_height/2}" viewBox="0 0 600 600" version="1" xmlns="http://www.w3.org/2000/svg"><g id="Page-1" fill="none" fill-rule="evenodd"><g id="paint-brush-svgrepo-com" transform="scale(${this.state.clickDown ? .8 : 1} -1) rotate(-45 -279 -100)"><path id="Rectangle-2" fill="${this.state.selected_color}" d="M24 11h179v79H24z"/><path id="Rectangle-4" fill="#FFF" d="M38 101h151v27H38z"/><path d="M139 246H87v18c-9 22-16 54-16 82 0 50 19 73 42 73 24 0 43-23 43-73 0-28-7-60-17-82v-18zM217 82V9c0-5-4-9-9-9H19c-5 0-9 4-9 9v73H0v100c0 28 23 52 52 52h123c29 0 52-24 52-52V82h-10zm-30 43H40v-22h147v22zm12-43H28V18h37l4 24a3 3 0 0 0 5 0l5-24h13l4 24a3 3 0 0 0 6 0l4-24h56l5 32a3 3 0 0 0 6 0l5-32h21v64z" id="Shape" fill="#000" fill-rule="nonzero"/></g></g></svg>') 0 32, pointer`}
