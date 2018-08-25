@@ -14,6 +14,7 @@ export default class VrCanvas extends Component {
       socket: this.props.socket,
       canvasWidth: null,
       canvasHeight: null,
+      isDrawing: false,
     }
 
     this.state.socket.on('update_session_canvas', (data) => {
@@ -83,36 +84,6 @@ export default class VrCanvas extends Component {
         return ctx.fillRect(...ele)
       })
     }, 200)
-  }
-  renderBoxes = () => {
-    var component = this.refs.canvas
-    var ctx = component.getContext()
-    console.log(ctx);
-    const boxes = this.state.canvasData.map((element, index) => {
-      console.log(element);
-      let x = element[0]/100
-      let y = element[1]/100
-      let z = -3
-
-      // Note width in this view can be disregarded
-      let width = '.01px'
-      let height = element[2]/100 || '.1px'
-      let depth = element[3]/100 || '.1px'
-      let color = element[4]
-      return (
-        <a-box
-          key={index}
-          position={`${x} ${y} ${z}`}
-          rotation="0 90 0"
-          color={`${color}`}
-          width={`${width}`}
-          height={`${height}`}
-          depth={`${depth}`}
-          >
-          </a-box>
-        )
-    })
-    return boxes
   }
   _canvasFill(x, y) {
     const canvas = this.refs.canvas,
