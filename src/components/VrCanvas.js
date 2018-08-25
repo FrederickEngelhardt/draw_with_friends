@@ -28,7 +28,19 @@ export default class VrCanvas extends Component {
         ctx.fillRect(...data)
       })
     this.state.socket.on('load_canvas', (data) => {
+      const canvas = this.refs.canvas,
+            ctx=canvas.getContext("2d");
       this.setState({canvasData: data})
+      ctx.clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
+      if (data.length === 0) {
+        return ctx.clearRect(0,0,this.state.canvasWidth, this.state.canvasHeight)
+      }
+      return data.map((ele)=>{
+        ctx.fillStyle = ele[ele.length-1]
+        ele = ele.slice(0,4)
+        console.log(ele);
+        return ctx.fillRect(...ele)
+      })
     })
   }
   componentDidMount() {
@@ -39,17 +51,6 @@ export default class VrCanvas extends Component {
 
     // Listener to check if client is resized
     window.addEventListener("resize", this.resizeCanvas.bind(this));
-    AFRAME.registerComponent('cursor-listener', {
-  init: function () {
-    var lastIndex = -1;
-    var COLORS = ['red', 'green', 'blue'];
-    this.el.addEventListener('click', function (evt) {
-      lastIndex = (lastIndex + 1) % COLORS.length;
-      this.setAttribute('material', 'color', COLORS[lastIndex]);
-      console.log('I was clicked at: ', evt.detail.intersection.point);
-    });
-  }
-});
   }
   resizeCanvas(initial) {
     // initial = true or the event sent from the listener.
@@ -121,12 +122,16 @@ export default class VrCanvas extends Component {
     ctx.fillStyle= 'blue'
     ctx.fillRect(x,y,this.state.rectangle_width,this.state.rectangle_height)
   }
+  handleClick(e){
+    console.log(e.target, e.clientX, e.clientY, e.button);
+  }
   render() {
     return(
-      <div style={{backgroundColor: 'white'}}>
+      <div style={{backgroundColor: 'white'}} onMouseDown={this.handleClick} >
       <a-scene>
         <a-assets>
-          <canvas width={this.state.canvasWidth} height={this.state.canvasHeight} ref="canvas" id="my-canvas" crossorigin="anonymous"></canvas>
+          <canvas
+           width={this.state.canvasWidth} height={this.state.canvasHeight} ref="canvas" id="my-canvas" crossOrigin="anonymous"></canvas>
         </a-assets>
         <a-entity
         cursor-listener
