@@ -22,7 +22,7 @@ export default class Canvas extends Component {
       alpha: 0.2,
       color_memory: defaultColors,
       selected_color: 'rgba(118,0,255,0.2)',
-      clickDown: false
+      clickDown: false,
     }
 
     this.props.socket.on('update_session_canvas', (data) => {
@@ -169,8 +169,8 @@ export default class Canvas extends Component {
   mousePress = (event) => {
     event.preventDefault()
     if (event.button === 2) {
-      console.log(this.props.user);
-      this.props.toggleDrawingTools(false)
+      console.log(this.props.state);
+      this.props.toggleDrawingTools(!this.props.state.showDrawingTools)
     }
     console.log(event.button, "THIS IS BUTTONCLICKEd");
     this.setState({clickDown: true})

@@ -32,7 +32,7 @@ const initialState = {
   selectedSession: '',
   settingSelector: 'COLOR_MENU',
   showDrawingTools: true,
-  sessionList: [''],
+  sessionList: [],
 }
 
 export default function User(state=initialState, action) {
@@ -90,7 +90,7 @@ export default function User(state=initialState, action) {
       console.log('User Session Added', update);
       return update;
 	 	}
-    case UserActionTypes.UPDATE_SELECTED_SESSION: {
+    case UserActionTypes.UPDATE_SELECTED_SOCKET_SESSION: {
       // IMMUTABLY CHANGE OBJECT making default of red
       const update = {
         ...state,

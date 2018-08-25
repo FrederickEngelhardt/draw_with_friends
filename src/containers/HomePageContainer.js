@@ -17,14 +17,14 @@ class HomePageContainer extends Component {
   render() {
     const { dispatch, user } = this.props;
     const { sessions, sessionList } = user
-    const updateSelectedSession = bindActionCreators(UserActionCreators.updateSelectedSession, dispatch);
+    const updateSelectedSocketSession = bindActionCreators(UserActionCreators.updateSelectedSocketSession, dispatch);
     return (
       <div className="App">
         <NavigationContainer view={`home-view`}/>
         <div className={`click home-flex`}>
           <NewSessionCard
           sessions={sessions}
-          updateSelectedSession={updateSelectedSession}
+          updateSelectedSocketSession={updateSelectedSocketSession}
           />
         <JoinSessionCard sessionList={sessionList}/>
           {/*<RecentSessionCard />*/}

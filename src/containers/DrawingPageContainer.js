@@ -13,10 +13,10 @@ import NavigationContainer from './NavigationContainer'
 class DrawingPageContainer extends Component {
   render() {
     const { dispatch, user } = this.props;
-    const updateSelectedSession = bindActionCreators(UserActionCreators.updateSelectedSession, dispatch);
+    const updateSelectedSocketSession = bindActionCreators(UserActionCreators.updateSelectedSocketSession, dispatch);
     const path = this.props.location.pathname.split("/drawing/")[1]
     if (path !== user.selectedSession){
-      updateSelectedSession(path)
+      updateSelectedSocketSession(path)
     }
     return (
       <div className="App">
