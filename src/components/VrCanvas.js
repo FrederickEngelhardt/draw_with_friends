@@ -45,6 +45,13 @@ export default class VrCanvas extends Component {
     })
   }
   componentDidMount() {
+    const canvas = this.refs.fakeCanvas
+
+    // Prevents right click box menu
+    canvas.oncontextmenu = function(e) {
+      e.preventDefault()
+    }
+
     /*
       Full Screen Canvas
     */
@@ -93,12 +100,18 @@ export default class VrCanvas extends Component {
     ctx.fillStyle= 'blue'
     ctx.fillRect(x,y,this.state.rectangle_width,this.state.rectangle_height)
   }
-  handleClick(e){
+  handleClick = (e) => {
     console.log(e.target, e.clientX, e.clientY, e.button);
+    if (e.button === 2){
+      this.setState({isDrawing: !this.state.isDrawing})
+    }
+    else {
+      return
+    }
   }
   render() {
     return(
-      <div style={{backgroundColor: 'white'}} onMouseDown={this.handleClick} >
+      <div ref={`fakeCanvas`} style={{backgroundColor: 'white'}} onMouseDown={this.handleClick} >
       <a-scene>
         <a-assets>
           <canvas
