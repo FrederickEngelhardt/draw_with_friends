@@ -33,6 +33,7 @@ const initialState = {
   settingSelector: 'COLOR_MENU',
   showDrawingTools: true,
   sessionList: [],
+  isVrEnabled: true,
 }
 
 export default function User(state=initialState, action) {
@@ -98,6 +99,15 @@ export default function User(state=initialState, action) {
         drawing: drawing(`${action.sessionID}`)
       }
       console.log('User Session Added', update);
+      return update;
+	 	}
+    case UserActionTypes.TOGGLE_VR: {
+      // IMMUTABLY CHANGE OBJECT making default of red
+      const update = {
+        ...state,
+        isVrEnabled: action.toggle
+      }
+      console.log('User toggled VR', update);
       return update;
 	 	}
 

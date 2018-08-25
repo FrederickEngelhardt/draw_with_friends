@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import 'aframe'
 // Stylesheets
 import './css/App.css'
 

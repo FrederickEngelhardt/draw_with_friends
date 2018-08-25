@@ -33,6 +33,13 @@ export const toggleDrawingTools = (toggle) => {
     toggle
   };
 };
+export const toggleVR = (toggle) => {
+  console.log("CHANGED SETTINGS TO", toggle);
+  return {
+    type: UserActionTypes.TOGGLE_VR,
+    toggle
+  };
+};
 export const addSession = (sessionID) => {
   console.log("A user created a new session", sessionID);
   return {

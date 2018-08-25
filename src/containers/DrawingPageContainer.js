@@ -9,8 +9,19 @@ import '../css/App.css'
 import CanvasContainer from './CanvasContainer'
 import DrawingSettings from './DrawingSettings'
 import NavigationContainer from './NavigationContainer'
+import VrContainer from './VrContainer'
 
 class DrawingPageContainer extends Component {
+  state = {
+    isVrEnabled: this.props.user.isVrEnabled
+  }
+  componentDidUpdate(){
+    console.log("CALLED SET STATE!@#!@#!@#!@#!@#");
+    console.log(this.props.user, "USER", );
+    if (this.props.user.isVrEnabled !== this.state.isVrEnabled){
+      this.setState({isVrEnabled: !this.state.isVrEnabled})
+    }
+  }
   render() {
     const { dispatch, user } = this.props;
     const updateSelectedSocketSession = bindActionCreators(UserActionCreators.updateSelectedSocketSession, dispatch);
@@ -18,11 +29,12 @@ class DrawingPageContainer extends Component {
     if (path !== user.selectedSession){
       updateSelectedSocketSession(path)
     }
+    const isVrEnabled = this.state.isVrEnabled ? <VrContainer /> : <CanvasContainer />
     return (
       <div className="App">
         <NavigationContainer />
         <DrawingSettings />
-        <CanvasContainer />
+        {isVrEnabled}
       </div>
     )
   }

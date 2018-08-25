@@ -10,12 +10,14 @@ class NavigationContainer extends Component {
     const { drawing } = user
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const toggleDrawingTools = bindActionCreators(UserActionCreators.toggleDrawingTools, dispatch);
+    const toggleVR = bindActionCreators(UserActionCreators.toggleVR, dispatch);
     return(
       <Navigation
         socket={drawing}
         view={this.props.view}
         changeBrushSize={changeBrushSize}
         toggleDrawingTools={toggleDrawingTools}
+        toggleVR={toggleVR}
         state={user}
       />
     )

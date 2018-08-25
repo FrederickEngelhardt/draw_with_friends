@@ -40,6 +40,9 @@ class Navigation extends Component {
             <NavLink onClick={()=>{this.props.toggleDrawingTools(!this.props.state.showDrawingTools)}}>
             Tools
             </NavLink>
+            <NavLink onClick={()=>{this.props.toggleVR(!this.props.state.isVrEnabled)}}>
+            Toggle VR
+            </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
