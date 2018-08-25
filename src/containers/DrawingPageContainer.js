@@ -11,6 +11,7 @@ import DrawingSettings from './DrawingSettings'
 import NavigationContainer from './NavigationContainer'
 import VrContainer from './VrContainer'
 
+
 class DrawingPageContainer extends Component {
   state = {
     isVrEnabled: this.props.user.isVrEnabled
