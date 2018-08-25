@@ -18,7 +18,7 @@ export default class Canvas extends Component {
       keyboard_y: 50,
       canvasWidth: null,
       canvasHeight: null,
-      canvasData: [],
+      canvasData: this.props.canvasData,
       alpha: 0.2,
       color_memory: defaultColors,
       selected_color: 'rgba(118,0,255,0.2)',

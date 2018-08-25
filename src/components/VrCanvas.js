@@ -10,7 +10,7 @@ export default class VrCanvas extends Component {
   constructor(props){
     super(props)
     this.state = {
-      canvasData: [],
+      canvasData: this.props.canvasData,
       socket: this.props.socket,
       rectangle_width: this.props.state.brush_width,
       rectangle_height: this.props.state.brush_height,
