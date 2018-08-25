@@ -16,8 +16,6 @@ class DrawingPageContainer extends Component {
     isVrEnabled: this.props.user.isVrEnabled
   }
   componentDidUpdate(){
-    console.log("CALLED SET STATE!@#!@#!@#!@#!@#");
-    console.log(this.props.user, "USER", );
     if (this.props.user.isVrEnabled !== this.state.isVrEnabled){
       this.setState({isVrEnabled: !this.state.isVrEnabled})
     }

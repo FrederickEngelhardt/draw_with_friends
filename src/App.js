@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'aframe'
+import 'aframe-canvas'
 // Stylesheets
 import './css/App.css'
 

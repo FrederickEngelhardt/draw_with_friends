@@ -14,12 +14,10 @@ import VrCanvas from '../components/VrCanvas'
 class CanvasContainer extends Component {
   render() {
     const { dispatch, user } = this.props;
-    console.log(this.props.user, "PROPS");
     const { drawing, chat } = this.props.user
     const changeColor = bindActionCreators(UserActionCreators.changeColor, dispatch);
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const toggleDrawingTools = bindActionCreators(UserActionCreators.toggleDrawingTools, dispatch);
-    console.log(user, changeColor);
     return (
       <VrCanvas socket={drawing}/>
     );
