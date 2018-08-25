@@ -19,7 +19,7 @@ class CanvasContainer extends Component {
     const changeBrushSize = bindActionCreators(UserActionCreators.changeBrushSize, dispatch);
     const toggleDrawingTools = bindActionCreators(UserActionCreators.toggleDrawingTools, dispatch);
     return (
-      <VrCanvas socket={drawing}/>
+      <VrCanvas socket={drawing} state={user} changeColor={changeColor} toggleDrawingTools={toggleDrawingTools}/>
     );
   }
 }
