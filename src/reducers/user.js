@@ -33,7 +33,7 @@ const initialState = {
   settingSelector: 'COLOR_MENU',
   showDrawingTools: true,
   sessionList: [],
-  isVrEnabled: false,
+  isVrEnabled: true,
 }
 
 export default function User(state=initialState, action) {

@@ -62,6 +62,17 @@ export default class VrCanvas extends Component {
 
     // Listener to check if client is resized
     window.addEventListener("resize", this.resizeCanvas.bind(this));
+    AFRAME.registerComponent('cursor-listener', {
+  init: function () {
+    var lastIndex = -1;
+    var COLORS = ['red', 'green', 'blue'];
+    this.el.addEventListener('click', function (evt) {
+      lastIndex = (lastIndex + 1) % COLORS.length;
+      this.setAttribute('material', 'color', COLORS[lastIndex]);
+      console.log('I was clicked at: ', evt.detail.intersection.point);
+    });
+  }
+});
   }
   componentDidUpdate() {
     console.log('COMPONENT WILL RECEIVE PROPS', this.props);
@@ -151,21 +162,21 @@ export default class VrCanvas extends Component {
         onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
         onMouseUp={()=>this.setState({clickDown: false})}
       >
-      <a-scene>
-        <a-assets>
-          <canvas
-           width={this.state.canvasWidth} height={this.state.canvasHeight} ref="canvas" id="my-canvas" crossOrigin="anonymous"></canvas>
-        </a-assets>
-        <a-entity
-        cursor-listener
-        position="-1 2 -3"
-        geometry={`primitive: plane; height: ${this.state.canvasHeight/100}; width: ${this.state.canvasWidth/100}`}
-        material="src: #my-canvas"
-        draw-canvas="my-canvas"
-        >
-        </a-entity>
-        <a-sky color="white"></a-sky>
-      </a-scene>
+        <a-scene>
+          <a-assets>
+            <canvas
+             width={this.state.canvasWidth} height={this.state.canvasHeight} ref="canvas" id="my-canvas" crossOrigin="anonymous"></canvas>
+          </a-assets>
+          <a-entity
+          cursor-listener
+          position="-1 2 -3"
+          geometry={`primitive: plane; height: ${this.state.canvasHeight/100}; width: ${this.state.canvasWidth/100}`}
+          material="src: #my-canvas"
+          draw-canvas="my-canvas"
+          >
+          </a-entity>
+          <a-sky color="black"></a-sky>
+        </a-scene>
       </div>
 
     )
