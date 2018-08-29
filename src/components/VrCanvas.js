@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Canvas.css'
 import AFRAME from 'aframe'
+import { css } from 'emotion'
 
 const defaultColors = [
   '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00', '#DBDF00', '#A4DD00', '#68CCCA', '#73D8FF', '#AEA1FF', '#FDA1FF', '#333333', '#808080', '#cccccc', '#D33115', '#E27300', '#FCC400', '#B0BC00','#68BC00', '#16A5A5', '#009CE0', '#7B64FF', '#FA28FF', '#000000', '#666666', '#B3B3B3', '#9F0500', '#C45100', '#FB9E00', '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E'
@@ -16,6 +17,8 @@ export default class VrCanvas extends Component {
       rectangle_height: this.props.state.brush_height,
       canvasWidth: null,
       canvasHeight: null,
+      paintWidth: null,
+      paintHeight: null,
       clickDown: false,
       alpha: 0.2,
       color_memory: defaultColors,
@@ -155,13 +158,14 @@ export default class VrCanvas extends Component {
   }
   render() {
     return(
+      <div>
       <div
-        ref={`fakeCanvas`}
-        style={{backgroundColor: 'white'}}
-        onMouseDown={this.handleClick}
-        onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
-        onMouseUp={()=>this.setState({clickDown: false})}
-      >
+      ref={`fakeCanvas`}
+      className={colorbox()}
+      onMouseDown={this.handleClick}
+      onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
+      onMouseUp={()=>this.setState({clickDown: false})}
+      ></div>
         <a-scene>
           <a-assets>
             <canvas
@@ -181,4 +185,17 @@ export default class VrCanvas extends Component {
 
     )
   }
+}
+
+const colorbox = () => {
+  return (css`
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    top: 80vh;
+    left: 50vw;
+    z-index: 5;
+    background-color: #EFDFBB;
+    border-radius: 50px;
+    `)
 }
