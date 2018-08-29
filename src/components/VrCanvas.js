@@ -65,18 +65,8 @@ export default class VrCanvas extends Component {
 
     // Listener to check if client is resized
     window.addEventListener("resize", this.resizeCanvas.bind(this));
-    AFRAME.registerComponent('cursor-listener', {
-  init: function () {
-    var lastIndex = -1;
-    var COLORS = ['red', 'green', 'blue'];
-    this.el.addEventListener('click', function (evt) {
-      lastIndex = (lastIndex + 1) % COLORS.length;
-      this.setAttribute('material', 'color', COLORS[lastIndex]);
-      console.log('I was clicked at: ', evt.detail.intersection.point);
-    });
   }
-});
-  }
+
   componentDidUpdate() {
     console.log('COMPONENT WILL RECEIVE PROPS', this.props);
     const {state} = this.props
@@ -91,7 +81,6 @@ export default class VrCanvas extends Component {
         selected_color: state.selected_color
       })
     }
-    return true
   }
   resizeCanvas(initial) {
     // initial = true or the event sent from the listener.
@@ -105,7 +94,9 @@ export default class VrCanvas extends Component {
     else {
       this.setState({
         canvasWidth: canvasWidth,
-        canvasHeight: canvasHeight
+        canvasHeight: canvasHeight,
+        paintWidth: canvasWidth/2,
+        paintHeight: canvasHeight/2,
       })
     }
 
@@ -134,7 +125,8 @@ export default class VrCanvas extends Component {
   }
   handleClick = (e) => {
     console.log(e.target, e.clientX, e.clientY, e.button);
-    if (e.button === 2){
+    if (e.button === 2 || e.button === 0){
+      // Left(0) or right(0) click
       this.setState({clickDown: !this.state.clickDown})
     }
     else {
@@ -151,51 +143,62 @@ export default class VrCanvas extends Component {
           offsetTop = canvasBounds.top
     const { rectangle_width, rectangle_height} = this.state
 
+    console.log(e.clientX, e.target.offsetLeft);
     // Do not need to change state to draw.
-    const x = e.clientX-offsetLeft - rectangle_width/2,
-          y = e.clientY - offsetTop - rectangle_height/2
+    // const x = e.clientX -offsetLeft - rectangle_width/2,
+    //       y = e.clientY - offsetTop - rectangle_height/2
+
+
+    /*
+      This is calculation for VR paintBox to paint on entire canvas bounds
+    */
+    const scaleX = this.state.canvasWidth/this.state.paintWidth
+    const scaleY = this.state.canvasHeight/this.state.paintHeight
+    const x = (e.clientX -e.target.offsetLeft - rectangle_width/2)*scaleX,
+          y = (e.clientY -e.target.offsetTop - rectangle_height/2)*scaleY
     this._canvasFill(x, y)
   }
   render() {
     return(
-      <div>
       <div
-      ref={`fakeCanvas`}
-      className={colorbox()}
-      onMouseDown={this.handleClick}
-      onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
-      onMouseUp={()=>this.setState({clickDown: false})}
-      ></div>
-        <a-scene>
-          <a-assets>
-            <canvas
-             width={this.state.canvasWidth} height={this.state.canvasHeight} ref="canvas" id="my-canvas" crossOrigin="anonymous"></canvas>
-          </a-assets>
-          <a-entity
-          cursor-listener
-          position="-1 2 -3"
-          geometry={`primitive: plane; height: ${this.state.canvasHeight/100}; width: ${this.state.canvasWidth/100}`}
-          material="src: #my-canvas"
-          draw-canvas="my-canvas"
-          >
-          </a-entity>
-          <a-sky color="black"></a-sky>
-        </a-scene>
+        ref={`fakeCanvas`}>
+        <div
+        className={colorbox(this.state.paintWidth, this.state.paintHeight)}
+        onMouseDown={this.handleClick}
+        onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
+        onMouseUp={()=>this.setState({clickDown: false})}
+        ></div>
+          <a-scene>
+            <a-assets>
+              <canvas
+               width={this.state.canvasWidth} height={this.state.canvasHeight} ref="canvas" id="my-canvas" crossOrigin="anonymous"></canvas>
+            </a-assets>
+            <a-entity
+            cursor-listener
+            position="-1 2 -3"
+            geometry={`primitive: plane; height: ${this.state.canvasHeight/100}; width: ${this.state.canvasWidth/100}`}
+            material="src: #my-canvas"
+            draw-canvas="my-canvas"
+            >
+            </a-entity>
+            <a-sky color="black"></a-sky>
+          </a-scene>
       </div>
 
     )
   }
 }
 
-const colorbox = () => {
+// Scoped CSS classes
+const colorbox = (paintWidth, paintHeight) => {
   return (css`
     position: absolute;
-    width: 500px;
-    height: 200px;
-    top: 80vh;
-    left: 50vw;
+    width: ${paintWidth}px;
+    height: ${paintHeight}px;
+    bottom: 0vh;
+    left: 0vw;
     z-index: 5;
-    background-color: #EFDFBB;
+    background-color: rgba(239,223,187, 0.4);
     border-radius: 50px;
     `)
 }
