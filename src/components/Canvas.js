@@ -40,10 +40,6 @@ export default class Canvas extends Component {
       const canvas = this.refs.canvas,
             ctx=canvas.getContext("2d");
 
-      // Prevents right click box menu
-      canvas.oncontextmenu = function(e) {
-        e.preventDefault()
-      }
       this.setState({canvasData: data})
       ctx.clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight)
       if (data.length === 0) {
@@ -67,6 +63,11 @@ export default class Canvas extends Component {
     // Listener to check if client is resized
     window.addEventListener("resize", this.resizeCanvas.bind(this));
     document.addEventListener("keydown", this.onKeyPressed.bind(this))
+    // Prevents right click box menu
+    const canvas = this.refs.canvas
+    canvas.oncontextmenu = function(e) {
+      e.preventDefault()
+    }
   }
 
   componentDidUpdate() {
