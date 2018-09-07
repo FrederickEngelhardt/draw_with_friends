@@ -134,7 +134,26 @@ export default class VrCanvas extends Component {
     }
   }
   handleTouch = (e) => {
+    e.preventDefault()
     this.setState({clickDown: !this.state.clickDown})
+    console.log("updated state", e);
+  }
+  _onTouchMove(e) {
+    e.preventDefault()
+    // Detects the current coordinates of the mouse and draws
+    const canvas = this.refs.canvas,
+          canvasBounds = canvas.getBoundingClientRect(),
+          ctx=canvas.getContext("2d"),
+          offsetLeft = canvasBounds.left,
+          offsetTop = canvasBounds.top
+    const { rectangle_width, rectangle_height} = this.state
+
+    // Do not need to change state to draw.
+    const scaleX = this.state.canvasWidth/this.state.paintWidth
+    const scaleY = this.state.canvasHeight/this.state.paintHeight
+    const x = (e.touches[0].clientX -e.target.offsetLeft - rectangle_width/2)*scaleX,
+          y = (e.touches[0].clientY -e.target.offsetTop - rectangle_height/2)*scaleY
+    this._canvasFill(x, y)
   }
   _onMouseMove(e) {
     e.preventDefault()
@@ -146,15 +165,6 @@ export default class VrCanvas extends Component {
           offsetTop = canvasBounds.top
     const { rectangle_width, rectangle_height} = this.state
 
-    console.log(e.clientX, e.target.offsetLeft);
-    // Do not need to change state to draw.
-    // const x = e.clientX -offsetLeft - rectangle_width/2,
-    //       y = e.clientY - offsetTop - rectangle_height/2
-
-
-    /*
-      This is calculation for VR paintBox to paint on entire canvas bounds
-    */
     const scaleX = this.state.canvasWidth/this.state.paintWidth
     const scaleY = this.state.canvasHeight/this.state.paintHeight
     const x = (e.clientX -e.target.offsetLeft - rectangle_width/2)*scaleX,
@@ -168,8 +178,9 @@ export default class VrCanvas extends Component {
         <div
         className={colorbox(this.state.paintWidth, this.state.paintHeight)}
         onTouchStart={this.handleTouch}
+        onTouchMove={this.state.clickDown === true ? this._onTouchMove.bind(this) : () => false}
         onTouchEnd={this.handleTouch}
-        onMouseDown={this.handleClick}
+        // onMouseDown={this.handleClick}
         onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
         onMouseUp={()=>this.setState({clickDown: false})}
         ></div>

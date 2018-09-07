@@ -215,6 +215,7 @@ export default class Canvas extends Component {
           width={this.state.canvasWidth}
           onMouseDown={this.mousePress}
           onTouchStart={this.mousePress}
+          onTouchMove={this.state.clickDown === true ? this._onTouchMove.bind(this) : ()=>{return false}}
           onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>{return false}}
           onMouseUp={()=>{
             this.setState({clickDown: false})
