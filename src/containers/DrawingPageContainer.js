@@ -29,10 +29,10 @@ class DrawingPageContainer extends Component {
       updateSelectedSocketSession(path)
     }
     const isVrEnabled = this.state.isVrEnabled ? <VrContainer /> : <CanvasContainer />
+    // <NavigationContainer />
+    // <DrawingSettings />
     return (
       <div className="App">
-        <NavigationContainer />
-        <DrawingSettings />
         {isVrEnabled}
       </div>
     )

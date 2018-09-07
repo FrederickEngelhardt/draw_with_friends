@@ -95,8 +95,8 @@ export default class VrCanvas extends Component {
       this.setState({
         canvasWidth: canvasWidth,
         canvasHeight: canvasHeight,
-        paintWidth: canvasWidth/2,
-        paintHeight: canvasHeight/2,
+        paintWidth: canvasWidth/4,
+        paintHeight: canvasHeight/4,
       })
     }
 
@@ -133,6 +133,9 @@ export default class VrCanvas extends Component {
       return
     }
   }
+  handleTouch = (e) => {
+    this.setState({clickDown: !this.state.clickDown})
+  }
   _onMouseMove(e) {
     e.preventDefault()
     // Detects the current coordinates of the mouse and draws
@@ -161,14 +164,16 @@ export default class VrCanvas extends Component {
   render() {
     return(
       <div
-        ref={`fakeCanvas`}>
+        ref={`fakeCanvas`} className={container()}>
         <div
         className={colorbox(this.state.paintWidth, this.state.paintHeight)}
+        onTouchStart={this.handleTouch}
+        onTouchEnd={this.handleTouch}
         onMouseDown={this.handleClick}
         onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
         onMouseUp={()=>this.setState({clickDown: false})}
         ></div>
-          <a-scene>
+          <a-scene style={{position: 'absolute', width: '100%', height: '100%'}}>
             <a-assets>
               <canvas
                width={this.state.canvasWidth} height={this.state.canvasHeight} ref="canvas" id="my-canvas" crossOrigin="anonymous"></canvas>
@@ -201,4 +206,12 @@ const colorbox = (paintWidth, paintHeight) => {
     background-color: rgba(239,223,187, 0.4);
     border-radius: 50px;
     `)
+}
+
+const container = () => {
+  return css`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  `
 }
