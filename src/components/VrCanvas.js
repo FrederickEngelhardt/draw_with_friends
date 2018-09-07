@@ -180,7 +180,7 @@ export default class VrCanvas extends Component {
         onTouchStart={this.handleTouch}
         onTouchMove={this.state.clickDown === true ? this._onTouchMove.bind(this) : () => false}
         onTouchEnd={this.handleTouch}
-        // onMouseDown={this.handleClick}
+        onMouseDown={this.handleClick}
         onMouseMove={this.state.clickDown === true ? this._onMouseMove.bind(this) : ()=>false}
         onMouseUp={()=>this.setState({clickDown: false})}
         ></div>
