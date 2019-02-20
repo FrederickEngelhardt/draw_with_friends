@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 
-import '../css/Navigation.css'
+import '../../styles/Navigation.scss'
+
 import {
   Collapse,
   Navbar,
@@ -93,3 +94,12 @@ class Navigation extends Component {
   }
 }
 export default withRouter(Navigation)
+
+/**
+ * Notes: This component will have:
+ * save button,
+ * reset button
+ * menu toggle button
+ * Chat button
+ *
+ */

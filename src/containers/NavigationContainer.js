@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UserActionCreators from '../actions/user';
 
-import Navigation from '../components/Navigation'
+import Navigation from '../components/NavigationBar/Navigation'
 class NavigationContainer extends Component {
   render(){
     const { dispatch, user } = this.props;

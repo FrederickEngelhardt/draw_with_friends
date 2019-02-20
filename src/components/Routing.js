@@ -65,10 +65,10 @@ export default class Routing extends Component {
   render(){
     return (
       <Router>
-        <div>
+        <>
           <Route exact path="/" component={HomePage} />
           {this.generateRoutes()}
-        </div>
+        </>
       </Router>
     )
   }

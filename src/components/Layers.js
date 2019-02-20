@@ -12,7 +12,7 @@ import {
   ListGroup,
   ListGroupItem,
   } from 'reactstrap';
-import '../css/Layers.css'
+import 'styles/Layers.scss'
 
 type Props = {
   socket: func,
