@@ -3,7 +3,7 @@ import { AlphaPicker, HuePicker, CompactPicker } from 'react-color';
 /*
   This component will change redux state colors
 */
-import '../css/ColorSettings.css'
+import 'styles/ColorSettings.scss'
 
 export default class ColorSettings extends Component {
   state = {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Canvas.css'
-import AFRAME from 'aframe'
+import 'styles/Canvas.scss'
 import { css } from 'emotion'
 
 const defaultColors = [

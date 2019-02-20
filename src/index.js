@@ -2,22 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/index.css';
-import App from './App';
+import 'aframe'
+import 'aframe-canvas'
+
 import UserReducer from './reducers/user';
-import registerServiceWorker from './registerServiceWorker';
+import RoutingContainer from "./containers/RoutingContainer";
+
+import './assets/images/favicon.ico'
+import 'styles/index.scss'
 
 const store = createStore(
   UserReducer,
-  window.devToolsExtension && window.devToolsExtension()
 );
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <RoutingContainer />
   </Provider>,
   document.getElementById('root')
 );
-registerServiceWorker();

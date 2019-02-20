@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UserActionCreators from '../actions/user';
 
-// Stylesheets
-import '../css/App.css'
 import CanvasContainer from './CanvasContainer'
 import DrawingSettings from './DrawingSettings'
 import NavigationContainer from './NavigationContainer'
@@ -30,11 +28,11 @@ class DrawingPageContainer extends Component {
     }
     const isVrEnabled = this.state.isVrEnabled ? <VrContainer /> : <CanvasContainer />
     return (
-      <div className="App">
+      <>
         <NavigationContainer />
         <DrawingSettings />
         {isVrEnabled}
-      </div>
+      </>
     )
   }
 }

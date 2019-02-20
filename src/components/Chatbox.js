@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Launcher} from 'react-chat-window'
+
 export default class Chatbox extends Component {
   constructor(props){
     super(props)
@@ -27,15 +27,15 @@ export default class Chatbox extends Component {
   render(){
     return(
       <div>
-      <Launcher
-        agentProfile={{
-          teamName: 'All Drawing Friends!',
-          imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
-        }}
-        onMessageWasSent={this._onMessageWasSent.bind(this)}
-        messageList={this.state.messageList}
-        showEmoji
-      />
+      {/*<Launcher*/}
+        {/*agentProfile={{*/}
+          {/*teamName: 'All Drawing Friends!',*/}
+          {/*imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'*/}
+        {/*}}*/}
+        {/*onMessageWasSent={this._onMessageWasSent.bind(this)}*/}
+        {/*messageList={this.state.messageList}*/}
+        {/*showEmoji*/}
+      {/*/>*/}
       </div>
     )
   }

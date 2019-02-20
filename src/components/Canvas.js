@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Canvas.css'
+import 'styles/Canvas.scss'
 
 
 const defaultColors = [

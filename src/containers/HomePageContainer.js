@@ -5,8 +5,8 @@ import * as UserActionCreators from '../actions/user';
 
 
 // Stylesheets
-import '../css/App.css'
-import '../css/HomePage.css'
+import '../styles/App.scss'
+import '../styles/HomePage.scss'
 
 import NavigationContainer from './NavigationContainer'
 import NewSessionCard from '../components/HomePage/NewSessionCard'
